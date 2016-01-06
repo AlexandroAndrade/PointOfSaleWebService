@@ -3,7 +3,7 @@
  */
 package com.gigaware.pointofsalews.service;
 
-import com.gigaware.pointofsalews.dao.factory.SalesItemDao;
+import com.gigaware.pointofsalews.dao.SalesItemDao;
 import com.gigaware.pointofsalews.entity.SalesItem;
 import java.io.Serializable;
 import java.util.List;

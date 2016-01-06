@@ -1,9 +1,10 @@
 /**
  * Copyright (c) 2016, Gigaware Solutions.
  */
-package com.gigaware.pointofsalews.dao.factory;
+package com.gigaware.pointofsalews.dao;
 
 import com.gigaware.pointofsalews.constant.QueryConstants;
+import com.gigaware.pointofsalews.dao.factory.AbstractHibernateDao;
 import com.gigaware.pointofsalews.entity.SalesItem;
 import java.io.Serializable;
 import java.util.List;

@@ -20,7 +20,7 @@ public class SalesItemWrapper {
     
     @XmlElement( name = "salesItems" )
     private List<SalesItem> salesItems =
-            new ArrayList<SalesItem>();
+            new ArrayList<>();
 
     /**
      * @return the salesItems
