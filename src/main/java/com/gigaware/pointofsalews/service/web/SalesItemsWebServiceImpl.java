@@ -3,9 +3,14 @@
  */
 package com.gigaware.pointofsalews.service.web;
 
+import com.gigaware.pointofsalews.dto.SalesItemDto;
+import com.gigaware.pointofsalews.entity.SalesItem;
 import com.gigaware.pointofsalews.service.SalesItemsService;
 import com.gigaware.pointofsalews.wrapper.SalesItemWrapper;
+
 import java.io.Serializable;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +20,13 @@ import org.springframework.stereotype.Service;
 @Service( "salesItemsWebService" )
 public class SalesItemsWebServiceImpl 
     implements SalesItemWebService, Serializable {
-    
-    @Autowired
+	
+    /**
+	 * AspectJ 
+	 */
+	private static final long serialVersionUID = -4682711023351630779L;
+
+	@Autowired
     private SalesItemsService salesItemsService;
     
     @Override
@@ -25,7 +35,20 @@ public class SalesItemsWebServiceImpl
         final SalesItemWrapper wrapperResponse =
                 new SalesItemWrapper();
         
-        wrapperResponse.setSalesItems( salesItemsService.getAll() );
+        List<SalesItem> salesItems = salesItemsService.getAll();
+        
+        for(SalesItem si : salesItems){
+        	SalesItemDto s = new SalesItemDto();
+        	s.setIdSalesItem( si.getIdItem() );
+        	s.setItemName( si.getItemName() );
+        	s.setAverageCost( si.getAverageCost() );
+        	s.setSalePrice( si.getSalePrice() );
+        	s.setCodeBar( si.getCodeBar() );
+        	s.setInventory( si.getInventory() );
+        	s.setBranchName( si.getBranch().getBranchName() );
+        	s.setProviderName( si.getProvider().getProviderName() );
+        	wrapperResponse.getSalesItems().add(s);
+        }
         return wrapperResponse;
     }
 

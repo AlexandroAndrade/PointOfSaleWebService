@@ -19,7 +19,7 @@ public interface SalesItemWebService {
     
     @GET
     @Produces( MediaType.APPLICATION_JSON )
-    @Path("/salesItems")
+    @Path("/all")
     public SalesItemWrapper getAllSalesItems();
     
 }

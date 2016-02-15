@@ -4,11 +4,15 @@
 package com.gigaware.pointofsalews.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -16,17 +20,24 @@ import javax.persistence.UniqueConstraint;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Entity
-@Table( name = "articulo", uniqueConstraints = 
-        @UniqueConstraint( columnNames = "nombre")
+@Table( name = "articulo", uniqueConstraints = {
+        @UniqueConstraint( columnNames = "nombreArticulo"),
+        @UniqueConstraint( columnNames = "codigoBarras")
+		}
 )
 public class SalesItem implements Serializable {
     
-    @Id
+    /**
+	 * AspectJ
+	 */
+	private static final long serialVersionUID = -9197884745195157740L;
+
+	@Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     @Column( name = "idArticulo" , nullable = false )
-    private Long id;
+    private Long idItem;
     
-    @Column( name = "nombre", length = 45, nullable = false )
+    @Column( name = "nombreArticulo", length = 100, nullable = false )
     private String itemName;
     
     @Column( name = "precioVenta", nullable = false )
@@ -41,90 +52,78 @@ public class SalesItem implements Serializable {
     @Column( name = "codigoBarras", length = 45, nullable = true )
     private String codeBar;
     
-    /**
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
+    
+    @ManyToOne( fetch = FetchType.LAZY )
+    @JoinColumn( name = "idMarca", nullable = false )
+    private Branch branch;
+    
+    @ManyToOne( fetch = FetchType.LAZY )
+    @JoinColumn( name = "idProveedor", nullable = false )
+    private Provider provider;
+    
+    public Long getIdItem() {
+		return idItem;
+	}
 
-    /**
-     * @param id the id to set
-     */
-    public void setId( Long id ) {
-        this.id = id;
-    }
+	public void setIdItem(Long idItem) {
+		this.idItem = idItem;
+	}
 
-    /**
-     * @return the itemName
-     */
-    public String getItemName() {
+	public String getItemName() {
         return itemName;
     }
 
-    /**
-     * @param itemName the itemName to set
-     */
     public void setItemName( String itemName ) {
         this.itemName = itemName;
     }
 
-    /**
-     * @return the salePrice
-     */
     public Float getSalePrice() {
         return salePrice;
     }
 
-    /**
-     * @param salePrice the salePrice to set
-     */
     public void setSalePrice( Float salePrice ) {
         this.salePrice = salePrice;
     }
 
-    /**
-     * @return the averageCost
-     */
     public Float getAverageCost() {
         return averageCost;
     }
 
-    /**
-     * @param averageCost the averageCost to set
-     */
     public void setAverageCost( Float averageCost ) {
         this.averageCost = averageCost;
     }
 
-    /**
-     * @return the inventory
-     */
     public Float getInventory() {
         return inventory;
     }
 
-    /**
-     * @param inventory the inventory to set
-     */
     public void setInventory( Float inventory ) {
         this.inventory = inventory;
     }
 
-    /**
-     * @return the codeBar
-     */
     public String getCodeBar() {
         return codeBar;
     }
 
-    /**
-     * @param codeBar the codeBar to set
-     */
     public void setCodeBar( String codeBar ) {
         this.codeBar = codeBar;
     }
-    
-    
+
+	public Branch getBranch() {
+		return branch;
+	}
+
+	public void setBranch(Branch branch) {
+		this.branch = branch;
+	}
+
+	public Provider getProvider() {
+		return provider;
+	}
+
+	public void setProvider(Provider provider) {
+		this.provider = provider;
+	}
+	
     
 }

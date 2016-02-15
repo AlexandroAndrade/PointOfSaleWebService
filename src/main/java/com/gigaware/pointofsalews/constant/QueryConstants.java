@@ -9,6 +9,8 @@ package com.gigaware.pointofsalews.constant;
 public final class QueryConstants {
     
     public static final String SALESITEM_GET_ALL =
-            "FROM SalesItem";
+            "SELECT SI FROM SalesItem SI " + 
+            "JOIN FETCH SI.branch B " + 
+            "JOIN FETCH SI.provider P ";
     
 }
