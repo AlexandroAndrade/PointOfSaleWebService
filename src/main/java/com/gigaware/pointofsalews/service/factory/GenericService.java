@@ -10,10 +10,14 @@ import java.util.List;
  * @param <T> Business Entity
  */
 public interface GenericService< T > {
-    
-    void save( T t );
+	
+	List<T> getAll();
+	T getById(Long id);
+	 
+	void save( T t );
     void saveAll( List<T> ts );
     void update( T t );
     void delete( T t );
+    
     
 }

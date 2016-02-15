@@ -11,7 +11,7 @@ import java.util.List;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 public interface SalesItemDao extends GenericDao<SalesItem>{
-    
-    List<SalesItem> getAll();
-    
+	
+	List<SalesItem> getByInventoryLessThan( Float inventoryLessThan );
+	
 }

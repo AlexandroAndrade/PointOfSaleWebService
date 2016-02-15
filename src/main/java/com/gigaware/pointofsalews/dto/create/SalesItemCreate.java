@@ -1,60 +1,39 @@
 /**
  * Copyright (c) 2016, Gigaware Solutions.
  */
-package com.gigaware.pointofsalews.dto;
+package com.gigaware.pointofsalews.dto.create;
 
 import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
-import com.gigaware.pointofsalews.entity.SalesItem;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import com.sun.xml.txw2.annotation.XmlElement;
+
 
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
-@XmlElement( value =  "salesItem")
+@XmlElement( value = "salesItemCreate" )
 @XmlAccessorType( XmlAccessType.FIELD )
-public class SalesItemDto implements Serializable {
+@JsonIgnoreProperties( ignoreUnknown = true )
+public class SalesItemCreate implements Serializable {
 
 	/**
-	 * AspectJ
+	 * AspctJ
 	 */
-	private static final long serialVersionUID = -3750189378668874083L;
+	private static final long serialVersionUID = 6955326315863736109L;
 	
-	private Long idSalesItem;
 	private String itemName;
 	private Float averageCost;
 	private Float salePrice;
 	private Float inventory;
 	private String codeBar;
-	private String branchName;
-	private String providerName;
+	private Long idBranch;
+	private Long idProvider;
 	
-	/**
-	 * Empty Constructor
-	 */
-	public SalesItemDto(){}
-	
-	/**
-	 * Custom constructor
-	 */
-	public SalesItemDto( SalesItem item ){
-		this.idSalesItem = item.getIdItem();
-		this.itemName = item.getItemName();
-		this.averageCost = item.getAverageCost();
-		this.salePrice = item.getSalePrice();
-		this.inventory = item.getInventory();
-		this.codeBar = item.getCodeBar();
-	}
-	
-	public Long getIdSalesItem() {
-		return idSalesItem;
-	}
-	public void setIdSalesItem(Long idSalesItem) {
-		this.idSalesItem = idSalesItem;
-	}
 	public String getItemName() {
 		return itemName;
 	}
@@ -85,18 +64,19 @@ public class SalesItemDto implements Serializable {
 	public void setCodeBar(String codeBar) {
 		this.codeBar = codeBar;
 	}
-	public String getBranchName() {
-		return branchName;
+	public Long getIdBranch() {
+		return idBranch;
 	}
-	public void setBranchName(String branchName) {
-		this.branchName = branchName;
+	public void setIdBranch(Long idBranch) {
+		this.idBranch = idBranch;
 	}
-	public String getProviderName() {
-		return providerName;
+	public Long getIdProvider() {
+		return idProvider;
 	}
-	public void setProviderName(String providerName) {
-		this.providerName = providerName;
+	public void setIdProvider(Long idProvider) {
+		this.idProvider = idProvider;
 	}
+	
 	
 	
 

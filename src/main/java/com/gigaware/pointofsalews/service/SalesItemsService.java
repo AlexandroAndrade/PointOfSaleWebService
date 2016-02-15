@@ -12,6 +12,6 @@ import java.util.List;
  */
 public interface SalesItemsService extends GenericService<SalesItem> {
     
-    List<SalesItem> getAll();
+	List<SalesItem> getByInventoryLessThan( Integer inventoryLessThan );
     
 }

@@ -16,4 +16,6 @@ public interface GenericDao< T > {
     void update( T t );
     void delete( T t );
     
+    T getById(Long id);
+    List<T> getAll();
 }

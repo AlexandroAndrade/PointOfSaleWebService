@@ -31,35 +31,47 @@ public class SalesItemsWebServiceImpl
     
     @Override
     public SalesItemWrapper getAllSalesItems() {
-
-        final SalesItemWrapper wrapperResponse =
-                new SalesItemWrapper();
-        
-        List<SalesItem> salesItems = salesItemsService.getAll();
-        
-        for(SalesItem si : salesItems){
-        	SalesItemDto s = new SalesItemDto();
-        	s.setIdSalesItem( si.getIdItem() );
-        	s.setItemName( si.getItemName() );
-        	s.setAverageCost( si.getAverageCost() );
-        	s.setSalePrice( si.getSalePrice() );
-        	s.setCodeBar( si.getCodeBar() );
-        	s.setInventory( si.getInventory() );
-        	s.setBranchName( si.getBranch().getBranchName() );
-        	s.setProviderName( si.getProvider().getProviderName() );
-        	wrapperResponse.getSalesItems().add(s);
-        }
-        return wrapperResponse;
+    	return populateSalesItemWrapper( salesItemsService.getAll() );
     }
 
+	@Override
+	public SalesItemDto getItemById( Long idItem ) {
+		SalesItem item = salesItemsService.getById( idItem );
+		SalesItemDto itemDto = new SalesItemDto( item );
+		return itemDto;
+	}
+	
+	@Override
+	public SalesItemWrapper getByInventoryLessThan(Integer inventory) {
+		return populateSalesItemWrapper(salesItemsService.getByInventoryLessThan(inventory));
+	}
+	
+	@Override
+	public SalesItemWrapper saveItem(SalesItemWrapper item) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	private SalesItemWrapper populateSalesItemWrapper( List<SalesItem> items ){
+		SalesItemWrapper wrapper = new SalesItemWrapper();
+		for( SalesItem si : items){
+			SalesItemDto dto = new SalesItemDto( si );
+			wrapper.getSalesItems().add( dto );
+		}
+		return wrapper;
+	}
+	
+	
     /**
      * @param salesItemsService the salesItemsService to set
      */
     public void setSalesItemsService( SalesItemsService salesItemsService ) {
         this.salesItemsService = salesItemsService;
     }
-    
-    
-     
-    
+
+
+
+
+
+
 }

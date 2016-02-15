@@ -1,1 +1,6 @@
-/resources/
+-rest
+  -Items
+    -GET  - http://localhost:8080/PointOfSaleWS/rest/items/all
+    -GET  - http://localhost:8080/PointOfSaleWS/rest/items/1
+    -GET  - http://localhost:8080/PointOfSaleWS/rest/items/100/inventory
+    -POST - localhost:8080/PointOfSaleWS/rest/items/save                     <-- No Funciona !!!

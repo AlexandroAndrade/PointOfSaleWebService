@@ -5,9 +5,18 @@ package com.gigaware.pointofsalews.service;
 
 import com.gigaware.pointofsalews.dao.SalesItemDao;
 import com.gigaware.pointofsalews.entity.SalesItem;
+import com.gigaware.pointofsalews.exception.ExceptionConstant;
+import com.gigaware.pointofsalews.exception.PointOfSaleException;
+
 import java.io.Serializable;
 import java.util.List;
+
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
+import javax.xml.ws.soap.AddressingFeature.Responses;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,14 +28,37 @@ import org.springframework.transaction.annotation.Transactional;
 public class SalesItemsServiceImpl 
     implements SalesItemsService, Serializable {
 
-    @Autowired
+    /**
+	 * AspectJ
+	 */
+	private static final long serialVersionUID = -6409384080987894544L;
+	@Autowired
     private SalesItemDao salesItemDao;
     
     @Override
     public List<SalesItem> getAll() {
         return ( List<SalesItem> ) salesItemDao.getAll();
     }
-
+    
+	@Override
+	public SalesItem getById(Long id) {
+		SalesItem item = salesItemDao.getById(id);
+		
+		if(item == null){
+			throw new PointOfSaleException(
+					Response.Status.NOT_FOUND, 
+					ExceptionConstant.SALES_ITEM_NOT_FOUND_BY_ID_TITLE, 
+					String.format( ExceptionConstant.SALES_ITEM_NOT_FOUND_BY_ID_DESCRIPTON, id ) 
+					);
+		}
+		return item;
+	}
+	
+	@Override
+	public List<SalesItem> getByInventoryLessThan( Integer inventoryLessThan) {
+		return salesItemDao.getByInventoryLessThan( new Float( inventoryLessThan.floatValue() ) );
+	}
+	
     @Override
     public void save( SalesItem t ) {
         throw new UnsupportedOperationException( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
@@ -53,6 +85,10 @@ public class SalesItemsServiceImpl
     public void setSalesItemDao( SalesItemDao salesItemDao ) {
         this.salesItemDao = salesItemDao;
     }
+
+
+
+
     
     
 }
