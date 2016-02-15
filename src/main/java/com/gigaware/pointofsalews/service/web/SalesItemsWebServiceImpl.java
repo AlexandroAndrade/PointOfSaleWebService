@@ -4,6 +4,7 @@
 package com.gigaware.pointofsalews.service.web;
 
 import com.gigaware.pointofsalews.dto.SalesItemDto;
+import com.gigaware.pointofsalews.dto.create.SalesItemCreate;
 import com.gigaware.pointofsalews.entity.SalesItem;
 import com.gigaware.pointofsalews.service.SalesItemsService;
 import com.gigaware.pointofsalews.wrapper.SalesItemWrapper;
@@ -47,8 +48,8 @@ public class SalesItemsWebServiceImpl
 	}
 	
 	@Override
-	public SalesItemWrapper saveItem(SalesItemWrapper item) {
-		// TODO Auto-generated method stub
+	public SalesItemWrapper saveItem(SalesItemCreate item) {
+		System.out.println("Item: " + item.toString() );
 		return null;
 	}
 	
