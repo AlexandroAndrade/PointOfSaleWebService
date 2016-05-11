@@ -23,21 +23,23 @@ public class BranchDto implements Serializable {
 	private static final long serialVersionUID = -948748416562501750L;
 	
 	private Long idBranch;
+	
 	private String branchName;
+	
 	public Long getIdBranch() {
 		return idBranch;
 	}
+	
 	public void setIdBranch(Long idBranch) {
 		this.idBranch = idBranch;
 	}
+	
 	public String getBranchName() {
 		return branchName;
 	}
+	
 	public void setBranchName(String branchName) {
 		this.branchName = branchName;
 	}
-	
-	
 
-	
 }

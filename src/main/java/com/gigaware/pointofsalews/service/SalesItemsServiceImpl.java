@@ -86,9 +86,4 @@ public class SalesItemsServiceImpl
         this.salesItemDao = salesItemDao;
     }
 
-
-
-
-    
-    
 }

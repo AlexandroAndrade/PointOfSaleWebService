@@ -27,8 +27,7 @@ public class SalesItemsWebServiceImplTest {
 
 	private SalesItemsWebServiceImpl webService = new SalesItemsWebServiceImpl();
 	private SalesItemsService itemsService = EasyMock.createStrictMock( SalesItemsServiceImpl.class );
-	
-	
+
 	@Before
 	public void setUp(){
 		webService.setSalesItemsService( itemsService );
@@ -89,10 +88,3 @@ public class SalesItemsWebServiceImplTest {
 	}
 	
 }
-
-
-
-
-
-
-

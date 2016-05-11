@@ -37,47 +37,57 @@ public class SalesItemCreate implements Serializable {
 	public String getItemName() {
 		return itemName;
 	}
+	
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
+	
 	public Float getAverageCost() {
 		return averageCost;
 	}
+	
 	public void setAverageCost(Float averageCost) {
 		this.averageCost = averageCost;
 	}
+	
 	public Float getSalePrice() {
 		return salePrice;
 	}
+	
 	public void setSalePrice(Float salePrice) {
 		this.salePrice = salePrice;
 	}
+	
 	public Float getInventory() {
 		return inventory;
 	}
+	
 	public void setInventory(Float inventory) {
 		this.inventory = inventory;
 	}
+	
 	public String getCodeBar() {
 		return codeBar;
 	}
+	
 	public void setCodeBar(String codeBar) {
 		this.codeBar = codeBar;
 	}
+	
 	public Long getIdBranch() {
 		return idBranch;
 	}
+	
 	public void setIdBranch(Long idBranch) {
 		this.idBranch = idBranch;
 	}
+	
 	public Long getIdProvider() {
 		return idProvider;
 	}
+	
 	public void setIdProvider(Long idProvider) {
 		this.idProvider = idProvider;
 	}
-	
-	
-	
 
 }

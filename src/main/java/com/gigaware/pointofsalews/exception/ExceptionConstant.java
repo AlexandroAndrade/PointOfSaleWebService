@@ -8,7 +8,6 @@ package com.gigaware.pointofsalews.exception;
 */
 public final class ExceptionConstant {
 
-	
 	private ExceptionConstant(){}
 	
 	public static final String SALES_ITEM_NOT_FOUND_BY_ID_TITLE 

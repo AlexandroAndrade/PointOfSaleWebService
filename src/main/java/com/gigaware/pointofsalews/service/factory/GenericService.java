@@ -18,6 +18,5 @@ public interface GenericService< T > {
     void saveAll( List<T> ts );
     void update( T t );
     void delete( T t );
-    
-    
+
 }

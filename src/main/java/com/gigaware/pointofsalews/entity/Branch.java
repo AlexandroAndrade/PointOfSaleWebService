@@ -45,23 +45,25 @@ public class Branch implements Serializable {
 	public Long getIdBranch() {
 		return idBranch;
 	}
+	
 	public void setIdBranch(Long idBranch) {
 		this.idBranch = idBranch;
 	}
+	
 	public String getBranchName() {
 		return branchName;
 	}
+	
 	public void setBranchName(String branchName) {
 		this.branchName = branchName;
 	}
+	
 	public Set<SalesItem> getSalesItems() {
 		return salesItems;
 	}
+	
 	public void setSalesItems(Set<SalesItem> salesItems) {
 		this.salesItems = salesItems;
 	}
-	
-	
-	
-	
+
 }

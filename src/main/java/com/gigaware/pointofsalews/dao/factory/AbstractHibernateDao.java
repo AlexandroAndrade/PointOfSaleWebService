@@ -32,6 +32,5 @@ public abstract class AbstractHibernateDao {
     protected void setSessionFactory( SessionFactory sessionFactory ) {
         this.sessionFactory = sessionFactory;
     }
-    
-    
+
 }

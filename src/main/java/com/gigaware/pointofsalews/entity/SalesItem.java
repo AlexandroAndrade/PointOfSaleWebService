@@ -124,6 +124,5 @@ public class SalesItem implements Serializable {
 	public void setProvider(Provider provider) {
 		this.provider = provider;
 	}
-	
-    
+
 }

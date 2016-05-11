@@ -54,52 +54,65 @@ public class SalesItemDto implements Serializable {
 	public Long getIdSalesItem() {
 		return idSalesItem;
 	}
+	
 	public void setIdSalesItem(Long idSalesItem) {
 		this.idSalesItem = idSalesItem;
 	}
+	
 	public String getItemName() {
 		return itemName;
 	}
+	
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
+	
 	public Float getAverageCost() {
 		return averageCost;
 	}
+	
 	public void setAverageCost(Float averageCost) {
 		this.averageCost = averageCost;
 	}
+	
 	public Float getSalePrice() {
 		return salePrice;
 	}
+	
 	public void setSalePrice(Float salePrice) {
 		this.salePrice = salePrice;
 	}
+	
 	public Float getInventory() {
 		return inventory;
 	}
+	
 	public void setInventory(Float inventory) {
 		this.inventory = inventory;
 	}
+	
 	public String getCodeBar() {
 		return codeBar;
 	}
+	
 	public void setCodeBar(String codeBar) {
 		this.codeBar = codeBar;
 	}
+	
 	public String getBranchName() {
 		return branchName;
 	}
+	
 	public void setBranchName(String branchName) {
 		this.branchName = branchName;
 	}
+	
 	public String getProviderName() {
 		return providerName;
 	}
+	
 	public void setProviderName(String providerName) {
 		this.providerName = providerName;
 	}
-	
-	
 
 }

@@ -30,7 +30,5 @@ public class SalesItemWrapper {
 	public void setSalesItems(List<SalesItemDto> salesItems) {
 		this.salesItems = salesItems;
 	}
-    
-    
-    
+
 }

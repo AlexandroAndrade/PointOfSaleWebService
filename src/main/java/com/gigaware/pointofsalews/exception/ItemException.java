@@ -36,11 +36,10 @@ public class ItemException implements Serializable {
 	public Response.Status getErrorCode() {
 		return errorCode;
 	}
+	
 	public void setErrorCode(Response.Status errorCode) {
 		this.errorCode = errorCode;
 	}
-
-
 
 	public String getErrorName() {
 		return errorName;
@@ -54,9 +53,5 @@ public class ItemException implements Serializable {
 	public void setErrorDescription(String errorDescription) {
 		this.errorDescription = errorDescription;
 	}
-	
-
-	
-	
 
 }
