@@ -47,6 +47,8 @@ public class SalesItemDto implements Serializable {
 		this.salePrice = item.getSalePrice();
 		this.inventory = item.getInventory();
 		this.codeBar = item.getCodeBar();
+		this.branchName = item.getBranch().getBranchName();
+		this.providerName = item.getProvider().getBusinessName();
 	}
 	
 	public Long getIdSalesItem() {

@@ -62,17 +62,11 @@ public class SalesItemsWebServiceImpl
 		return wrapper;
 	}
 	
-	
     /**
      * @param salesItemsService the salesItemsService to set
      */
     public void setSalesItemsService( SalesItemsService salesItemsService ) {
         this.salesItemsService = salesItemsService;
     }
-
-
-
-
-
 
 }

@@ -12,6 +12,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.gigaware.pointofsalews.dto.SalesItemDto;
+import com.gigaware.pointofsalews.entity.Branch;
+import com.gigaware.pointofsalews.entity.Provider;
 import com.gigaware.pointofsalews.entity.SalesItem;
 import com.gigaware.pointofsalews.service.SalesItemsService;
 import com.gigaware.pointofsalews.service.SalesItemsServiceImpl;
@@ -69,15 +71,24 @@ public class SalesItemsWebServiceImplTest {
 	private SalesItem createItem( Long idItem ){
 		SalesItem item = new SalesItem();
 		item.setIdItem( idItem );
+		item.setBranch( createBranch( "Branch_01" ) );
+		item.setProvider( createProvider( "Provider_01" ) );
 		return item;
 	}
 	
+	private Branch createBranch( String branchName){
+		Branch b = new Branch();
+		b.setBranchName( branchName );
+		return b;
+	}
+	
+	private Provider createProvider( String businessName ){
+		Provider p = new Provider();
+		p.setBusinessName( businessName );
+		return p;
+	}
+	
 }
-
-
-
-
-
 
 
 
