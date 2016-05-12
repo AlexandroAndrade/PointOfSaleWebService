@@ -15,7 +15,7 @@ public abstract class AbstractHibernateDao {
     @Autowired
     private SessionFactory sessionFactory;
     
-    public Query createQuery( final String query ){
+    public final Query createQuery( final String query ){
         return getSessionFactory().getCurrentSession().createQuery( query );
     }
 

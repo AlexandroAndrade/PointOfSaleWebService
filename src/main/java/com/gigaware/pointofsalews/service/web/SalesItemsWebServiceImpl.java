@@ -43,7 +43,7 @@ public class SalesItemsWebServiceImpl
 	}
 	
 	@Override
-	public SalesItemWrapper getByInventoryLessThan(Integer inventory) {
+	public SalesItemWrapper getByInventoryLessThan( Integer inventory ) {
 		return populateSalesItemWrapper(salesItemsService.getByInventoryLessThan(inventory));
 	}
 	

@@ -26,23 +26,23 @@ public interface SalesItemWebService {
     @GET
     @Produces( MediaType.APPLICATION_JSON )
     @Path( "/all" )
-    public SalesItemWrapper getAllSalesItems();
+    SalesItemWrapper getAllSalesItems();
     
     @GET
     @Produces( MediaType.APPLICATION_JSON )
     @Path( "/{idItem}" )
-    public SalesItemDto getItemById(@PathParam("idItem") Long idItem);
+    SalesItemDto getItemById(@PathParam("idItem") Long idItem);
     
     @GET
     @Produces( MediaType.APPLICATION_JSON )
     @Path( "/{inventory}/inventory" )
-    public SalesItemWrapper getByInventoryLessThan( 
+    SalesItemWrapper getByInventoryLessThan( 
     		@PathParam( "inventory" ) Integer inventory );
     
     @POST
     @Consumes( MediaType.APPLICATION_JSON )
     @Produces( MediaType.APPLICATION_JSON )
     @Path( "/save" )
-    public SalesItemWrapper saveItem( SalesItemCreate item );
+    SalesItemWrapper saveItem( SalesItemCreate item );
     
 }

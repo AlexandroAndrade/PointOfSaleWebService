@@ -8,6 +8,9 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
+import org.apache.commons.lang3.StringUtils;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+
 import com.gigaware.pointofsalews.entity.SalesItem;
 import com.sun.xml.txw2.annotation.XmlElement;
 
@@ -42,13 +45,13 @@ public class SalesItemDto implements Serializable {
 	 */
 	public SalesItemDto( SalesItem item ){
 		this.idSalesItem = item.getIdItem();
-		this.itemName = item.getItemName();
+		this.itemName = StringUtils.defaultString( item.getItemName(), EMPTY );
 		this.averageCost = item.getAverageCost();
 		this.salePrice = item.getSalePrice();
 		this.inventory = item.getInventory();
-		this.codeBar = item.getCodeBar();
-		this.branchName = item.getBranch().getBranchName();
-		this.providerName = item.getProvider().getBusinessName();
+		this.codeBar = StringUtils.defaultString( item.getCodeBar(), EMPTY );
+		this.branchName = StringUtils.defaultString( item.getBranch().getBranchName(), EMPTY);
+		this.providerName = StringUtils.defaultString( item.getProvider().getBusinessName(), EMPTY );
 	}
 	
 	public Long getIdSalesItem() {
