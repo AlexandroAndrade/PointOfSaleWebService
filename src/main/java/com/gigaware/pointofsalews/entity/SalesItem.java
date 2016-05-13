@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -61,59 +62,63 @@ public class SalesItem implements Serializable {
     @JoinColumn( name = "idProveedor", nullable = false )
     private Provider provider;
     
+    @ManyToOne( fetch = FetchType.LAZY )
+    @JoinColumn( name = "idCategoria", nullable = false )
+    private Category category;
+    
     public Long getIdItem() {
 		return idItem;
 	}
 
-	public void setIdItem(Long idItem) {
+	public void setIdItem( Long idItem ) {
 		this.idItem = idItem;
 	}
 
 	public String getItemName() {
-        return itemName;
-    }
+		return itemName;
+	}
 
-    public void setItemName( String itemName ) {
-        this.itemName = itemName;
-    }
+	public void setItemName( String itemName ) {
+		this.itemName = itemName;
+	}
 
-    public Float getSalePrice() {
-        return salePrice;
-    }
+	public Float getSalePrice() {
+		return salePrice;
+	}
 
-    public void setSalePrice( Float salePrice ) {
-        this.salePrice = salePrice;
-    }
+	public void setSalePrice( Float salePrice ) {
+		this.salePrice = salePrice;
+	}
 
-    public Float getAverageCost() {
-        return averageCost;
-    }
+	public Float getAverageCost() {
+		return averageCost;
+	}
 
-    public void setAverageCost( Float averageCost ) {
-        this.averageCost = averageCost;
-    }
+	public void setAverageCost( Float averageCost ) {
+		this.averageCost = averageCost;
+	}
 
-    public Float getInventory() {
-        return inventory;
-    }
+	public Float getInventory() {
+		return inventory;
+	}
 
-    public void setInventory( Float inventory ) {
-        this.inventory = inventory;
-    }
+	public void setInventory( Float inventory ) {
+		this.inventory = inventory;
+	}
 
-    public String getCodeBar() {
-        return codeBar;
-    }
+	public String getCodeBar() {
+		return codeBar;
+	}
 
-    public void setCodeBar( String codeBar ) {
-        this.codeBar = codeBar;
-    }
+	public void setCodeBar( String codeBar ) {
+		this.codeBar = codeBar;
+	}
 
 	public Branch getBranch() {
 		return branch;
 	}
 
-	public void setBranch(Branch branch) {
+	public void setBranch( Branch branch ) {
 		this.branch = branch;
 	}
 
@@ -121,8 +126,16 @@ public class SalesItem implements Serializable {
 		return provider;
 	}
 
-	public void setProvider(Provider provider) {
+	public void setProvider( Provider provider ) {
 		this.provider = provider;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory( Category category ) {
+		this.category = category;
 	}
 
 }

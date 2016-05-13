@@ -29,6 +29,7 @@ public class SalesItemsServiceImpl
 	 * AspectJ
 	 */
 	private static final long serialVersionUID = -6409384080987894544L;
+	
 	@Autowired
     private SalesItemDao salesItemDao;
     
