@@ -26,68 +26,95 @@ public class SalesItemCreate implements Serializable {
 	 */
 	private static final long serialVersionUID = 6955326315863736109L;
 	
+	private String itemKey;
 	private String itemName;
-	private Float averageCost;
-	private Float salePrice;
-	private Float inventory;
-	private String codeBar;
-	private Long idBranch;
 	private Long idProvider;
+	private Long idDepartment;
+	private String codeBar;
+	private String branch;
 	
+	/**
+	 * @return the itemKey
+	 */
+	public String getItemKey() {
+		return itemKey;
+	}
+	
+	/**
+	 * @param itemKey the itemKey to set
+	 */
+	public void setItemKey(final String itemKey) {
+		this.itemKey = itemKey;
+	}
+	
+	/**
+	 * @return the itemName
+	 */
 	public String getItemName() {
 		return itemName;
 	}
 	
-	public void setItemName(String itemName) {
+	/**
+	 * @param itemName the itemName to set
+	 */
+	public void setItemName(final String itemName) {
 		this.itemName = itemName;
 	}
 	
-	public Float getAverageCost() {
-		return averageCost;
-	}
-	
-	public void setAverageCost(Float averageCost) {
-		this.averageCost = averageCost;
-	}
-	
-	public Float getSalePrice() {
-		return salePrice;
-	}
-	
-	public void setSalePrice(Float salePrice) {
-		this.salePrice = salePrice;
-	}
-	
-	public Float getInventory() {
-		return inventory;
-	}
-	
-	public void setInventory(Float inventory) {
-		this.inventory = inventory;
-	}
-	
-	public String getCodeBar() {
-		return codeBar;
-	}
-	
-	public void setCodeBar(String codeBar) {
-		this.codeBar = codeBar;
-	}
-	
-	public Long getIdBranch() {
-		return idBranch;
-	}
-	
-	public void setIdBranch(Long idBranch) {
-		this.idBranch = idBranch;
-	}
-	
+	/**
+	 * @return the idProvider
+	 */
 	public Long getIdProvider() {
 		return idProvider;
 	}
 	
-	public void setIdProvider(Long idProvider) {
+	/**
+	 * @param idProvider the idProvider to set
+	 */
+	public void setIdProvider(final Long idProvider) {
 		this.idProvider = idProvider;
+	}
+	
+	/**
+	 * @return the idDepartment
+	 */
+	public Long getIdDepartment() {
+		return idDepartment;
+	}
+	
+	/**
+	 * @param idDepartment the idDepartment to set
+	 */
+	public void setIdDepartment(final Long idDepartment) {
+		this.idDepartment = idDepartment;
+	}
+	
+	/**
+	 * @return the codeBar
+	 */
+	public String getCodeBar() {
+		return codeBar;
+	}
+	
+	/**
+	 * @param codeBar the codeBar to set
+	 */
+	public void setCodeBar(final String codeBar) {
+		this.codeBar = codeBar;
+	}
+	
+	/**
+	 * @return the branch
+	 */
+	public String getBranch() {
+		return branch;
+	}
+	
+	/**
+	 * @param branch the branch to set
+	 */
+	public void setBranch(final String branch) {
+		this.branch = branch;
 	}
 
 }
