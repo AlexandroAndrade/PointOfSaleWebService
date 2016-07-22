@@ -4,7 +4,7 @@
 package com.gigaware.pointofsalews.service.web;
 
 import com.gigaware.pointofsalews.dto.SalesItemDto;
-import com.gigaware.pointofsalews.dto.create.SalesItemCreate;
+import com.gigaware.pointofsalews.dto.create.SalesItemCreateModifyDTO;
 import com.gigaware.pointofsalews.entity.Category;
 import com.gigaware.pointofsalews.entity.SalesItem;
 import com.gigaware.pointofsalews.service.CategoryService;
@@ -50,7 +50,7 @@ public class SalesItemsWebServiceImpl
 	}
 	
 	@Override
-	public SalesItemWrapper saveItem(SalesItemCreate item) {
+	public SalesItemWrapper saveItem(SalesItemCreateModifyDTO item) {
 		System.out.println("Item: " + item.toString() );
 		return null;
 	}
