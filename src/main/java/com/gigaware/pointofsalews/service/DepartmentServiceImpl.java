@@ -26,7 +26,7 @@ public class DepartmentServiceImpl implements DepartmentService, Serializable {
 	private static final long serialVersionUID = 874760201485905098L;
 	
 	@Autowired
-	private DepartmentDao categoryDao;
+	private DepartmentDao departmentDao;
 
 	@Override
 	public List<Department> getAll() {
@@ -36,7 +36,7 @@ public class DepartmentServiceImpl implements DepartmentService, Serializable {
 
 	@Override
 	public Department getById( Long idCategory ) {
-		return categoryDao.getById( idCategory );
+		return departmentDao.getById( idCategory );
 	}
 
 	@Override

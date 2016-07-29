@@ -15,7 +15,7 @@ import com.gigaware.pointofsalews.entity.Department;
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
-@Repository( "categoryDao" )
+@Repository( "departmentDao" )
 public class DepartmentDaoImpl 
 	extends AbstractHibernateDao
 	implements DepartmentDao, Serializable {
