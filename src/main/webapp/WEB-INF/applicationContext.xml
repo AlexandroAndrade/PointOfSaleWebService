@@ -30,7 +30,7 @@
             </jaxrs:providers>
             
             <jaxrs:serviceBeans>
-                <ref bean = "salesItemsWebService" />
+                <ref bean = "salesItemWebService" />
             </jaxrs:serviceBeans>
 
             <jaxrs:extensionMappings>
