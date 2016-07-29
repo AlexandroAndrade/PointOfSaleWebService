@@ -41,13 +41,13 @@
                     
         </jaxrs:server>
 
-        <jaxrs:server id="items" address="/helloWorldWebService">
+        <jaxrs:server id="helloWorld" address="/helloWorldWebService">
             <jaxrs:providers>
                 <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
             </jaxrs:providers>
             
             <jaxrs:serviceBeans>
-                <ref bean = "helloWorldService" />
+                <ref bean = "helloWorldWebService" />
             </jaxrs:serviceBeans>
 
             <jaxrs:extensionMappings>
