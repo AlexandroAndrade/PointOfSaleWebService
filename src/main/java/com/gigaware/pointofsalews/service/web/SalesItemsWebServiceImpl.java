@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
-@Service( "salesItemsWebService" )
+@Service( "salesItemWebService" )
 public class SalesItemsWebServiceImpl 
     implements SalesItemWebService, Serializable {
 	

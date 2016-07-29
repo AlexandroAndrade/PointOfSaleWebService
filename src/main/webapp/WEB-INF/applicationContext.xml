@@ -30,9 +30,26 @@
             </jaxrs:providers>
             
             <jaxrs:serviceBeans>
-                <ref bean="salesItemsWebService" />
+                <ref bean = "salesItemsWebService" />
             </jaxrs:serviceBeans>
+
+            <jaxrs:extensionMappings>
+                <entry key="xml"  value="application/xml"   />
+                <entry key="json" value="application/json"  />
+            </jaxrs:extensionMappings>
+                    
+                    
+        </jaxrs:server>
+
+        <jaxrs:server id="items" address="/helloWorldWebService">
+            <jaxrs:providers>
+                <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+            </jaxrs:providers>
             
+            <jaxrs:serviceBeans>
+                <ref bean = "helloWorldService" />
+            </jaxrs:serviceBeans>
+
             <jaxrs:extensionMappings>
                 <entry key="xml"  value="application/xml"   />
                 <entry key="json" value="application/json"  />
