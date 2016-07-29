@@ -57,8 +57,8 @@ public class SalesItem implements Serializable {
     private String codeBar;
     
     
-    @ManyToOne( fetch = FetchType.LAZY )
-    @JoinColumn( name = "Marca", nullable = false )
+//    @ManyToOne( fetch = FetchType.LAZY )
+//    @JoinColumn( name = "Marca", nullable = false )
     private String branch;
     
     @ManyToOne( fetch = FetchType.LAZY )
