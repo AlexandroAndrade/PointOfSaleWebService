@@ -16,7 +16,7 @@ import com.gigaware.pointofsalews.entity.Department;
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
-@Service( "categoryService" )
+@Service( "departmentService" )
 @Transactional
 public class DepartmentServiceImpl implements DepartmentService, Serializable {
 	
