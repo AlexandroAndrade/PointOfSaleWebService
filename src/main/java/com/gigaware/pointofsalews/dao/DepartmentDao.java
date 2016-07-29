@@ -4,14 +4,14 @@
 package com.gigaware.pointofsalews.dao;
 
 import com.gigaware.pointofsalews.dao.factory.GenericDao;
-import com.gigaware.pointofsalews.entity.Category;
+import com.gigaware.pointofsalews.entity.Department;
 
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
-public interface CategoryDao extends GenericDao<Category> {
+public interface DepartmentDao extends GenericDao<Department> {
 	
-	Category getCategoryByFatherId( Long fatherCategoryId );
+	Department getDepartmentById( Long idDepartment );
 	
 
 }

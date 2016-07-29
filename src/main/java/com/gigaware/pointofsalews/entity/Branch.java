@@ -20,10 +20,10 @@ import javax.persistence.UniqueConstraint;
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
-@Entity
-@Table( name = "Marca", uniqueConstraints = 
-		@UniqueConstraint( columnNames = "nombreMarca")
-)
+//@Entity
+//@Table( name = "Marca", uniqueConstraints = 
+//		@UniqueConstraint( columnNames = "nombreMarca")
+//)
 public class Branch implements Serializable {
 
 	/**
@@ -31,16 +31,17 @@ public class Branch implements Serializable {
 	 */
 	private static final long serialVersionUID = 65529935346105746L;
 
-	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY )
-	@Column( name = "idMarca", nullable = false)
+//	@Id
+//	@GeneratedValue( strategy = GenerationType.IDENTITY )
+//	@Column( name = "idMarca", nullable = false)
 	private Long idBranch;
 	
-	@Column( name = "nombreMarca", nullable = false, length = 45)
+	private String branchKey;
+	
+//	@Column( name = "nombreMarca", nullable = false, length = 45)
 	private String branchName;
 	
-	@OneToMany( fetch = FetchType.LAZY, mappedBy = "branch")
-	private Set<SalesItem> salesItems = new HashSet<>();
+	private Set<Inventory> inventory = new HashSet<>();
 	
 	public Long getIdBranch() {
 		return idBranch;
@@ -50,6 +51,14 @@ public class Branch implements Serializable {
 		this.idBranch = idBranch;
 	}
 	
+	public String getBranchKey() {
+		return branchKey;
+	}
+
+	public void setBranchKey(String branchKey) {
+		this.branchKey = branchKey;
+	}
+
 	public String getBranchName() {
 		return branchName;
 	}
@@ -57,13 +66,13 @@ public class Branch implements Serializable {
 	public void setBranchName(String branchName) {
 		this.branchName = branchName;
 	}
-	
-	public Set<SalesItem> getSalesItems() {
-		return salesItems;
+
+	public Set<Inventory> getInventory() {
+		return inventory;
 	}
-	
-	public void setSalesItems(Set<SalesItem> salesItems) {
-		this.salesItems = salesItems;
+
+	public void setInventory(Set<Inventory> inventory) {
+		this.inventory = inventory;
 	}
 
 }

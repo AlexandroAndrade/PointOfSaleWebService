@@ -21,10 +21,10 @@ class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
     	
     <property name="annotatedClasses">
 	<list>
-		<value>com.gigaware.pointofsalews.entity.Branch</value>
-		<value>com.gigaware.pointofsalews.entity.Category</value>
-		<value>com.gigaware.pointofsalews.entity.Provider</value>
-		<value>com.gigaware.pointofsalews.entity.SalesItem</value>
+<!-- 		<value>com.gigaware.pointofsalews.entity.Branch</value> -->
+<!-- 		<value>com.gigaware.pointofsalews.entity.Category</value> -->
+<!-- 		<value>com.gigaware.pointofsalews.entity.Provider</value> -->
+<!-- 		<value>com.gigaware.pointofsalews.entity.SalesItem</value> -->
 	</list>
     </property>
 

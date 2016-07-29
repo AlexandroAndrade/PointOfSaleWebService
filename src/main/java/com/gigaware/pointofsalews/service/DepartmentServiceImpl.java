@@ -10,15 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gigaware.pointofsalews.dao.CategoryDao;
-import com.gigaware.pointofsalews.entity.Category;
+import com.gigaware.pointofsalews.dao.DepartmentDao;
+import com.gigaware.pointofsalews.entity.Department;
 
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Service( "categoryService" )
 @Transactional
-public class CategoryServiceImpl implements CategoryService, Serializable {
+public class DepartmentServiceImpl implements DepartmentService, Serializable {
 	
 	/**
 	 * AspectJ Generated Version
@@ -26,45 +26,45 @@ public class CategoryServiceImpl implements CategoryService, Serializable {
 	private static final long serialVersionUID = 874760201485905098L;
 	
 	@Autowired
-	private CategoryDao categoryDao;
+	private DepartmentDao categoryDao;
 
 	@Override
-	public List<Category> getAll() {
+	public List<Department> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Category getById( Long idCategory ) {
+	public Department getById( Long idCategory ) {
 		return categoryDao.getById( idCategory );
 	}
 
 	@Override
-	public void save( Category t ) {
+	public void save( Department t ) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void saveAll( List<Category> ts ) {
+	public void saveAll( List<Department> ts ) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update( Category t ) {
+	public void update( Department t ) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete( Category t ) {
+	public void delete( Department t ) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Category getCategoryByFatherId( Long idFatherCategory ) {
+	public Department getDepartmentById( Long idDepartment ) {
 		// TODO Auto-generated method stub
 		return null;
 	}

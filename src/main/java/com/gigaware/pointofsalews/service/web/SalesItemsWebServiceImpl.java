@@ -5,9 +5,7 @@ package com.gigaware.pointofsalews.service.web;
 
 import com.gigaware.pointofsalews.dto.SalesItemDto;
 import com.gigaware.pointofsalews.dto.create.SalesItemCreateModifyDTO;
-import com.gigaware.pointofsalews.entity.Category;
 import com.gigaware.pointofsalews.entity.SalesItem;
-import com.gigaware.pointofsalews.service.CategoryService;
 import com.gigaware.pointofsalews.service.SalesItemsService;
 import com.gigaware.pointofsalews.wrapper.SalesItemWrapper;
 

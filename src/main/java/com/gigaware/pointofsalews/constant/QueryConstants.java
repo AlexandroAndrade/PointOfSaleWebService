@@ -28,9 +28,9 @@ public final class QueryConstants {
     /**
      * Category Entity Queries
      */
-    public static final String CATEGORY_GET_BY_ID = 
-    		"SELECT CAT FROM Category CAT " + 
-    		"WHERE :idCategory = CAT.idCategory";
+    public static final String DEPARTMENT_GET_BY_ID = 
+    		"SELECT CAT FROM DEPARTMENT DEP " + 
+    		"WHERE :idDepartment = DEP.idDepartment";
     		
     public static final String CATEGORY_GET_BY_ID_INCLUDE_CHILDREN = 
     		"SELECT CAT FROM Category CAT " + 

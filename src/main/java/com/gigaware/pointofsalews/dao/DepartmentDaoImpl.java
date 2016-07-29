@@ -8,17 +8,17 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.gigaware.pointofsalews.constant.QueryConstants;
+//import com.gigaware.pointofsalews.constant.QueryConstants;
 import com.gigaware.pointofsalews.dao.factory.AbstractHibernateDao;
-import com.gigaware.pointofsalews.entity.Category;
+import com.gigaware.pointofsalews.entity.Department;
 
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Repository( "categoryDao" )
-public class CategoryDaoImpl 
+public class DepartmentDaoImpl 
 	extends AbstractHibernateDao
-	implements CategoryDao, Serializable {
+	implements DepartmentDao, Serializable {
 
 	/**
 	 * AspectJ Generated Version
@@ -26,45 +26,46 @@ public class CategoryDaoImpl
 	private static final long serialVersionUID = -5266861959532887438L;
 
 	@Override
-	public void save(Category t) {
+	public void save(Department t) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public void saveAll(List<Category> ts) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(Category t) {
+	public void saveAll(List<Department> ts) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(Category t) {
+	public void update(Department t) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Category getById(Long idCategory ) {
-		return ( Category ) 
-				super
-					.createQuery( QueryConstants.CATEGORY_GET_BY_ID )
-					.setParameter( "idCategory", idCategory )
-					.uniqueResult();
+	public void delete(Department t) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public List<Category> getAll() {
+	public Department getById(Long idDepartment ) {
+		return null;
+//		return ( Department ) 
+//				super
+//					.createQuery( QueryConstants.CATEGORY_GET_BY_ID )
+//					.setParameter( "idDepartment", idDepartment )
+//					.uniqueResult();
+	}
+
+	@Override
+	public List<Department> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Category getCategoryByFatherId(Long fatherCategoryId) {
+	public Department getDepartmentById(Long idDepartment) {
 		// TODO Auto-generated method stub
 		return null;
 	}
