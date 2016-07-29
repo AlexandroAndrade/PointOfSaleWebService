@@ -38,6 +38,9 @@ public class SalesItem implements Serializable {
     @Column( name = "idArticulo" , nullable = false )
     private Long idItem;
     
+	//TODO - Mapping against DB Table
+	private String itemKey;
+	
     @Column( name = "nombreArticulo", length = 100, nullable = false )
     private String itemName;
     
@@ -47,24 +50,24 @@ public class SalesItem implements Serializable {
     @Column( name = "costoPromedio", nullable = false )
     private Float averageCost;
     
-    @Column( name = "existencias", nullable = false )
-    private Float inventory;
+//    @Column( name = "existencias", nullable = false )
+//    private Float inventory;
     
     @Column( name = "codigoBarras", length = 45, nullable = true )
     private String codeBar;
     
     
     @ManyToOne( fetch = FetchType.LAZY )
-    @JoinColumn( name = "idMarca", nullable = false )
-    private Branch branch;
+    @JoinColumn( name = "Marca", nullable = false )
+    private String branch;
     
     @ManyToOne( fetch = FetchType.LAZY )
     @JoinColumn( name = "idProveedor", nullable = false )
     private Provider provider;
     
     @ManyToOne( fetch = FetchType.LAZY )
-    @JoinColumn( name = "idCategoria", nullable = false )
-    private Category category;
+    @JoinColumn( name = "idDepartamento", nullable = false )
+    private Category department;
     
     public Long getIdItem() {
 		return idItem;
@@ -72,6 +75,14 @@ public class SalesItem implements Serializable {
 
 	public void setIdItem( Long idItem ) {
 		this.idItem = idItem;
+	}
+	
+	public String getItemKey() {
+		return itemKey;
+	}
+
+	public void setItemKey(String itemKey) {
+		this.itemKey = itemKey;
 	}
 
 	public String getItemName() {
@@ -98,13 +109,13 @@ public class SalesItem implements Serializable {
 		this.averageCost = averageCost;
 	}
 
-	public Float getInventory() {
-		return inventory;
-	}
-
-	public void setInventory( Float inventory ) {
-		this.inventory = inventory;
-	}
+//	public Float getInventory() {
+//		return inventory;
+//	}
+//
+//	public void setInventory( Float inventory ) {
+//		this.inventory = inventory;
+//	}
 
 	public String getCodeBar() {
 		return codeBar;
@@ -114,13 +125,13 @@ public class SalesItem implements Serializable {
 		this.codeBar = codeBar;
 	}
 
-	public Branch getBranch() {
-		return branch;
-	}
-
-	public void setBranch( Branch branch ) {
-		this.branch = branch;
-	}
+//	public Branch getBranch() {
+//		return branch;
+//	}
+//
+//	public void setBranch( Branch branch ) {
+//		this.branch = branch;
+//	}
 
 	public Provider getProvider() {
 		return provider;
@@ -130,12 +141,12 @@ public class SalesItem implements Serializable {
 		this.provider = provider;
 	}
 
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory( Category category ) {
-		this.category = category;
-	}
+//	public Category getCategory() {
+//		return category;
+//	}
+//
+//	public void setCategory( Category category ) {
+//		this.category = category;
+//	}
 
 }
