@@ -5,9 +5,12 @@ package com.gigaware.pointofsalews.service.web;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Service;
+
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
+@Service( "helloWorldWebService")
 public class HelloWorldServiceImpl 
 	implements HelloWorldService, Serializable {
 
