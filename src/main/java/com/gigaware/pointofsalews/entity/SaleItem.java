@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
-public class SalesItem extends AbstractBaseEntity implements Serializable {
+public class SaleItem extends AbstractBaseEntity implements Serializable {
     
     /**
 	 * AspectJ

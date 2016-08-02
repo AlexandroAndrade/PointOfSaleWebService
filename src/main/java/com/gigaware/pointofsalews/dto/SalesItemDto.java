@@ -14,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
-import com.gigaware.pointofsalews.entity.SalesItem;
+import com.gigaware.pointofsalews.entity.SaleItem;
 import com.sun.xml.txw2.annotation.XmlElement;
 
 /**
@@ -48,7 +48,7 @@ public class SalesItemDto implements Serializable {
 	/**
 	 * Custom constructor
 	 */
-	public SalesItemDto(SalesItem item) {
+	public SalesItemDto(SaleItem item) {
 		this.idSalesItem = item.getIdItem();
 		this.itemName = StringUtils.defaultString( item.getItemName(), EMPTY );
 		this.averageCost = item.getAverageCost();

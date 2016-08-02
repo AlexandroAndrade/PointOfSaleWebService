@@ -16,14 +16,14 @@ public class Inventory extends AbstractBaseEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = 7305928501070070318L;
 
-	private SalesItem salesItem;
+	private SaleItem salesItem;
 	private Branch branch;
 	private Float inventory;
 	
-	public SalesItem getSalesItem() {
+	public SaleItem getSalesItem() {
 		return salesItem;
 	}
-	public void setSalesItem(SalesItem salesItem) {
+	public void setSalesItem(SaleItem salesItem) {
 		this.salesItem = salesItem;
 	}
 	public Branch getBranch() {

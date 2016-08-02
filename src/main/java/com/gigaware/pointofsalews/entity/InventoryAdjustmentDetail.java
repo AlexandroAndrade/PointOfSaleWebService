@@ -17,7 +17,7 @@ public class InventoryAdjustmentDetail extends AbstractBaseEntity implements Ser
 	
 	private Long idInventoryAdjustmentDetail;
 	private InventoryAdjustmentTotal inventoryAdjustmentTotal;
-	private SalesItem saleItem;
+	private SaleItem saleItem;
 	private Float previousStock;
 	private Float adjsutedStock;
 	private Float adjustmentCost;
@@ -35,10 +35,10 @@ public class InventoryAdjustmentDetail extends AbstractBaseEntity implements Ser
 			InventoryAdjustmentTotal inventoryAdjustmentTotal) {
 		this.inventoryAdjustmentTotal = inventoryAdjustmentTotal;
 	}
-	public SalesItem getSaleItem() {
+	public SaleItem getSaleItem() {
 		return saleItem;
 	}
-	public void setSaleItem(SalesItem saleItem) {
+	public void setSaleItem(SaleItem saleItem) {
 		this.saleItem = saleItem;
 	}
 	public Float getPreviousStock() {

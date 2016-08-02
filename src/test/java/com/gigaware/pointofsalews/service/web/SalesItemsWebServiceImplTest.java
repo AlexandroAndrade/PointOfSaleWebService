@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import com.gigaware.pointofsalews.dto.SalesItemDto;
 import com.gigaware.pointofsalews.entity.Provider;
-import com.gigaware.pointofsalews.entity.SalesItem;
+import com.gigaware.pointofsalews.entity.SaleItem;
 import com.gigaware.pointofsalews.service.SalesItemsService;
 import com.gigaware.pointofsalews.service.SalesItemsServiceImpl;
 import com.gigaware.pointofsalews.wrapper.SalesItemWrapper;
@@ -57,8 +57,8 @@ public class SalesItemsWebServiceImplTest {
 		
 	}
 	
-	private List<SalesItem> createSalesItemList(){
-		List<SalesItem> l = new ArrayList<>();
+	private List<SaleItem> createSalesItemList(){
+		List<SaleItem> l = new ArrayList<>();
 		l.add( createItem( 1L ) );
 		l.add( createItem( 2L ) );
 		l.add( createItem( 3L ) );
@@ -66,8 +66,8 @@ public class SalesItemsWebServiceImplTest {
 		return l;
 	}
 	
-	private SalesItem createItem( Long idItem ){
-		SalesItem item = new SalesItem();
+	private SaleItem createItem( Long idItem ){
+		SaleItem item = new SaleItem();
 		item.setIdItem( idItem );
 		item.setProvider( createProvider( "Provider_01" ) );
 		return item;

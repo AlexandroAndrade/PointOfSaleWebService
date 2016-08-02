@@ -17,7 +17,7 @@ public class WareMovementDetail extends AbstractBaseEntity implements Serializab
 	
 	private Long idWareMovementDetail;
 	private WareMovementTotal wareMovementTotal;
-	private SalesItem salesItem;
+	private SaleItem salesItem;
 	private Float quantity;
 	private Float averageCost;
 	
@@ -33,10 +33,10 @@ public class WareMovementDetail extends AbstractBaseEntity implements Serializab
 	public void setWareMovementTotal(WareMovementTotal wareMovementTotal) {
 		this.wareMovementTotal = wareMovementTotal;
 	}
-	public SalesItem getSalesItem() {
+	public SaleItem getSalesItem() {
 		return salesItem;
 	}
-	public void setSalesItem(SalesItem salesItem) {
+	public void setSalesItem(SaleItem salesItem) {
 		this.salesItem = salesItem;
 	}
 	public Float getQuantity() {

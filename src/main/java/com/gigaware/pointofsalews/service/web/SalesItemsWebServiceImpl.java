@@ -5,7 +5,7 @@ package com.gigaware.pointofsalews.service.web;
 
 import com.gigaware.pointofsalews.dto.SalesItemDto;
 import com.gigaware.pointofsalews.dto.create.SalesItemCreateModifyDTO;
-import com.gigaware.pointofsalews.entity.SalesItem;
+import com.gigaware.pointofsalews.entity.SaleItem;
 import com.gigaware.pointofsalews.service.SalesItemsService;
 import com.gigaware.pointofsalews.wrapper.SalesItemWrapper;
 
@@ -37,7 +37,7 @@ public class SalesItemsWebServiceImpl
 
 	@Override
 	public SalesItemDto getItemById( Long idItem ) {
-		SalesItem item = salesItemsService.getById( idItem );
+		SaleItem item = salesItemsService.getById( idItem );
 		SalesItemDto itemDto = new SalesItemDto( item );
 		return itemDto;
 	}
@@ -53,9 +53,9 @@ public class SalesItemsWebServiceImpl
 		return null;
 	}
 	
-	private SalesItemWrapper populateSalesItemWrapper( List<SalesItem> items ){
+	private SalesItemWrapper populateSalesItemWrapper( List<SaleItem> items ){
 		SalesItemWrapper wrapper = new SalesItemWrapper();
-		for( SalesItem si : items){
+		for( SaleItem si : items){
 			SalesItemDto dto = new SalesItemDto( si );
 			wrapper.getSalesItems().add( dto );
 		}

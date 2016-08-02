@@ -17,7 +17,7 @@ public class SaleDetail extends AbstractBaseEntity implements Serializable {
 	
 	private Long idSaleDetail;
 	private SaleTotal saleTotal;
-	private SalesItem salesItem;
+	private SaleItem salesItem;
 	private Float quantity;
 	private Float averageCost;
 	private Float salePrice;
@@ -34,10 +34,10 @@ public class SaleDetail extends AbstractBaseEntity implements Serializable {
 	public void setSaleTotal(SaleTotal saleTotal) {
 		this.saleTotal = saleTotal;
 	}
-	public SalesItem getSalesItem() {
+	public SaleItem getSalesItem() {
 		return salesItem;
 	}
-	public void setSalesItem(SalesItem salesItem) {
+	public void setSalesItem(SaleItem salesItem) {
 		this.salesItem = salesItem;
 	}
 	public Float getQuantity() {

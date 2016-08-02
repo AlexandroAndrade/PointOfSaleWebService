@@ -19,7 +19,7 @@ public class Department extends AbstractBaseEntity implements Serializable {
 	
 	private Long idDepartment;
 	private String departmentName;
-	private Set<SalesItem> salesItems = new HashSet<>();
+	private Set<SaleItem> salesItems = new HashSet<>();
 
 	public Long getIdDepartment() {
 		return idDepartment;
@@ -37,11 +37,11 @@ public class Department extends AbstractBaseEntity implements Serializable {
 		this.departmentName = departmentName;
 	}
 
-	public Set<SalesItem> getSalesItems() {
+	public Set<SaleItem> getSalesItems() {
 		return salesItems;
 	}
 
-	public void setSalesItems(Set<SalesItem> salesItems) {
+	public void setSalesItems(Set<SaleItem> salesItems) {
 		this.salesItems = salesItems;
 	}
 	

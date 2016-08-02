@@ -4,7 +4,7 @@
 package com.gigaware.pointofsalews.service;
 
 import com.gigaware.pointofsalews.dao.SalesItemDao;
-import com.gigaware.pointofsalews.entity.SalesItem;
+import com.gigaware.pointofsalews.entity.SaleItem;
 import com.gigaware.pointofsalews.exception.ExceptionConstant;
 import com.gigaware.pointofsalews.exception.PointOfSaleException;
 
@@ -34,13 +34,13 @@ public class SalesItemsServiceImpl
     private SalesItemDao salesItemDao;
     
     @Override
-    public List<SalesItem> getAll() {
-        return ( List<SalesItem> ) salesItemDao.getAll();
+    public List<SaleItem> getAll() {
+        return ( List<SaleItem> ) salesItemDao.getAll();
     }
     
 	@Override
-	public SalesItem getById(Long id) {
-		SalesItem item = salesItemDao.getById(id);
+	public SaleItem getById(Long id) {
+		SaleItem item = salesItemDao.getById(id);
 		
 		if(item == null){
 			throw new PointOfSaleException(
@@ -53,27 +53,27 @@ public class SalesItemsServiceImpl
 	}
 	
 	@Override
-	public List<SalesItem> getByInventoryLessThan( Integer inventoryLessThan) {
+	public List<SaleItem> getByInventoryLessThan( Integer inventoryLessThan) {
 		return salesItemDao.getByInventoryLessThan( new Float( inventoryLessThan.floatValue() ) );
 	}
 	
     @Override
-    public void save( SalesItem t ) {
+    public void save( SaleItem t ) {
         throw new UnsupportedOperationException( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void saveAll( List<SalesItem> ts ) {
+    public void saveAll( List<SaleItem> ts ) {
         throw new UnsupportedOperationException( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update( SalesItem t ) {
+    public void update( SaleItem t ) {
         throw new UnsupportedOperationException( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void delete( SalesItem t ) {
+    public void delete( SaleItem t ) {
         throw new UnsupportedOperationException( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
     }
 

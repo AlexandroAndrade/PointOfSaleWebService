@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.gigaware.pointofsalews.enumeration.MovementType;
+import com.gigaware.pointofsalews.entity.MovementType;
 
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )

@@ -27,7 +27,7 @@ public class Provider extends AbstractBaseEntity implements Serializable {
 	private String country;
 	private String businessName;
 	private String taxPayerIdNumber;
-	private Set<SalesItem> salesItems = new HashSet<>();
+	private Set<SaleItem> salesItems = new HashSet<>();
 
 	public Long getIdProvider() {
 		return idProvider;
@@ -109,11 +109,11 @@ public class Provider extends AbstractBaseEntity implements Serializable {
 		this.taxPayerIdNumber = taxPayerIdNumber;
 	}
 	
-	public Set<SalesItem> getSalesItems() {
+	public Set<SaleItem> getSalesItems() {
 		return salesItems;
 	}
 	
-	public void setSalesItems(Set<SalesItem> salesItems) {
+	public void setSalesItems(Set<SaleItem> salesItems) {
 		this.salesItems = salesItems;
 	}
 

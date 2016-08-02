@@ -4,14 +4,14 @@
 package com.gigaware.pointofsalews.dao;
 
 import com.gigaware.pointofsalews.dao.factory.GenericDao;
-import com.gigaware.pointofsalews.entity.SalesItem;
+import com.gigaware.pointofsalews.entity.SaleItem;
 import java.util.List;
 
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
-public interface SalesItemDao extends GenericDao<SalesItem>{
+public interface SalesItemDao extends GenericDao<SaleItem>{
 	
-	List<SalesItem> getByInventoryLessThan( Float inventoryLessThan );
+	List<SaleItem> getByInventoryLessThan( Float inventoryLessThan );
 	
 }
