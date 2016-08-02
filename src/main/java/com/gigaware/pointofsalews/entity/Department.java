@@ -16,7 +16,7 @@ public class Department extends AbstractBaseEntity implements Serializable {
 	 * AspectJ Generated Version
 	 */
 	private static final long serialVersionUID = 3471259605555788950L;
-	
+
 	private Long idDepartment;
 	private String departmentName;
 	private Set<SaleItem> salesItems = new HashSet<>();
@@ -25,7 +25,7 @@ public class Department extends AbstractBaseEntity implements Serializable {
 		return idDepartment;
 	}
 
-	public void setIdDepartment(Long idDepartment) {
+	public void setIdDepartment( Long idDepartment ) {
 		this.idDepartment = idDepartment;
 	}
 
@@ -33,7 +33,7 @@ public class Department extends AbstractBaseEntity implements Serializable {
 		return departmentName;
 	}
 
-	public void setDepartmentName(String departmentName) {
+	public void setDepartmentName( String departmentName ) {
 		this.departmentName = departmentName;
 	}
 
@@ -41,10 +41,8 @@ public class Department extends AbstractBaseEntity implements Serializable {
 		return salesItems;
 	}
 
-	public void setSalesItems(Set<SaleItem> salesItems) {
+	public void setSalesItems( Set<SaleItem> salesItems ) {
 		this.salesItems = salesItems;
 	}
-	
-	
-	
+
 }

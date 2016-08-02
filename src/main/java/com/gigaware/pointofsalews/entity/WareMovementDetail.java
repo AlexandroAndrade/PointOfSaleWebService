@@ -14,41 +14,50 @@ public class WareMovementDetail extends AbstractBaseEntity implements Serializab
 	 * AspectJ
 	 */
 	private static final long serialVersionUID = -7487073357432768542L;
-	
+
 	private Long idWareMovementDetail;
 	private WareMovementTotal wareMovementTotal;
 	private SaleItem salesItem;
 	private Float quantity;
 	private Float averageCost;
-	
+
 	public Long getIdWareMovementDetail() {
 		return idWareMovementDetail;
 	}
-	public void setIdWareMovementDetail(Long idWareMovementDetail) {
+
+	public void setIdWareMovementDetail( Long idWareMovementDetail ) {
 		this.idWareMovementDetail = idWareMovementDetail;
 	}
+
 	public WareMovementTotal getWareMovementTotal() {
 		return wareMovementTotal;
 	}
-	public void setWareMovementTotal(WareMovementTotal wareMovementTotal) {
+
+	public void setWareMovementTotal( WareMovementTotal wareMovementTotal ) {
 		this.wareMovementTotal = wareMovementTotal;
 	}
+
 	public SaleItem getSalesItem() {
 		return salesItem;
 	}
-	public void setSalesItem(SaleItem salesItem) {
+
+	public void setSalesItem( SaleItem salesItem ) {
 		this.salesItem = salesItem;
 	}
+
 	public Float getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(Float quantity) {
+
+	public void setQuantity( Float quantity ) {
 		this.quantity = quantity;
 	}
+
 	public Float getAverageCost() {
 		return averageCost;
 	}
-	public void setAverageCost(Float averageCost) {
+
+	public void setAverageCost( Float averageCost ) {
 		this.averageCost = averageCost;
 	}
 

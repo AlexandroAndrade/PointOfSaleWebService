@@ -16,16 +16,15 @@ public abstract class AbstractBaseEntity implements Serializable {
 	 * AspectJ
 	 */
 	private static final long serialVersionUID = -1633893674191319655L;
-	
+
 	private LogicalDeleted logicalDeleted = LogicalDeleted.NO;
 
 	public LogicalDeleted getLogicalDeleted() {
 		return logicalDeleted;
 	}
 
-	public void setLogicalDeleted(LogicalDeleted logicalDeleted) {
+	public void setLogicalDeleted( LogicalDeleted logicalDeleted ) {
 		this.logicalDeleted = logicalDeleted;
 	}
-	
-	
+
 }

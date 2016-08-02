@@ -24,28 +24,28 @@ public class Branch extends AbstractBaseEntity implements Serializable {
 	private Set<SaleTotal> sales = new HashSet<>();
 	private Set<InventoryAdjustmentTotal> inventoryAdjustments = new HashSet<>();
 	private Set<WareMovementTotal> wareMovements = new HashSet<>();
-	
+
 	public Long getIdBranch() {
 		return idBranch;
 	}
-	
-	public void setIdBranch(Long idBranch) {
+
+	public void setIdBranch( Long idBranch ) {
 		this.idBranch = idBranch;
 	}
-	
+
 	public String getBranchKey() {
 		return branchKey;
 	}
 
-	public void setBranchKey(String branchKey) {
+	public void setBranchKey( String branchKey ) {
 		this.branchKey = branchKey;
 	}
 
 	public String getBranchName() {
 		return branchName;
 	}
-	
-	public void setBranchName(String branchName) {
+
+	public void setBranchName( String branchName ) {
 		this.branchName = branchName;
 	}
 
@@ -53,7 +53,7 @@ public class Branch extends AbstractBaseEntity implements Serializable {
 		return inventory;
 	}
 
-	public void setInventory(Set<Inventory> inventory) {
+	public void setInventory( Set<Inventory> inventory ) {
 		this.inventory = inventory;
 	}
 
@@ -61,7 +61,7 @@ public class Branch extends AbstractBaseEntity implements Serializable {
 		return sales;
 	}
 
-	public void setSales(Set<SaleTotal> sales) {
+	public void setSales( Set<SaleTotal> sales ) {
 		this.sales = sales;
 	}
 
@@ -69,8 +69,7 @@ public class Branch extends AbstractBaseEntity implements Serializable {
 		return inventoryAdjustments;
 	}
 
-	public void setInventoryAdjustments(
-			Set<InventoryAdjustmentTotal> inventoryAdjustments) {
+	public void setInventoryAdjustments( Set<InventoryAdjustmentTotal> inventoryAdjustments ) {
 		this.inventoryAdjustments = inventoryAdjustments;
 	}
 
@@ -78,7 +77,7 @@ public class Branch extends AbstractBaseEntity implements Serializable {
 		return wareMovements;
 	}
 
-	public void setWareMovements(Set<WareMovementTotal> wareMovements) {
+	public void setWareMovements( Set<WareMovementTotal> wareMovements ) {
 		this.wareMovements = wareMovements;
 	}
 

@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 /**
  * N to M relationship class
+ * 
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 public class Inventory extends AbstractBaseEntity implements Serializable {
@@ -19,27 +20,29 @@ public class Inventory extends AbstractBaseEntity implements Serializable {
 	private SaleItem salesItem;
 	private Branch branch;
 	private Float inventory;
-	
+
 	public SaleItem getSalesItem() {
 		return salesItem;
 	}
-	public void setSalesItem(SaleItem salesItem) {
+
+	public void setSalesItem( SaleItem salesItem ) {
 		this.salesItem = salesItem;
 	}
+
 	public Branch getBranch() {
 		return branch;
 	}
-	public void setBranch(Branch branch) {
+
+	public void setBranch( Branch branch ) {
 		this.branch = branch;
 	}
+
 	public Float getInventory() {
 		return inventory;
 	}
-	public void setInventory(Float inventory) {
+
+	public void setInventory( Float inventory ) {
 		this.inventory = inventory;
 	}
-	
-	
-	
-	
+
 }

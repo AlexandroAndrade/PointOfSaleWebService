@@ -11,29 +11,29 @@ import java.util.Set;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 public class SaleItem extends AbstractBaseEntity implements Serializable {
-    
-    /**
+
+	/**
 	 * AspectJ
 	 */
 	private static final long serialVersionUID = -9197884745195157740L;
 
-    private Long idItem;
+	private Long idItem;
 	private String itemKey;
-    private String itemName;
-    private Provider provider;
-    private Department department;
-    private String branch;
-    private String codeBar;
-  	private Float averageCost;
-    private Float salePrice;
-    private Set<Inventory> inventory = new HashSet<>();
-    private Set<WareMovementDetail> saleItemMovements = new HashSet<>();
-    
+	private String itemName;
+	private Provider provider;
+	private Department department;
+	private String branch;
+	private String codeBar;
+	private Float averageCost;
+	private Float salePrice;
+	private Set<Inventory> inventory = new HashSet<>();
+	private Set<WareMovementDetail> saleItemMovements = new HashSet<>();
+
 	public Long getIdItem() {
 		return idItem;
 	}
 
-	public void setIdItem(Long idItem) {
+	public void setIdItem( Long idItem ) {
 		this.idItem = idItem;
 	}
 
@@ -41,7 +41,7 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 		return itemKey;
 	}
 
-	public void setItemKey(String itemKey) {
+	public void setItemKey( String itemKey ) {
 		this.itemKey = itemKey;
 	}
 
@@ -49,7 +49,7 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 		return itemName;
 	}
 
-	public void setItemName(String itemName) {
+	public void setItemName( String itemName ) {
 		this.itemName = itemName;
 	}
 
@@ -57,7 +57,7 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 		return provider;
 	}
 
-	public void setProvider(Provider provider) {
+	public void setProvider( Provider provider ) {
 		this.provider = provider;
 	}
 
@@ -65,7 +65,7 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 		return department;
 	}
 
-	public void setDepartment(Department department) {
+	public void setDepartment( Department department ) {
 		this.department = department;
 	}
 
@@ -73,7 +73,7 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 		return branch;
 	}
 
-	public void setBranch(String branch) {
+	public void setBranch( String branch ) {
 		this.branch = branch;
 	}
 
@@ -81,7 +81,7 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 		return codeBar;
 	}
 
-	public void setCodeBar(String codeBar) {
+	public void setCodeBar( String codeBar ) {
 		this.codeBar = codeBar;
 	}
 
@@ -89,7 +89,7 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 		return averageCost;
 	}
 
-	public void setAverageCost(Float averageCost) {
+	public void setAverageCost( Float averageCost ) {
 		this.averageCost = averageCost;
 	}
 
@@ -97,7 +97,7 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 		return salePrice;
 	}
 
-	public void setSalePrice(Float salePrice) {
+	public void setSalePrice( Float salePrice ) {
 		this.salePrice = salePrice;
 	}
 
@@ -105,7 +105,7 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 		return inventory;
 	}
 
-	public void setInventory(Set<Inventory> inventory) {
+	public void setInventory( Set<Inventory> inventory ) {
 		this.inventory = inventory;
 	}
 
@@ -113,7 +113,7 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 		return saleItemMovements;
 	}
 
-	public void setSaleItemMovements(Set<WareMovementDetail> saleItemMovements) {
+	public void setSaleItemMovements( Set<WareMovementDetail> saleItemMovements ) {
 		this.saleItemMovements = saleItemMovements;
 	}
 

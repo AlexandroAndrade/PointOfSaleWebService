@@ -28,53 +28,68 @@ public class WareMovementTotal extends AbstractBaseEntity implements Serializabl
 	private Float totalMovementCost;
 	private String remissionNumber;
 	private Set<WareMovementDetail> movementDetails = new HashSet<>();
-	
+
 	public Long getIdWareMovementTotal() {
 		return idWareMovementTotal;
 	}
-	public void setIdWareMovementTotal(Long idWareMovementTotal) {
+
+	public void setIdWareMovementTotal( Long idWareMovementTotal ) {
 		this.idWareMovementTotal = idWareMovementTotal;
 	}
+
 	public Branch getBranch() {
 		return branch;
 	}
-	public void setBranch(Branch branch) {
+
+	public void setBranch( Branch branch ) {
 		this.branch = branch;
 	}
+
 	public MovementType getMovementType() {
 		return movementType;
 	}
-	public void setMovementType(MovementType movementType) {
+
+	public void setMovementType( MovementType movementType ) {
 		this.movementType = movementType;
 	}
+
 	public User getUser() {
 		return user;
 	}
-	public void setUser(User user) {
+
+	public void setUser( User user ) {
 		this.user = user;
 	}
+
 	public Date getMovementDate() {
 		return movementDate;
 	}
-	public void setMovementDate(Date movementDate) {
+
+	public void setMovementDate( Date movementDate ) {
 		this.movementDate = movementDate;
 	}
+
 	public Float getTotalMovementCost() {
 		return totalMovementCost;
 	}
-	public void setTotalMovementCost(Float totalMovementCost) {
+
+	public void setTotalMovementCost( Float totalMovementCost ) {
 		this.totalMovementCost = totalMovementCost;
 	}
+
 	public String getRemissionNumber() {
 		return remissionNumber;
 	}
-	public void setRemissionNumber(String remissionNumber) {
+
+	public void setRemissionNumber( String remissionNumber ) {
 		this.remissionNumber = remissionNumber;
 	}
+
 	public Set<WareMovementDetail> getMovementDetails() {
 		return movementDetails;
 	}
-	public void setMovementDetails(Set<WareMovementDetail> movementDetails) {
+
+	public void setMovementDetails( Set<WareMovementDetail> movementDetails ) {
 		this.movementDetails = movementDetails;
 	}
 

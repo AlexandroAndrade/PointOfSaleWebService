@@ -17,7 +17,7 @@ public class InventoryAdjustmentTotal extends AbstractBaseEntity implements Seri
 	 * AspectJ
 	 */
 	private static final long serialVersionUID = 728980412820740749L;
-	
+
 	private Long idInventoryAdjustmentTotal;
 	private User user;
 	private Branch branch;
@@ -25,46 +25,60 @@ public class InventoryAdjustmentTotal extends AbstractBaseEntity implements Seri
 	private Float totalSurplus;
 	private Float totalLoss;
 	private Set<InventoryAdjustmentDetail> inventoryDetails = new HashSet<>();
+
 	public Long getIdInventoryAdjustmentTotal() {
 		return idInventoryAdjustmentTotal;
 	}
-	public void setIdInventoryAdjustmentTotal(Long idInventoryAdjustmentTotal) {
+
+	public void setIdInventoryAdjustmentTotal( Long idInventoryAdjustmentTotal ) {
 		this.idInventoryAdjustmentTotal = idInventoryAdjustmentTotal;
 	}
+
 	public User getUser() {
 		return user;
 	}
-	public void setUser(User user) {
+
+	public void setUser( User user ) {
 		this.user = user;
 	}
+
 	public Branch getBranch() {
 		return branch;
 	}
-	public void setBranch(Branch branch) {
+
+	public void setBranch( Branch branch ) {
 		this.branch = branch;
 	}
+
 	public Date getAdjustmentDate() {
 		return adjustmentDate;
 	}
-	public void setAdjustmentDate(Date adjustmentDate) {
+
+	public void setAdjustmentDate( Date adjustmentDate ) {
 		this.adjustmentDate = adjustmentDate;
 	}
+
 	public Float getTotalSurplus() {
 		return totalSurplus;
 	}
-	public void setTotalSurplus(Float totalSurplus) {
+
+	public void setTotalSurplus( Float totalSurplus ) {
 		this.totalSurplus = totalSurplus;
 	}
+
 	public Float getTotalLoss() {
 		return totalLoss;
 	}
-	public void setTotalLoss(Float totalLoss) {
+
+	public void setTotalLoss( Float totalLoss ) {
 		this.totalLoss = totalLoss;
 	}
+
 	public Set<InventoryAdjustmentDetail> getInventoryDetails() {
 		return inventoryDetails;
 	}
-	public void setInventoryDetails(Set<InventoryAdjustmentDetail> inventoryDetails) {
+
+	public void setInventoryDetails( Set<InventoryAdjustmentDetail> inventoryDetails ) {
 		this.inventoryDetails = inventoryDetails;
 	}
 
