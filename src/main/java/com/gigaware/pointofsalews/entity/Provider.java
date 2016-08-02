@@ -7,65 +7,26 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-//import javax.persistence.Column;
-//import javax.persistence.Entity;
-//import javax.persistence.FetchType;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-//import javax.persistence.Id;
-//import javax.persistence.OneToMany;
-//import javax.persistence.Table;
-//import javax.persistence.UniqueConstraint;
-
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
-//@Entity
-//@Table( name = "Proveedor", uniqueConstraints = {
-//		@UniqueConstraint( columnNames = "nombreProveedor" ),
-//		@UniqueConstraint( columnNames = "razonSocial" ),
-//		@UniqueConstraint( columnNames = "rfc" )
-//})
-public class Provider implements Serializable {
+public class Provider extends AbstractBaseEntity implements Serializable {
 
 	/**
 	 * AspectJ
 	 */
 	private static final long serialVersionUID = 8242913122958554122L;
 	
-//	@Id
-//	@GeneratedValue( strategy = GenerationType.IDENTITY )
-//	@Column( name = "idProveedor", nullable = false)
 	private Long idProvider;
-	
-//	@Column( name = "nombreProveedor" , nullable = false, length = 255 )
 	private String providerName;
-	
-//	@Column( name = "direccion", nullable = false, length = 255 )
 	private String address;
-	
-//	@Column ( name = "telefono", nullable = false, length = 45 )
 	private String phoneNumber;
-	
-//	@Column( name = "codigoPostal", nullable = false, length = 20 )
 	private String postalCode;
-	
-//	@Column( name = "ciudad", nullable = false, length = 45 )
 	private String city;
-
-//	@Column( name = "estado", nullable = false, length = 45 )
 	private String state;
-
-//	@Column( name = "pais", nullable = false, length = 45 )
 	private String country;
-
-//	@Column( name = "razonSocial", nullable = false, length = 45 )
 	private String businessName;
-	
-//	@Column( name = "rfc", nullable = false, length = 45 )
 	private String taxPayerIdNumber;
-	
-//	@OneToMany( fetch = FetchType.LAZY, mappedBy = "provider" )
 	private Set<SalesItem> salesItems = new HashSet<>();
 
 	public Long getIdProvider() {

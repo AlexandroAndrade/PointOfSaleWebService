@@ -9,7 +9,7 @@ import java.io.Serializable;
  * N to M relationship class
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
-public class Inventory implements Serializable {
+public class Inventory extends AbstractBaseEntity implements Serializable {
 
 	/**
 	 * AspectJ

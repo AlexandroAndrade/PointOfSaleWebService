@@ -7,67 +7,27 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-//import javax.persistence.Column;
-//import javax.persistence.Entity;
-//import javax.persistence.FetchType;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-//import javax.persistence.Id;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.ManyToOne;
-//import javax.persistence.OneToOne;
-//import javax.persistence.Table;
-//import javax.persistence.UniqueConstraint;
-
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
-//@Entity
-//@Table( name = "articulo", uniqueConstraints = {
-//        @UniqueConstraint( columnNames = "nombreArticulo"),
-//        @UniqueConstraint( columnNames = "codigoBarras")
-//		}
-//)
-public class SalesItem implements Serializable {
+public class SalesItem extends AbstractBaseEntity implements Serializable {
     
     /**
 	 * AspectJ
 	 */
 	private static final long serialVersionUID = -9197884745195157740L;
 
-//	@Id
-//    @GeneratedValue( strategy = GenerationType.IDENTITY )
-//    @Column( name = "idArticulo" , nullable = false )
     private Long idItem;
-    
-	//TODO - Mapping against DB Table
 	private String itemKey;
-	
-//    @Column( name = "nombreArticulo", length = 100, nullable = false )
     private String itemName;
-    
-//  @ManyToOne( fetch = FetchType.LAZY )
-//  @JoinColumn( name = "idProveedor", nullable = false )
     private Provider provider;
-
-//  @ManyToOne( fetch = FetchType.LAZY )
-//  @JoinColumn( name = "idDepartamento", nullable = false )
     private Department department;
-
-//  @ManyToOne( fetch = FetchType.LAZY )
-//  @JoinColumn( name = "Marca", nullable = false )
     private String branch;
-
-//  @Column( name = "codigoBarras", length = 45, nullable = true )
     private String codeBar;
-
-//  @Column( name = "costoPromedio", nullable = false )
   	private Float averageCost;
-
-//  @Column( name = "precioVenta", nullable = false )
     private Float salePrice;
-
     private Set<Inventory> inventory = new HashSet<>();
+    private Set<WareMovementDetail> saleItemMovements = new HashSet<>();
     
 	public Long getIdItem() {
 		return idItem;
@@ -147,6 +107,14 @@ public class SalesItem implements Serializable {
 
 	public void setInventory(Set<Inventory> inventory) {
 		this.inventory = inventory;
+	}
+
+	public Set<WareMovementDetail> getSaleItemMovements() {
+		return saleItemMovements;
+	}
+
+	public void setSaleItemMovements(Set<WareMovementDetail> saleItemMovements) {
+		this.saleItemMovements = saleItemMovements;
 	}
 
 }
