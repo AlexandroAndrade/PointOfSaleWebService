@@ -8,9 +8,22 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
+@Entity
+@Table( name = "VentaTotal" )
 public class SaleTotal extends AbstractBaseEntity implements Serializable {
 
 	/**
@@ -18,14 +31,36 @@ public class SaleTotal extends AbstractBaseEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = -8569734029213958432L;
 
+	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@Column( name = "idVentaTotal", nullable = false )
 	private Long idSaleTotal;
+	
+	@ManyToOne( fetch = FetchType.LAZY )
+	@JoinColumn( name = "idSucursal", nullable = false )
 	private Branch branch;
+
+	@ManyToOne( fetch = FetchType.LAZY )
+	@JoinColumn( name = "idCaja", nullable = false )
 	private Cashier cashier;
+	
+	@ManyToOne( fetch = FetchType.LAZY )
+	@JoinColumn( name = "idUsuario", nullable = false )
 	private User user;
+	
+	@Column( name = "fechaVenta", nullable = false )
 	private Date saleDate;
+
+	@Column( name = "totalVenta", nullable = false )
 	private Float totalSale;
+
+	@Column( name = "cambio", nullable = false )
 	private Float moneyChange;
+
+	@Column( name = "numeroTicket", nullable = false )
 	private String ticketNumber;
+
+	@OneToMany( fetch = FetchType.LAZY, mappedBy = "saleTotal" )
 	private Set<SaleDetail> saleDetails = new HashSet<>();
 
 	public Long getIdSaleTotal() {

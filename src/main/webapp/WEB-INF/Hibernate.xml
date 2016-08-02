@@ -27,11 +27,12 @@ class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 			<value>com.gigaware.pointofsalews.entity.Inventory</value>
 			<value>com.gigaware.pointofsalews.entity.InventoryAdjustmentDetail</value>
 			<value>com.gigaware.pointofsalews.entity.InventoryAdjustmentTotal</value>
+			<value>com.gigaware.pointofsalews.entity.MovementType</value>
 			<value>com.gigaware.pointofsalews.entity.Provider</value>
 			<value>com.gigaware.pointofsalews.entity.SaleDetail</value>
 			<value>com.gigaware.pointofsalews.entity.SaleItem</value>
 			<value>com.gigaware.pointofsalews.entity.SaleTotal</value>
-			<value>com.gigaware.pointofsalews.entity.Total</value>
+			<value>com.gigaware.pointofsalews.entity.User</value>
 			<value>com.gigaware.pointofsalews.entity.WareMovementDetail</value>
 			<value>com.gigaware.pointofsalews.entity.WareMovementTotal</value>
 		</list>

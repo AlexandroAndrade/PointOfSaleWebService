@@ -7,9 +7,23 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
+@Entity
+@Table( name = "Usuario", uniqueConstraints = 
+	@UniqueConstraint( columnNames = "nickname" )
+)
 public class User extends AbstractBaseEntity implements Serializable {
 
 	/**
@@ -17,11 +31,24 @@ public class User extends AbstractBaseEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = -2925621506058335921L;
 
+	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@Column( name = "idUsuario", nullable = false )
 	private Long idUser;
+	
+	@Column( name = "nickname", nullable = false )
 	private String nickName;
+	
+	@Column( name = "password", nullable = false )
 	private String password;
+	
+	@OneToMany( fetch = FetchType.LAZY, mappedBy = "user" )
 	private Set<SaleTotal> sales = new HashSet<>();
+	
+	@OneToMany( fetch = FetchType.LAZY, mappedBy = "user" )
 	private Set<InventoryAdjustmentTotal> inventoryAdjustments = new HashSet<>();
+
+	@OneToMany( fetch = FetchType.LAZY, mappedBy = "user" )
 	private Set<WareMovementTotal> wareMovements = new HashSet<>();
 
 	public Long getIdUser() {

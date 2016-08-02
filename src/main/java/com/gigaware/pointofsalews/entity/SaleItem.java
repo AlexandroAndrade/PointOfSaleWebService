@@ -7,9 +7,27 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
+@Entity
+@Table( name = "Articulo", uniqueConstraints = {
+		@UniqueConstraint( columnNames = "claveArticulo"),
+		@UniqueConstraint( columnNames = "nombreArticulo"),
+		@UniqueConstraint( columnNames = "codigoBarras")
+})
 public class SaleItem extends AbstractBaseEntity implements Serializable {
 
 	/**
@@ -17,18 +35,46 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = -9197884745195157740L;
 
+	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@Column( name = "idArticulo", nullable = false )
 	private Long idItem;
+	
+	@Column( name = "claveArticulo", nullable = false )
 	private String itemKey;
+	
+	@Column( name = "nombreArticulo", nullable = false )
 	private String itemName;
+	
+	@ManyToOne( fetch = FetchType.LAZY )
+	@JoinColumn( name = "idProveedor", nullable = false )
 	private Provider provider;
+	
+	@ManyToOne( fetch = FetchType.LAZY )
+	@JoinColumn( name = "idDepartamento", nullable = false )
 	private Department department;
-	private String branch;
+	
+	@Column( name = "marca", nullable = false )
+	private String brand;
+	
+	@Column( name = "codigoBarras", nullable = false )
 	private String codeBar;
+	
+	@Column( name = "costoPromedio", nullable = false )
 	private Float averageCost;
+	
+	@Column( name = "precioVenta", nullable = false )
 	private Float salePrice;
+	
+	@OneToMany( fetch = FetchType.LAZY, mappedBy = "saleItem" )
 	private Set<Inventory> inventory = new HashSet<>();
+	
+	@OneToMany( fetch = FetchType.LAZY, mappedBy = "saleItem" )
 	private Set<WareMovementDetail> saleItemMovements = new HashSet<>();
-
+	
+	@OneToMany( fetch = FetchType.LAZY, mappedBy = "saleItem" )
+	private Set<SaleDetail> salesDetails = new HashSet<>();
+	
 	public Long getIdItem() {
 		return idItem;
 	}
@@ -69,12 +115,12 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 		this.department = department;
 	}
 
-	public String getBranch() {
-		return branch;
+	public String getBrand() {
+		return brand;
 	}
 
-	public void setBranch( String branch ) {
-		this.branch = branch;
+	public void setBrand( String brand ) {
+		this.brand = brand;
 	}
 
 	public String getCodeBar() {

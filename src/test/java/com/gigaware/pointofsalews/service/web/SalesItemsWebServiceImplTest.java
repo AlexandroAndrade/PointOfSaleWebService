@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.gigaware.pointofsalews.dto.SalesItemDto;
+import com.gigaware.pointofsalews.entity.Department;
 import com.gigaware.pointofsalews.entity.Provider;
 import com.gigaware.pointofsalews.entity.SaleItem;
 import com.gigaware.pointofsalews.service.SalesItemsService;
@@ -70,6 +71,7 @@ public class SalesItemsWebServiceImplTest {
 		SaleItem item = new SaleItem();
 		item.setIdItem( idItem );
 		item.setProvider( createProvider( "Provider_01" ) );
+		item.setDepartment( createDepartment( "Department_01" ) );
 		return item;
 	}
 	
@@ -77,6 +79,12 @@ public class SalesItemsWebServiceImplTest {
 		Provider p = new Provider();
 		p.setBusinessName( businessName );
 		return p;
+	}
+	
+	private Department createDepartment( String departmentName ){
+		Department d = new Department();
+		d.setDepartmentName( departmentName );
+		return d;
 	}
 	
 }

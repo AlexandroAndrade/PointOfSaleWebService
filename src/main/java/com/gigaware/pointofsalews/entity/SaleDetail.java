@@ -5,9 +5,24 @@ package com.gigaware.pointofsalews.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
+@Entity
+@Table( name = "VentaDetalle", uniqueConstraints = 
+	@UniqueConstraint( columnNames = { "idVentaTotal", "idArticulo" } ) 
+)
 public class SaleDetail extends AbstractBaseEntity implements Serializable {
 
 	/**
@@ -15,11 +30,26 @@ public class SaleDetail extends AbstractBaseEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = 7525726654060657233L;
 
+	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@Column( name = "idVentaDetalle", nullable = false )
 	private Long idSaleDetail;
+	
+	@ManyToOne( fetch = FetchType.LAZY )
+	@JoinColumn( name = "idVentaTotal", nullable = false )
 	private SaleTotal saleTotal;
-	private SaleItem salesItem;
+	
+	@ManyToOne( fetch = FetchType.LAZY )
+	@JoinColumn( name = "idArticulo", nullable = false )
+	private SaleItem saleItem;
+	
+	@Column( name = "cantidad", nullable = false )
 	private Float quantity;
+	
+	@Column( name = "costoPromedio", nullable = false )
 	private Float averageCost;
+	
+	@Column( name = "precioVenta", nullable = false )
 	private Float salePrice;
 
 	public Long getIdSaleDetail() {
@@ -38,12 +68,12 @@ public class SaleDetail extends AbstractBaseEntity implements Serializable {
 		this.saleTotal = saleTotal;
 	}
 
-	public SaleItem getSalesItem() {
-		return salesItem;
+	public SaleItem getSaleItem() {
+		return saleItem;
 	}
 
-	public void setSalesItem( SaleItem salesItem ) {
-		this.salesItem = salesItem;
+	public void setSaleItem( SaleItem saleItem ) {
+		this.saleItem = saleItem;
 	}
 
 	public Float getQuantity() {

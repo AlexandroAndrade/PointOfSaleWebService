@@ -7,9 +7,23 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
+@Entity
+@Table( name = "Sucursal", uniqueConstraints = 
+	@UniqueConstraint( columnNames = "nombreSucursal" )
+)
 public class Branch extends AbstractBaseEntity implements Serializable {
 
 	/**
@@ -17,12 +31,27 @@ public class Branch extends AbstractBaseEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = 65529935346105746L;
 
+	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@Column( name = "idSucursal", nullable = false )
 	private Long idBranch;
+	
+	@Column( name = "claveSucursal", nullable = false )
 	private String branchKey;
+	
+	@Column( name = "nombreSucursal", nullable = false )
 	private String branchName;
+	
+	@OneToMany( fetch = FetchType.LAZY, mappedBy = "branch" )
 	private Set<Inventory> inventory = new HashSet<>();
+	
+	@OneToMany( fetch = FetchType.LAZY, mappedBy = "branch" )
 	private Set<SaleTotal> sales = new HashSet<>();
+	
+	@OneToMany( fetch = FetchType.LAZY, mappedBy = "branch" )
 	private Set<InventoryAdjustmentTotal> inventoryAdjustments = new HashSet<>();
+	
+	@OneToMany( fetch = FetchType.LAZY, mappedBy = "branch" )
 	private Set<WareMovementTotal> wareMovements = new HashSet<>();
 
 	public Long getIdBranch() {

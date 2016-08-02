@@ -5,9 +5,24 @@ package com.gigaware.pointofsalews.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
+@Entity
+@Table( name = "MovimientoMercanciaDetalle", uniqueConstraints = 
+	@UniqueConstraint( columnNames = { "idMovimientoMercanciaTotal", "idArticulo" } )
+)
 public class WareMovementDetail extends AbstractBaseEntity implements Serializable {
 
 	/**
@@ -15,10 +30,23 @@ public class WareMovementDetail extends AbstractBaseEntity implements Serializab
 	 */
 	private static final long serialVersionUID = -7487073357432768542L;
 
+	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY	)
+	@Column( name = "idMovimientoMercanciaDetalle", nullable = false )
 	private Long idWareMovementDetail;
+	
+	@ManyToOne( fetch = FetchType.LAZY )
+	@JoinColumn( name = "idMovimientoMercanciaTotal", nullable = false )
 	private WareMovementTotal wareMovementTotal;
-	private SaleItem salesItem;
+	
+	@ManyToOne( fetch = FetchType.LAZY )
+	@JoinColumn( name = "idArticulo", nullable = false )
+	private SaleItem saleItem;
+	
+	@Column( name = "idCantidad", nullable = false )
 	private Float quantity;
+	
+	@Column( name = "costoPromedio", nullable = false )
 	private Float averageCost;
 
 	public Long getIdWareMovementDetail() {
@@ -37,12 +65,12 @@ public class WareMovementDetail extends AbstractBaseEntity implements Serializab
 		this.wareMovementTotal = wareMovementTotal;
 	}
 
-	public SaleItem getSalesItem() {
-		return salesItem;
+	public SaleItem getSaleItem() {
+		return saleItem;
 	}
 
-	public void setSalesItem( SaleItem salesItem ) {
-		this.salesItem = salesItem;
+	public void setSaleItem( SaleItem saleItem ) {
+		this.saleItem = saleItem;
 	}
 
 	public Float getQuantity() {

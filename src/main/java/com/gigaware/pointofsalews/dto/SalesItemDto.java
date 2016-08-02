@@ -50,6 +50,7 @@ public class SalesItemDto implements Serializable {
 	 */
 	public SalesItemDto(SaleItem item) {
 		this.idSalesItem = item.getIdItem();
+		this.itemKey = item.getItemKey();
 		this.itemName = StringUtils.defaultString( item.getItemName(), EMPTY );
 		this.averageCost = item.getAverageCost();
 		this.salePrice = item.getSalePrice();
@@ -58,6 +59,7 @@ public class SalesItemDto implements Serializable {
 		
 		this.codeBar = StringUtils.defaultString( item.getCodeBar(), EMPTY );
 		this.providerName = StringUtils.defaultString( item.getProvider().getBusinessName(), EMPTY );
+		this.department = StringUtils.defaultString( item.getDepartment().getDepartmentName(), EMPTY );
 	}
 
 	public Long getIdSalesItem() {
