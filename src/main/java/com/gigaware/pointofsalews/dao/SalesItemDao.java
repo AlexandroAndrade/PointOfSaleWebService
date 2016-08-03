@@ -14,4 +14,8 @@ public interface SalesItemDao extends GenericDao<SaleItem>{
 	
 	List<SaleItem> getByInventoryLessThan( Float inventoryLessThan );
 	
+	SaleItem getByItemKey( String itemKey );
+	SaleItem getByItemName( String itemName );
+	SaleItem getByCodeBars( String codeBars );
+	
 }

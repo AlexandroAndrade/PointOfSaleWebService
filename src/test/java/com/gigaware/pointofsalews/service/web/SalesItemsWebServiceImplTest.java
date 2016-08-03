@@ -10,8 +10,11 @@ import org.easymock.EasyMock;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import com.gigaware.pointofsalews.dto.SalesItemDto;
+import com.gigaware.pointofsalews.dto.create.SalesItemCreateAndModifyDTO;
 import com.gigaware.pointofsalews.entity.Department;
 import com.gigaware.pointofsalews.entity.Provider;
 import com.gigaware.pointofsalews.entity.SaleItem;
@@ -23,6 +26,7 @@ import com.gigaware.pointofsalews.wrapper.SalesItemWrapper;
  * Unit Test Class for SalesItemsWebServiceImpl
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
+@RunWith( JUnit4.class )
 public class SalesItemsWebServiceImplTest {
 
 	private SalesItemsWebServiceImpl webService = new SalesItemsWebServiceImpl();
@@ -58,6 +62,22 @@ public class SalesItemsWebServiceImplTest {
 		
 	}
 	
+	@Test
+	public void testSaveItem(){
+		
+		SaleItem saleItem = new SaleItem();
+		saleItem.setProvider( createProvider( "providerName_01" ) );
+		saleItem.setDepartment( createDepartment( "departmentName_01" ) );
+		EasyMock.expect( itemsService.save( EasyMock.anyObject( SalesItemCreateAndModifyDTO.class ) ) ).andReturn( saleItem ).once();
+		EasyMock.replay( itemsService );
+		Assert.assertNotNull( 
+				webService.saveItem( 
+						createSaleItemDto( "itemKey_01", "itemName_01", "brand_01", 
+								"codeBars_01", 10.0F, 1L, 1L) ) ) ;
+		EasyMock.verify( itemsService );
+
+	}
+	
 	private List<SaleItem> createSalesItemList(){
 		List<SaleItem> l = new ArrayList<>();
 		l.add( createItem( 1L ) );
@@ -85,6 +105,26 @@ public class SalesItemsWebServiceImplTest {
 		Department d = new Department();
 		d.setDepartmentName( departmentName );
 		return d;
+	}
+	
+	private SalesItemCreateAndModifyDTO createSaleItemDto( 
+			String itemKey, 
+			String itemName, 
+			String brand, 
+			String codeBars, 
+			Float salePrice,
+			Long idDepartment,
+			Long idProvider){
+		
+		SalesItemCreateAndModifyDTO dto = new SalesItemCreateAndModifyDTO();
+		dto.setItemKey( itemKey );
+		dto.setItemName( itemName );
+		dto.setBrand( brand );
+		dto.setCodeBars( codeBars );
+		dto.setSalePrice( salePrice );
+		dto.setIdDepartment( idDepartment );
+		dto.setIdProvider( idProvider );
+		return dto;
 	}
 	
 }

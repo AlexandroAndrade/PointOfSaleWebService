@@ -19,7 +19,7 @@ import com.sun.xml.txw2.annotation.XmlElement;
 @XmlElement( value = "salesItemCreate" )
 @XmlAccessorType( XmlAccessType.FIELD )
 @JsonIgnoreProperties( ignoreUnknown = true )
-public class SalesItemCreateModifyDTO implements Serializable {
+public class SalesItemCreateAndModifyDTO implements Serializable {
 
 	/**
 	 * AspctJ
@@ -30,8 +30,9 @@ public class SalesItemCreateModifyDTO implements Serializable {
 	private String itemName;
 	private Long idProvider;
 	private Long idDepartment;
-	private String codeBar;
-	private String branch;
+	private String brand;
+	private String codeBars;
+	private Float salePrice;
 	
 	/**
 	 * @return the itemKey
@@ -89,32 +90,28 @@ public class SalesItemCreateModifyDTO implements Serializable {
 		this.idDepartment = idDepartment;
 	}
 	
-	/**
-	 * @return the codeBar
-	 */
-	public String getCodeBar() {
-		return codeBar;
-	}
-	
-	/**
-	 * @param codeBar the codeBar to set
-	 */
-	public void setCodeBar(final String codeBar) {
-		this.codeBar = codeBar;
-	}
-	
-	/**
-	 * @return the branch
-	 */
-	public String getBranch() {
-		return branch;
-	}
-	
-	/**
-	 * @param branch the branch to set
-	 */
-	public void setBranch(final String branch) {
-		this.branch = branch;
+	public String getCodeBars() {
+		return codeBars;
 	}
 
+	public void setCodeBars( String codeBars ) {
+		this.codeBars = codeBars;
+	}
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand( String brand ) {
+		this.brand = brand;
+	}
+
+	public Float getSalePrice() {
+		return salePrice;
+	}
+
+	public void setSalePrice( Float salePrice ) {
+		this.salePrice = salePrice;
+	}
+	
 }

@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
+import com.gigaware.pointofsalews.entity.Inventory;
 import com.gigaware.pointofsalews.entity.SaleItem;
 import com.sun.xml.txw2.annotation.XmlElement;
 
@@ -34,8 +35,8 @@ public class SalesItemDto implements Serializable {
 	private String itemName;
 	private Float averageCost;
 	private Float salePrice;
-	private List<InventoryBranch> inventory = new ArrayList<>();
-	private String codeBar;
+	private List<InventoryBranchDto> inventory = new ArrayList<>();
+	private String codeBars;
 	private String providerName;
 	private String department;
 
@@ -54,10 +55,15 @@ public class SalesItemDto implements Serializable {
 		this.itemName = StringUtils.defaultString( item.getItemName(), EMPTY );
 		this.averageCost = item.getAverageCost();
 		this.salePrice = item.getSalePrice();
-
-		//TODO - Mapping the respective Inventory - Branch
 		
-		this.codeBar = StringUtils.defaultString( item.getCodeBar(), EMPTY );
+		for( Inventory inv : item.getInventory() ) {
+			InventoryBranchDto invDto = new InventoryBranchDto();
+			invDto.setBranchName( inv.getBranch().getBranchName() );
+			invDto.setInventory( inv.getInventory() );
+			this.inventory.add( invDto );
+		}
+		
+		this.codeBars = StringUtils.defaultString( item.getCodeBars(), EMPTY );
 		this.providerName = StringUtils.defaultString( item.getProvider().getBusinessName(), EMPTY );
 		this.department = StringUtils.defaultString( item.getDepartment().getDepartmentName(), EMPTY );
 	}
@@ -99,42 +105,25 @@ public class SalesItemDto implements Serializable {
 		return salePrice;
 	}
 
-	public List<InventoryBranch> getInventory() {
+	public List<InventoryBranchDto> getInventory() {
 		return inventory;
 	}
 
-	public void setInventory(List<InventoryBranch> inventory) {
+	public void setInventory( List<InventoryBranchDto> inventory ) {
 		this.inventory = inventory;
 	}
-
 
 	public void setSalePrice( Float salePrice ) {
 		this.salePrice = salePrice;
 	}
 
-//	public Float getInventory() {
-//		return inventory;
-//	}
-//
-//	public void setInventory( Float inventory ) {
-//		this.inventory = inventory;
-//	}
-
-	public String getCodeBar() {
-		return codeBar;
+	public String getCodeBars() {
+		return codeBars;
 	}
 
-	public void setCodeBar( String codeBar ) {
-		this.codeBar = codeBar;
+	public void setCodeBars( String codeBars ) {
+		this.codeBars = codeBars;
 	}
-
-//	public String getBranchName() {
-//		return branchName;
-//	}
-//
-//	public void setBranchName( String branchName ) {
-//		this.branchName = branchName;
-//	}
 
 	public String getProviderName() {
 		return providerName;
@@ -151,16 +140,5 @@ public class SalesItemDto implements Serializable {
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-
-
-//	public String getCategory() {
-//		return category;
-//	}
-//
-//	public void setCategory( String category ) {
-//		this.category = category;
-//	}
-	
-	
 
 }

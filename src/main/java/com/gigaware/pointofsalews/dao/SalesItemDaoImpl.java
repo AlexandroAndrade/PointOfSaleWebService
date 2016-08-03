@@ -16,9 +16,7 @@ import org.springframework.stereotype.Repository;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Repository( "salesItemDao" )
-public class SalesItemDaoImpl 
-    extends AbstractHibernateDao 
-    implements SalesItemDao, Serializable{
+public class SalesItemDaoImpl extends AbstractHibernateDao implements SalesItemDao, Serializable {
 
     /**
 	 * AspectJ
@@ -48,25 +46,47 @@ public class SalesItemDaoImpl
 					.list();
 	}
 
-    
+	@Override
+	public SaleItem getByItemKey( String itemKey ) {
+		return (SaleItem)
+				super.createQuery( QueryConstants.SALESITEM_GET_BY_ITEMKEY )
+					 .setString( "itemKey", itemKey )
+					 .uniqueResult();
+	}
+	
+	@Override
+	public SaleItem getByItemName( String itemName ) {
+		return (SaleItem)
+				super.createQuery( QueryConstants.SALESITEM_GET_BY_ITEMNAME )
+					 .setString( "itemName", itemName )
+					 .uniqueResult();
+	}
+	
+	@Override
+	public SaleItem getByCodeBars( String codeBars ) {
+		return (SaleItem)
+				super.createQuery( QueryConstants.SALESITEM_GET_BY_CODBARS )
+					 .setString( "codeBars", codeBars )
+					 .uniqueResult();
+	}
+	
+    @Override
+    public void save( SaleItem saleItem ) {
+    	getSessionFactory().getCurrentSession().persist( saleItem );
+    }
 
     @Override
-    public void save( SaleItem t ) {
+    public void saveAll( List<SaleItem> saleItems ) {
         throw new UnsupportedOperationException( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void saveAll( List<SaleItem> ts ) {
+    public void update( SaleItem saleItem ) {
         throw new UnsupportedOperationException( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update( SaleItem t ) {
-        throw new UnsupportedOperationException( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void delete( SaleItem t ) {
+    public void delete( SaleItem saleItem ) {
         throw new UnsupportedOperationException( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
     }
 

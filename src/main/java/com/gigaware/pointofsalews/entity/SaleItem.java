@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,6 +19,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import com.gigaware.pointofsalews.dto.create.SalesItemCreateAndModifyDTO;
 
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
@@ -34,6 +37,20 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 	 * AspectJ
 	 */
 	private static final long serialVersionUID = -9197884745195157740L;
+	
+	/**
+	 * Default Empty Constructor
+	 */
+	public SaleItem() { }
+	
+	public SaleItem( SalesItemCreateAndModifyDTO saleItemDto ) {
+		this.itemKey = saleItemDto.getItemKey();
+		this.itemName = saleItemDto.getItemName();
+		this.averageCost = 0.0F ;
+		this.brand = saleItemDto.getBrand();
+		this.codeBars = saleItemDto.getCodeBars();
+		this.salePrice = saleItemDto.getSalePrice();
+	}
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
@@ -57,8 +74,8 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 	@Column( name = "marca", nullable = false )
 	private String brand;
 	
-	@Column( name = "codigoBarras", nullable = false )
-	private String codeBar;
+	@Column( name = "codigoBarras", nullable = true )
+	private String codeBars;
 	
 	@Column( name = "costoPromedio", nullable = false )
 	private Float averageCost;
@@ -66,7 +83,7 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 	@Column( name = "precioVenta", nullable = false )
 	private Float salePrice;
 	
-	@OneToMany( fetch = FetchType.LAZY, mappedBy = "saleItem" )
+	@OneToMany( fetch = FetchType.LAZY, mappedBy = "saleItem", cascade = CascadeType.ALL )
 	private Set<Inventory> inventory = new HashSet<>();
 	
 	@OneToMany( fetch = FetchType.LAZY, mappedBy = "saleItem" )
@@ -123,12 +140,12 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 		this.brand = brand;
 	}
 
-	public String getCodeBar() {
-		return codeBar;
+	public String getCodeBars() {
+		return codeBars;
 	}
 
-	public void setCodeBar( String codeBar ) {
-		this.codeBar = codeBar;
+	public void setCodeBars( String codeBars ) {
+		this.codeBars = codeBars;
 	}
 
 	public Float getAverageCost() {
@@ -162,5 +179,15 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 	public void setSaleItemMovements( Set<WareMovementDetail> saleItemMovements ) {
 		this.saleItemMovements = saleItemMovements;
 	}
+
+	public Set<SaleDetail> getSalesDetails() {
+		return salesDetails;
+	}
+
+	public void setSalesDetails( Set<SaleDetail> salesDetails ) {
+		this.salesDetails = salesDetails;
+	}
+	
+	
 
 }

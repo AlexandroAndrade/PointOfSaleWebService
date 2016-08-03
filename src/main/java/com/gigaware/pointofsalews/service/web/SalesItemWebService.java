@@ -4,7 +4,7 @@
 package com.gigaware.pointofsalews.service.web;
 
 import com.gigaware.pointofsalews.dto.SalesItemDto;
-import com.gigaware.pointofsalews.dto.create.SalesItemCreateModifyDTO;
+import com.gigaware.pointofsalews.dto.create.SalesItemCreateAndModifyDTO;
 import com.gigaware.pointofsalews.wrapper.SalesItemWrapper;
 
 import javax.jws.WebService;
@@ -43,6 +43,6 @@ public interface SalesItemWebService {
     @Consumes( MediaType.APPLICATION_JSON )
     @Produces( MediaType.APPLICATION_JSON )
     @Path( "/save" )
-    SalesItemWrapper saveItem( SalesItemCreateModifyDTO item );
+    SalesItemWrapper saveItem( SalesItemCreateAndModifyDTO saleItem );
     
 }

@@ -4,7 +4,7 @@
 package com.gigaware.pointofsalews.service.web;
 
 import com.gigaware.pointofsalews.dto.SalesItemDto;
-import com.gigaware.pointofsalews.dto.create.SalesItemCreateModifyDTO;
+import com.gigaware.pointofsalews.dto.create.SalesItemCreateAndModifyDTO;
 import com.gigaware.pointofsalews.entity.SaleItem;
 import com.gigaware.pointofsalews.service.SalesItemsService;
 import com.gigaware.pointofsalews.wrapper.SalesItemWrapper;
@@ -48,9 +48,12 @@ public class SalesItemsWebServiceImpl
 	}
 	
 	@Override
-	public SalesItemWrapper saveItem(SalesItemCreateModifyDTO item) {
-		System.out.println("Item: " + item.toString() );
-		return null;
+	public SalesItemWrapper saveItem(SalesItemCreateAndModifyDTO saleItem) {
+		SaleItem persistedSaleItem = salesItemsService.save( saleItem );
+		SalesItemDto itemDto = new SalesItemDto( persistedSaleItem );
+		SalesItemWrapper responseWrapper = new SalesItemWrapper();
+		responseWrapper.getSalesItems().add( itemDto );
+		return responseWrapper;
 	}
 	
 	private SalesItemWrapper populateSalesItemWrapper( List<SaleItem> items ){

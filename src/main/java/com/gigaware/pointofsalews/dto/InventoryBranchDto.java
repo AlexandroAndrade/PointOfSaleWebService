@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
-public class InventoryBranch implements Serializable {
+public class InventoryBranchDto implements Serializable {
 
 	/**
 	 * AspectJ
