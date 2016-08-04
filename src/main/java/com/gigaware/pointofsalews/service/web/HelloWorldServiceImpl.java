@@ -24,5 +24,21 @@ public class HelloWorldServiceImpl
 		return "Hola Chiki, te quiero (F) !!!";
 	}
 	
+	@Override
+	public String getSystemProperty() {
+		final StringBuilder sb = new StringBuilder();
+		sb.append( "[ com.google.appengine.runtime.version ] : " )
+		  .append( System.getProperty( "com.google.appengine.runtime.version" ) )
+		  .append( "\n")
+		  .append( "[ ae-cloudsql.cloudsql-database-url ] : " )
+		  .append( System.getProperty( "ae-cloudsql.cloudsql-database-url" ) ) 
+		  .append( "\n" )
+		  .append( " [ ae-cloudsql.local-database-url ] : " )
+		  .append( System.getProperty( "ae-cloudsql.local-database-url" ) )
+		  .append( "\n" ).toString();
+		return null;
+
+	}
+	
 
 }

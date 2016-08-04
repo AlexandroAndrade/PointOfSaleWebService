@@ -20,5 +20,10 @@ public interface HelloWorldService {
 	@Produces( MediaType.APPLICATION_JSON )
 	@Path( "/hello" )
 	String helloWorld();
+	
+	@GET
+	@Produces( MediaType.APPLICATION_JSON )
+	@Path( "/systemProperty" )
+	String getSystemProperty();
 
 }
