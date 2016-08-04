@@ -35,8 +35,8 @@ public class HelloWorldServiceImpl
 		  .append( "\n" )
 		  .append( " [ ae-cloudsql.local-database-url ] : " )
 		  .append( System.getProperty( "ae-cloudsql.local-database-url" ) )
-		  .append( "\n" ).toString();
-		return null;
+		  .append( "\n" );
+		return sb.toString();
 
 	}
 	
