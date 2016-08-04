@@ -4,7 +4,7 @@
     <application>pointofsalews-1470079149668</application>
     <version>1</version>
     <threadsafe>true</threadsafe>
-    <use-google-connectos-j>true</use-google-connectos-j>
+    <use-google-connector-j>true</use-google-connector-j>
     
     <system-properties>
     	<property name="ae-cloudsql.cloudsql-database-url" value="jdbc:google:mysql://pointofsalews/pointOfSaleWS?user=admin&amp;password=malmsteen" />
