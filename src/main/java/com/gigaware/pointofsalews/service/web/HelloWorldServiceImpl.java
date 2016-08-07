@@ -28,13 +28,13 @@ public class HelloWorldServiceImpl
 	public String getSystemProperty() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append( "[ com.google.appengine.runtime.version ] : " )
-		  .append( System.getProperty( "com.google.appengine.runtime.version" ) )
+		  .append( System.getProperty( "com.google.appengine.runtime.version", "Not Found" ) )
 		  .append( "\n")
 		  .append( "[ ae-cloudsql.cloudsql-database-url ] : " )
-		  .append( System.getProperty( "ae-cloudsql.cloudsql-database-url" ) ) 
+		  .append( System.getProperty( "ae-cloudsql.cloudsql-database-url", "Not Found" ) ) 
 		  .append( "\n" )
-		  .append( " [ ae-cloudsql.local-database-url ] : " )
-		  .append( System.getProperty( "ae-cloudsql.local-database-url" ) )
+		  .append( "[ ae-cloudsql.local-database-url ] : " )
+		  .append( System.getProperty( "ae-cloudsql.local-database-url", "Not Found" ) )
 		  .append( "\n" );
 		return sb.toString();
 
