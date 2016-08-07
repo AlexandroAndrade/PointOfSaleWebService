@@ -26,11 +26,7 @@ import com.gigaware.pointofsalews.dto.create.SalesItemCreateAndModifyDTO;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Entity
-@Table( name = "Articulo", uniqueConstraints = {
-		@UniqueConstraint( columnNames = "claveArticulo"),
-		@UniqueConstraint( columnNames = "nombreArticulo"),
-		@UniqueConstraint( columnNames = "codigoBarras")
-})
+@Table( name = "Articulo" )
 public class SaleItem extends AbstractBaseEntity implements Serializable {
 
 	/**

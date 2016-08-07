@@ -27,7 +27,6 @@ public abstract class AbstractBaseEntity implements Serializable {
 	private static final long serialVersionUID = -1633893674191319655L;
 	
 	@Column( name = "borradoLogico", length = 1, nullable = false )
-	@Enumerated( )
 	private String logicalDeleted = PosConstants.LOGICAL_DELETED_NO;
 
 	public String getLogicalDeleted() {

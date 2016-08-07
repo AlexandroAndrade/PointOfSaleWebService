@@ -20,9 +20,7 @@ import javax.persistence.UniqueConstraint;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Entity
-@Table( name = "MovimientoMercanciaDetalle", uniqueConstraints = 
-	@UniqueConstraint( columnNames = { "idMovimientoMercanciaTotal", "idArticulo" } )
-)
+@Table( name = "MovimientoMercanciaDetalle" )
 public class WareMovementDetail extends AbstractBaseEntity implements Serializable {
 
 	/**
@@ -43,7 +41,7 @@ public class WareMovementDetail extends AbstractBaseEntity implements Serializab
 	@JoinColumn( name = "idArticulo", nullable = false )
 	private SaleItem saleItem;
 	
-	@Column( name = "idCantidad", nullable = false )
+	@Column( name = "cantidad", nullable = false )
 	private Float quantity;
 	
 	@Column( name = "costoPromedio", nullable = false )

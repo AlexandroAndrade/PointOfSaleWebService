@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -23,9 +22,7 @@ import javax.persistence.UniqueConstraint;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Entity
-@Table( name = "Inventario", uniqueConstraints = 
-	@UniqueConstraint( columnNames = { "idArticulo", "idSucursal" } )
-)
+@Table( name = "Inventario" )
 public class Inventory extends AbstractBaseEntity implements Serializable {
 
 	/**

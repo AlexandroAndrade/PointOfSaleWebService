@@ -20,9 +20,7 @@ import javax.persistence.UniqueConstraint;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Entity
-@Table( name = "AjusteInventarioDetalle", uniqueConstraints = 
-	@UniqueConstraint( columnNames = { "idAjusteInventarioTotal", "idArticulo"})
-)
+@Table( name = "AjusteInventarioDetalle" )
 public class InventoryAdjustmentDetail extends AbstractBaseEntity implements Serializable {
 
 	/**
@@ -32,7 +30,7 @@ public class InventoryAdjustmentDetail extends AbstractBaseEntity implements Ser
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
-	@Column( name = "", nullable = false )
+	@Column( name = "idAjusteInventarioDetalle", nullable = false )
 	private Long idInventoryAdjustmentDetail;
 	
 	@ManyToOne( fetch = FetchType.LAZY )

@@ -21,9 +21,7 @@ import javax.persistence.UniqueConstraint;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Entity
-@Table( name = "Usuario", uniqueConstraints = 
-	@UniqueConstraint( columnNames = "nickname" )
-)
+@Table( name = "Usuario" )
 public class User extends AbstractBaseEntity implements Serializable {
 
 	/**

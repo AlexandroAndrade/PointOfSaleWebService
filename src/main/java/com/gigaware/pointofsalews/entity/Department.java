@@ -21,9 +21,10 @@ import javax.persistence.UniqueConstraint;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Entity
-@Table( name = "Departamento", uniqueConstraints = 
-	@UniqueConstraint( columnNames = "nombreDepartamento")
-)
+//@Table( name = "Departamento", uniqueConstraints = 
+//	@UniqueConstraint( columnNames = "nombreDepartamento")
+//)
+@Table( name = "Departamento" )
 public class Department extends AbstractBaseEntity implements Serializable {
 
 	/**

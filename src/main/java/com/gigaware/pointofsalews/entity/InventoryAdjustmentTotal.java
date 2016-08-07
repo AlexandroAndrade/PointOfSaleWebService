@@ -33,7 +33,7 @@ public class InventoryAdjustmentTotal extends AbstractBaseEntity implements Seri
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
-	@Column( name = "", nullable = false )
+	@Column( name = "idAjusteInventarioTotal", nullable = false )
 	private Long idInventoryAdjustmentTotal;
 	
 	@ManyToOne( fetch = FetchType.LAZY )

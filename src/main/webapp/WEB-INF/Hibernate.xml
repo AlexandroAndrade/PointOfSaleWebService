@@ -1,42 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
     
-<!-- Hibernate session factory -->
-<bean id="sessionFactory" 
-class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-
-    <property name="dataSource">
-      <ref bean="dataSource"/>
-    </property>
-
-    <property name="hibernateProperties">
-       <props>
-         <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-         <prop key="hibernate.show_sql">true</prop>
-       </props>
-    </property>
-    	
-    <property name="annotatedClasses">
-		<list>
-			<value>com.gigaware.pointofsalews.entity.Branch</value>
-			<value>com.gigaware.pointofsalews.entity.Cashier</value>
-			<value>com.gigaware.pointofsalews.entity.Department</value>
-			<value>com.gigaware.pointofsalews.entity.Inventory</value>
-			<value>com.gigaware.pointofsalews.entity.InventoryAdjustmentDetail</value>
-			<value>com.gigaware.pointofsalews.entity.InventoryAdjustmentTotal</value>
-			<value>com.gigaware.pointofsalews.entity.MovementType</value>
-			<value>com.gigaware.pointofsalews.entity.Provider</value>
-			<value>com.gigaware.pointofsalews.entity.SaleDetail</value>
-			<value>com.gigaware.pointofsalews.entity.SaleItem</value>
-			<value>com.gigaware.pointofsalews.entity.SaleTotal</value>
-			<value>com.gigaware.pointofsalews.entity.User</value>
-			<value>com.gigaware.pointofsalews.entity.WareMovementDetail</value>
-			<value>com.gigaware.pointofsalews.entity.WareMovementTotal</value>
-		</list>
-    </property>
-
-    </bean>
 </beans>   

@@ -21,9 +21,7 @@ import javax.persistence.UniqueConstraint;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Entity
-@Table( name = "Caja", uniqueConstraints = 
-	@UniqueConstraint( columnNames = "nombreCaja")
-)
+@Table( name = "caja" )
 public class Cashier extends AbstractBaseEntity implements Serializable {
 
 	/**
