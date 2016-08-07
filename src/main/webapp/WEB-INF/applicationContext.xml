@@ -15,10 +15,14 @@
                            http://cxf.apache.org/jaxws
                            http://cxf.apache.org/schemas/jaxws.xsd">
 
+    <import resource="classpath:META-INF/cxf/cxf.xml" />
+    
 	<!-- Database Configuration -->
-	<import resource="DataSource.xml"/>
-	<import resource="Hibernate.xml"/>
-        <import resource="classpath:META-INF/cxf/cxf.xml" />
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>/WEB-INF/pointofsalews.properties</value>
+        </property>
+    </bean>
 	
 	<!-- Auto scan the components -->
 	<context:component-scan 
