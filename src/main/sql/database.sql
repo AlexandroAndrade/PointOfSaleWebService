@@ -25,9 +25,9 @@ DROP TABLE IF EXISTS `ajusteinventariodetalle`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ajusteinventariodetalle` (
-  `idAjusteInventarioDetalle` int(11) NOT NULL AUTO_INCREMENT,
-  `idAjusteInventarioTotal` int(11) NOT NULL,
-  `idArticulo` int(11) NOT NULL,
+  `idAjusteInventarioDetalle` bigint(20) NOT NULL AUTO_INCREMENT,
+  `idAjusteInventarioTotal` bigint(20) NOT NULL,
+  `idArticulo` bigint(20) NOT NULL,
   `existenciaAnterior` float NOT NULL,
   `existenciaNueva` float NOT NULL,
   `costoAjuste` float NOT NULL,
@@ -35,10 +35,9 @@ CREATE TABLE `ajusteinventariodetalle` (
   PRIMARY KEY (`idAjusteInventarioDetalle`),
   UNIQUE KEY `idAjusteInventarioDetalle_UNIQUE` (`idAjusteInventarioDetalle`),
   UNIQUE KEY `uq_ajusteInvDetalle_idArticulo_idAjusteInvTotal` (`idArticulo`,`idAjusteInventarioTotal`),
-  KEY `fk_AjusteInvDetalle_idAjusteInvTotal_idx` (`idAjusteInventarioTotal`),
-  KEY `fk_AjusteInvDetalle_idArticulo_idx` (`idArticulo`),
-  CONSTRAINT `fk_AjusteInvDetalle_idAjusteInvTotal` FOREIGN KEY (`idAjusteInventarioTotal`) REFERENCES `ajusteinventariototal` (`idAjusteInventarioTotal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_AjusteInvDetalle_idArticulo` FOREIGN KEY (`idArticulo`) REFERENCES `articulo` (`idArticulo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_ajusteInvDetalle_idAjusteInventarioTotal_idx` (`idAjusteInventarioTotal`),
+  CONSTRAINT `fk_ajusteInvDetalle_idAjusteInventarioTotal` FOREIGN KEY (`idAjusteInventarioTotal`) REFERENCES `ajusteinventariototal` (`idAjusteInventarioTotal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ajusteInvDetalle_idArticulo` FOREIGN KEY (`idArticulo`) REFERENCES `articulo` (`idArticulo`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -59,9 +58,9 @@ DROP TABLE IF EXISTS `ajusteinventariototal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ajusteinventariototal` (
-  `idAjusteInventarioTotal` int(11) NOT NULL AUTO_INCREMENT,
-  `idUsuario` int(11) NOT NULL,
-  `idSucursal` int(11) NOT NULL,
+  `idAjusteInventarioTotal` bigint(20) NOT NULL AUTO_INCREMENT,
+  `idUsuario` bigint(20) NOT NULL,
+  `idSucursal` bigint(20) NOT NULL,
   `fechaAjuste` date NOT NULL,
   `totalExcedentes` float NOT NULL,
   `totalPerdidas` float NOT NULL,
@@ -70,8 +69,8 @@ CREATE TABLE `ajusteinventariototal` (
   UNIQUE KEY `idAjusteInventarioTotal_UNIQUE` (`idAjusteInventarioTotal`),
   KEY `fk_AjusteInvTotal_idUsuario_idx` (`idUsuario`),
   KEY `fk_AjusteInvTotal_idSucursal_idx` (`idSucursal`),
-  CONSTRAINT `fk_AjusteInvTotal_idSucursal` FOREIGN KEY (`idSucursal`) REFERENCES `sucursal` (`idSucursal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_AjusteInvTotal_idUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_ajusteInvTotal_idSucursal` FOREIGN KEY (`idSucursal`) REFERENCES `sucursal` (`idSucursal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ajusteInvTotal_idUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -92,11 +91,11 @@ DROP TABLE IF EXISTS `articulo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `articulo` (
-  `idArticulo` int(11) NOT NULL AUTO_INCREMENT,
+  `idArticulo` bigint(20) NOT NULL AUTO_INCREMENT,
   `claveArticulo` varchar(255) NOT NULL,
   `nombreArticulo` varchar(255) NOT NULL,
-  `idProveedor` int(11) NOT NULL,
-  `idDepartamento` int(11) NOT NULL,
+  `idProveedor` bigint(20) NOT NULL,
+  `idDepartamento` bigint(20) NOT NULL,
   `marca` varchar(255) NOT NULL,
   `codigoBarras` varchar(255) NOT NULL,
   `costoPromedio` float NOT NULL,
@@ -120,7 +119,7 @@ CREATE TABLE `articulo` (
 
 LOCK TABLES `articulo` WRITE;
 /*!40000 ALTER TABLE `articulo` DISABLE KEYS */;
-INSERT  IGNORE INTO `articulo` (`idArticulo`, `claveArticulo`, `nombreArticulo`, `idProveedor`, `idDepartamento`, `marca`, `codigoBarras`, `costoPromedio`, `precioVenta`, `borradoLogico`) VALUES (1,'cve_01','nombre_01',1,1,'marca_01','0123456789',0,10,'N'),(2,'cve_02','nombre_02',1,1,'marca_02','0123456790',0,11.5,'N'),(3,'cve_03','nombre_03',1,1,'marca_01','0123456791',0,11.6,'N');
+INSERT  IGNORE INTO `articulo` (`idArticulo`, `claveArticulo`, `nombreArticulo`, `idProveedor`, `idDepartamento`, `marca`, `codigoBarras`, `costoPromedio`, `precioVenta`, `borradoLogico`) VALUES (1,'cve_01','nombre_01',1,1,'marca_01','0123456790',0,11.5,'N'),(2,'cve_02','nombre_02',1,1,'marca_02','0123456791',0,11.6,'N'),(3,'cve_03','nombre_03',1,1,'marca_03','0123456792',0,11.99,'N');
 /*!40000 ALTER TABLE `articulo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,7 +131,7 @@ DROP TABLE IF EXISTS `caja`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `caja` (
-  `idCaja` int(11) NOT NULL AUTO_INCREMENT,
+  `idCaja` bigint(20) NOT NULL AUTO_INCREMENT,
   `nombreCaja` varchar(255) NOT NULL,
   `borradoLogico` varchar(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`idCaja`),
@@ -158,7 +157,7 @@ DROP TABLE IF EXISTS `departamento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `departamento` (
-  `idDepartamento` int(11) NOT NULL AUTO_INCREMENT,
+  `idDepartamento` bigint(20) NOT NULL AUTO_INCREMENT,
   `nombreDepartamento` varchar(255) NOT NULL,
   `borradoLogico` varchar(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`idDepartamento`),
@@ -185,9 +184,9 @@ DROP TABLE IF EXISTS `inventario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `inventario` (
-  `idInventario` int(11) NOT NULL AUTO_INCREMENT,
-  `idArticulo` int(11) NOT NULL,
-  `idSucursal` int(11) NOT NULL,
+  `idInventario` bigint(20) NOT NULL AUTO_INCREMENT,
+  `idArticulo` bigint(20) NOT NULL,
+  `idSucursal` bigint(20) NOT NULL,
   `existencias` float NOT NULL,
   `borradoLogico` varchar(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`idInventario`),
@@ -196,7 +195,7 @@ CREATE TABLE `inventario` (
   KEY `fk_idArticulo_idx` (`idArticulo`),
   KEY `fk_idSucursal_idx` (`idSucursal`),
   CONSTRAINT `fk_inventario_idArticulo` FOREIGN KEY (`idArticulo`) REFERENCES `articulo` (`idArticulo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_inventario_idSucursal` FOREIGN KEY (`idSucursal`) REFERENCES `sucursal` (`idSucursal`)
+  CONSTRAINT `fk_inventario_idSucursal` FOREIGN KEY (`idSucursal`) REFERENCES `sucursal` (`idSucursal`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -206,7 +205,7 @@ CREATE TABLE `inventario` (
 
 LOCK TABLES `inventario` WRITE;
 /*!40000 ALTER TABLE `inventario` DISABLE KEYS */;
-INSERT  IGNORE INTO `inventario` (`idInventario`, `idArticulo`, `idSucursal`, `existencias`, `borradoLogico`) VALUES (1,1,7,0,'N'),(2,1,2,0,'N'),(3,1,6,0,'N'),(4,1,9,0,'N'),(5,1,3,0,'N'),(6,1,10,0,'N'),(7,1,8,0,'N'),(8,1,4,0,'N'),(9,1,5,0,'N'),(10,1,1,0,'N'),(11,2,3,0,'N'),(12,2,1,0,'N'),(13,2,7,0,'N'),(14,2,2,0,'N'),(15,2,5,0,'N'),(16,2,4,0,'N'),(17,2,6,0,'N'),(18,2,10,0,'N'),(19,2,9,0,'N'),(20,2,8,0,'N'),(21,3,7,0,'N'),(22,3,3,0,'N'),(23,3,10,0,'N'),(24,3,8,0,'N'),(25,3,5,0,'N'),(26,3,2,0,'N'),(27,3,9,0,'N'),(28,3,4,0,'N'),(29,3,6,0,'N'),(30,3,1,0,'N');
+INSERT  IGNORE INTO `inventario` (`idInventario`, `idArticulo`, `idSucursal`, `existencias`, `borradoLogico`) VALUES (1,1,1,0,'N'),(2,1,7,0,'N'),(3,1,2,0,'N'),(4,1,10,0,'N'),(5,1,9,0,'N'),(6,1,8,0,'N'),(7,1,5,0,'N'),(8,1,6,0,'N'),(9,1,4,0,'N'),(10,1,3,0,'N'),(11,2,7,0,'N'),(12,2,2,0,'N'),(13,2,3,0,'N'),(14,2,10,0,'N'),(15,2,5,0,'N'),(16,2,6,0,'N'),(17,2,8,0,'N'),(18,2,9,0,'N'),(19,2,4,0,'N'),(20,2,1,0,'N'),(21,3,2,0,'N'),(22,3,1,0,'N'),(23,3,5,0,'N'),(24,3,3,0,'N'),(25,3,10,0,'N'),(26,3,8,0,'N'),(27,3,6,0,'N'),(28,3,9,0,'N'),(29,3,4,0,'N'),(30,3,7,0,'N');
 /*!40000 ALTER TABLE `inventario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,9 +217,9 @@ DROP TABLE IF EXISTS `movimientomercanciadetalle`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `movimientomercanciadetalle` (
-  `idMovimientoMercanciaDetalle` int(11) NOT NULL AUTO_INCREMENT,
-  `idMovimientoMercanciaTotal` int(11) NOT NULL,
-  `idArticulo` int(11) NOT NULL,
+  `idMovimientoMercanciaDetalle` bigint(20) NOT NULL AUTO_INCREMENT,
+  `idMovimientoMercanciaTotal` bigint(20) NOT NULL,
+  `idArticulo` bigint(20) NOT NULL,
   `cantidad` float NOT NULL,
   `costoPromedio` float NOT NULL,
   `borradoLogico` varchar(1) NOT NULL DEFAULT 'N',
@@ -229,8 +228,8 @@ CREATE TABLE `movimientomercanciadetalle` (
   UNIQUE KEY `uq_MovMercDetalle_idArticulo_idMovMercTotal` (`idArticulo`,`idMovimientoMercanciaTotal`),
   KEY `fk_MovimientoMercanciaDetalle_idMovimientoMercanciaTotal_idx` (`idMovimientoMercanciaTotal`),
   KEY `fk_MovimientoMercanciaDetalle_idArticulo_idx` (`idArticulo`),
-  CONSTRAINT `fk_MovimientoMercanciaDetalle_idArticulo` FOREIGN KEY (`idArticulo`) REFERENCES `articulo` (`idArticulo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_MovimientoMercanciaDetalle_idMovimientoMercanciaTotal` FOREIGN KEY (`idMovimientoMercanciaTotal`) REFERENCES `movimientomercanciatotal` (`idMovimientoMercanciaTotal`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_movMercDetalle_idArticulo` FOREIGN KEY (`idArticulo`) REFERENCES `articulo` (`idArticulo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_movMercDetalle_idMovMercTotal` FOREIGN KEY (`idMovimientoMercanciaTotal`) REFERENCES `movimientomercanciatotal` (`idMovimientoMercanciaTotal`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -251,10 +250,10 @@ DROP TABLE IF EXISTS `movimientomercanciatotal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `movimientomercanciatotal` (
-  `idMovimientoMercanciaTotal` int(11) NOT NULL AUTO_INCREMENT,
-  `idSucursal` int(11) NOT NULL,
+  `idMovimientoMercanciaTotal` bigint(20) NOT NULL AUTO_INCREMENT,
+  `idSucursal` bigint(20) NOT NULL,
   `claveTipoMovimiento` varchar(10) NOT NULL,
-  `idUsuario` int(11) NOT NULL,
+  `idUsuario` bigint(20) NOT NULL,
   `fechaMovimientoMercancia` date NOT NULL,
   `totalCostoMovimiento` float NOT NULL,
   `numeroRemision` varchar(255) NOT NULL,
@@ -287,7 +286,7 @@ DROP TABLE IF EXISTS `proveedor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `proveedor` (
-  `idProveedor` int(11) NOT NULL AUTO_INCREMENT,
+  `idProveedor` bigint(20) NOT NULL AUTO_INCREMENT,
   `nombreProveedor` varchar(255) NOT NULL,
   `direccion` varchar(255) NOT NULL,
   `telefono` varchar(20) NOT NULL,
@@ -324,7 +323,7 @@ DROP TABLE IF EXISTS `sucursal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sucursal` (
-  `idSucursal` int(11) NOT NULL AUTO_INCREMENT,
+  `idSucursal` bigint(20) NOT NULL AUTO_INCREMENT,
   `claveSucursal` varchar(45) NOT NULL,
   `nombreSucursal` varchar(255) NOT NULL,
   `borradoLogico` varchar(1) NOT NULL DEFAULT 'N',
@@ -379,7 +378,7 @@ DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuario` (
-  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
+  `idUsuario` bigint(20) NOT NULL AUTO_INCREMENT,
   `nickname` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `borradoLogico` varchar(1) NOT NULL DEFAULT 'N',
@@ -406,20 +405,20 @@ DROP TABLE IF EXISTS `ventadetalle`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ventadetalle` (
-  `idVentaDetalle` int(11) NOT NULL AUTO_INCREMENT,
-  `idVentaTotal` int(11) NOT NULL,
-  `idArticulo` int(11) NOT NULL,
+  `idVentaDetalle` bigint(20) NOT NULL AUTO_INCREMENT,
+  `idVentaTotal` bigint(20) NOT NULL,
+  `idArticulo` bigint(20) NOT NULL,
   `cantidad` float NOT NULL,
   `costoPromedio` float NOT NULL,
-  `previoVenta` float NOT NULL,
+  `precioVenta` float NOT NULL,
   `borradoLogico` varchar(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`idVentaDetalle`),
   UNIQUE KEY `idVentaDetalle_UNIQUE` (`idVentaDetalle`),
   UNIQUE KEY `uq_idVentaTotal_idArticulo` (`idVentaTotal`,`idArticulo`),
   KEY `fk_VentaDetalle_idArticulo_idx` (`idArticulo`),
   KEY `fk_VentaDetalle_idVentaTotal_idx` (`idVentaTotal`),
-  CONSTRAINT `fk_VentaDetalle_idArticulo` FOREIGN KEY (`idArticulo`) REFERENCES `articulo` (`idArticulo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_VentaDetalle_idVentaTotal` FOREIGN KEY (`idVentaTotal`) REFERENCES `ventatotal` (`idVentaTotal`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_ventaDetalle_idArticulo` FOREIGN KEY (`idArticulo`) REFERENCES `articulo` (`idArticulo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ventaDetalle_idVentaTotal` FOREIGN KEY (`idVentaTotal`) REFERENCES `ventatotal` (`idVentaTotal`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -440,10 +439,10 @@ DROP TABLE IF EXISTS `ventatotal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ventatotal` (
-  `idVentaTotal` int(11) NOT NULL AUTO_INCREMENT,
-  `idSucursal` int(11) NOT NULL,
-  `idCaja` int(11) NOT NULL,
-  `idUsuario` int(11) NOT NULL,
+  `idVentaTotal` bigint(20) NOT NULL AUTO_INCREMENT,
+  `idSucursal` bigint(20) NOT NULL,
+  `idCaja` bigint(20) NOT NULL,
+  `idUsuario` bigint(20) NOT NULL,
   `fechaVenta` date NOT NULL,
   `totalVenta` float NOT NULL,
   `cambio` float NOT NULL,
@@ -454,9 +453,9 @@ CREATE TABLE `ventatotal` (
   KEY `fk_VentaTotal_idSucursal_idx` (`idSucursal`),
   KEY `fk_VentaTotal_idCaja_idx` (`idCaja`),
   KEY `fk_VentaTotal_idUsuario_idx` (`idUsuario`),
-  CONSTRAINT `fk_VentaTotal_idCaja` FOREIGN KEY (`idCaja`) REFERENCES `caja` (`idCaja`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_VentaTotal_idSucursal` FOREIGN KEY (`idSucursal`) REFERENCES `sucursal` (`idSucursal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_VentaTotal_idUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_ventaTotal_idCaja` FOREIGN KEY (`idCaja`) REFERENCES `caja` (`idCaja`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ventaTotal_idSucursal` FOREIGN KEY (`idSucursal`) REFERENCES `sucursal` (`idSucursal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ventaTotal_idUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -478,4 +477,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-03 16:23:02
+-- Dump completed on 2016-08-07 18:21:27
