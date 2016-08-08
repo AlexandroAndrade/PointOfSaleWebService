@@ -16,6 +16,7 @@
     		
     	<property name = "use-google-connector-j" value = "true" />
   	
+  	
   	</system-properties>
 
 </appengine-web-app>

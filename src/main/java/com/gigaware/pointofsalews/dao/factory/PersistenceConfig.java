@@ -1,6 +1,5 @@
 package com.gigaware.pointofsalews.dao.factory;
 
-import java.sql.SQLException;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -8,7 +7,6 @@ import javax.sql.DataSource;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
-import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,8 +16,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import com.google.cloud.sql.jdbc.GoogleDataSource;
 
 @Configuration
 @EnableTransactionManagement
@@ -53,6 +49,9 @@ public class PersistenceConfig {
 	@Value( "${hibernate.hbm2ddl.auto}" )
 	private String hibernateHbm2ddlAuto;
 	
+	@Value( "${jdbc.socketFactory.url}" )
+	private String jdbcSocketFactoryUrl;
+	
 	@Bean
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -76,7 +75,8 @@ public class PersistenceConfig {
 			//Google Cloud Instance
 			System.out.println( "Google Cloud SQL instance" );
 			dataSource.setDriverClassName( jdbcAppengineDriverClassName );
-			dataSource.setUrl( jdbcAppengineUrl );
+//			dataSource.setUrl( jdbcAppengineUrl );
+			dataSource.setUrl( jdbcSocketFactoryUrl );
 			dataSource.setUsername( jdbcMysqlUsername );
 			dataSource.setPassword( jdbcMysqlPassword );
 		}

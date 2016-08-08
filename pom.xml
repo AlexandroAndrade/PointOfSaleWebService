@@ -148,7 +148,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
+			<version>5.1.39</version>
 		</dependency>
 
 <!-- 		<dependency> -->
@@ -162,6 +162,13 @@
     		<groupId>com.google.appengine</groupId>
     		<artifactId>appengine-api-1.0-sdk</artifactId>
     		<version>1.9.42</version>
+		</dependency>
+		
+		<!-- Cloud SQL MySQL Socket Factory -->
+		<dependency>
+    		<groupId>com.google.cloud.sql</groupId>
+    		<artifactId>mysql-socket-factory</artifactId>
+    		<version>1.0.1</version>
 		</dependency>
 
 
