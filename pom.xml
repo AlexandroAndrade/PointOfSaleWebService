@@ -150,12 +150,14 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.32</version>
 		</dependency>
-		
-<!-- 		<dependency> -->
-<!--     		<groupId>com.google.appengine</groupId> -->
-<!--     		<artifactId>appengine</artifactId> -->
-<!--     		<version>1.9.42</version> -->
-<!-- 		</dependency> -->
+	
+		<!-- Google AppEngine API -->
+		<dependency>
+    		<groupId>com.google.appengine</groupId>
+    		<artifactId>appengine-api-1.0-sdk</artifactId>
+    		<version>1.9.42</version>
+		</dependency>
+
 
 		<!-- Unit Test Dependencies -->
 		<dependency>

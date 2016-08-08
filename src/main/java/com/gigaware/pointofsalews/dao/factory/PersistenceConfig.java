@@ -1,9 +1,11 @@
 package com.gigaware.pointofsalews.dao.factory;
 
+import java.sql.SQLException;
 import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.core.env.Environment;
@@ -16,6 +18,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.google.cloud.sql.jdbc.GoogleDataSource;
 
 @Configuration
 @EnableTransactionManagement
@@ -61,10 +65,21 @@ public class PersistenceConfig {
 	@Bean
 	public DataSource restDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName( jdbcMysqlDriverClassName );
-		dataSource.setUrl( jdbcMysqlUrl );
-		dataSource.setUsername( jdbcMysqlUsername );
-		dataSource.setPassword( jdbcMysqlPassword );
+		if( StringUtils.isEmpty( System.getProperty( "com.google.appengine.runtime.version" ) ) ) {
+			//Locahost Instance
+			System.out.println( "Entering Localhost SQL instance" );
+			dataSource.setDriverClassName( jdbcMysqlDriverClassName );
+			dataSource.setUrl( jdbcMysqlUrl );
+			dataSource.setUsername( jdbcMysqlUsername );
+			dataSource.setPassword( jdbcMysqlPassword );
+		} else{
+			//Google Cloud Instance
+			System.out.println( "Google Cloud SQL instance" );
+			dataSource.setDriverClassName( jdbcAppengineDriverClassName );
+			dataSource.setUrl( jdbcAppengineUrl );
+//			dataSource.setUsername( jdbcMysqlUsername );
+//			dataSource.setPassword( jdbcMysqlPassword );
+		}
 		return dataSource;
 	}
 	
