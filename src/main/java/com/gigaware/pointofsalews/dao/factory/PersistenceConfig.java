@@ -49,9 +49,6 @@ public class PersistenceConfig {
 	@Value( "${hibernate.hbm2ddl.auto}" )
 	private String hibernateHbm2ddlAuto;
 	
-	@Value( "${jdbc.socketFactory.url}" )
-	private String jdbcSocketFactoryUrl;
-	
 	@Bean
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -65,20 +62,23 @@ public class PersistenceConfig {
 	public DataSource restDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		if( StringUtils.isEmpty( System.getProperty( "com.google.appengine.runtime.version" ) ) ) {
+			
 			//Locahost Instance
 			System.out.println( "Entering Localhost SQL instance" );
 			dataSource.setDriverClassName( jdbcMysqlDriverClassName );
 			dataSource.setUrl( jdbcMysqlUrl );
 			dataSource.setUsername( jdbcMysqlUsername );
 			dataSource.setPassword( jdbcMysqlPassword );
+		
 		} else{
+			
 			//Google Cloud Instance
 			System.out.println( "Google Cloud SQL instance" );
 			dataSource.setDriverClassName( jdbcAppengineDriverClassName );
-//			dataSource.setUrl( jdbcAppengineUrl );
-			dataSource.setUrl( jdbcSocketFactoryUrl );
+			dataSource.setUrl( jdbcAppengineUrl );
 			dataSource.setUsername( jdbcMysqlUsername );
 			dataSource.setPassword( jdbcMysqlPassword );
+
 		}
 		return dataSource;
 	}

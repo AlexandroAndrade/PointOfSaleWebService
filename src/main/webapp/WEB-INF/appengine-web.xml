@@ -4,7 +4,7 @@
     <application>pointofsalews-1470079149668</application>
     <version>1</version>
     <threadsafe>true</threadsafe>
-<!--     <use-google-connector-j>true</use-google-connector-j> -->
+    <use-google-connector-j>true</use-google-connector-j>
     
     <system-properties>
     	
@@ -14,9 +14,6 @@
     	<property name ="ae-cloudsql.local-database-url"   
     		value = "jdbc:mysql://localhost/DATABASE-NAME?user=USERNAME&amp;PASSWORD=password&amp;useSSL=false" />
     		
-<!--     	<property name = "use-google-connector-j" value = "true" /> -->
-  	
-  	
   	</system-properties>
 
 </appengine-web-app>
