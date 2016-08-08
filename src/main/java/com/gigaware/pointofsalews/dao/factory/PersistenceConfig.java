@@ -62,37 +62,27 @@ public class PersistenceConfig {
 		return sessionFactory;
 	}
 	
-//	@Bean
-//	public DataSource restDataSource() {
-//		BasicDataSource dataSource = new BasicDataSource();
-//		if( StringUtils.isEmpty( System.getProperty( "com.google.appengine.runtime.version" ) ) ) {
-//			//Locahost Instance
-//			System.out.println( "Entering Localhost SQL instance" );
-//			dataSource.setDriverClassName( jdbcMysqlDriverClassName );
-//			dataSource.setUrl( jdbcMysqlUrl );
-//			dataSource.setUsername( jdbcMysqlUsername );
-//			dataSource.setPassword( jdbcMysqlPassword );
-//		} else{
-//			//Google Cloud Instance
-//			System.out.println( "Google Cloud SQL instance" );
-//			dataSource.setDriverClassName( jdbcAppengineDriverClassName );
-//			dataSource.setUrl( jdbcAppengineUrl );
-//			dataSource.setUsername( jdbcMysqlUsername );
-//			dataSource.setPassword( jdbcMysqlPassword );
-//		}
-//		return dataSource;
-//	}
-	
 	@Bean
 	public DataSource restDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
+		if( StringUtils.isEmpty( System.getProperty( "com.google.appengine.runtime.version" ) ) ) {
+			//Locahost Instance
 			System.out.println( "Entering Localhost SQL instance" );
 			dataSource.setDriverClassName( jdbcMysqlDriverClassName );
 			dataSource.setUrl( jdbcMysqlUrl );
 			dataSource.setUsername( jdbcMysqlUsername );
 			dataSource.setPassword( jdbcMysqlPassword );
+		} else{
+			//Google Cloud Instance
+			System.out.println( "Google Cloud SQL instance" );
+			dataSource.setDriverClassName( jdbcAppengineDriverClassName );
+			dataSource.setUrl( jdbcAppengineUrl );
+			dataSource.setUsername( jdbcMysqlUsername );
+			dataSource.setPassword( jdbcMysqlPassword );
+		}
 		return dataSource;
 	}
+	
 
 	@Bean
 	@Autowired
