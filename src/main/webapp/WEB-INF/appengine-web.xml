@@ -4,7 +4,7 @@
     <application>pointofsalews-1470079149668</application>
     <version>1</version>
     <threadsafe>true</threadsafe>
-    <use-google-connector-j>true</use-google-connector-j>
+<!--     <use-google-connector-j>true</use-google-connector-j> -->
     
     <system-properties>
     	
