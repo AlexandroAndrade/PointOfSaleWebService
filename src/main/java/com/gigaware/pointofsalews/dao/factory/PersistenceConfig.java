@@ -77,8 +77,8 @@ public class PersistenceConfig {
 			System.out.println( "Google Cloud SQL instance" );
 			dataSource.setDriverClassName( jdbcAppengineDriverClassName );
 			dataSource.setUrl( jdbcAppengineUrl );
-//			dataSource.setUsername( jdbcMysqlUsername );
-//			dataSource.setPassword( jdbcMysqlPassword );
+			dataSource.setUsername( jdbcMysqlUsername );
+			dataSource.setPassword( jdbcMysqlPassword );
 		}
 		return dataSource;
 	}
