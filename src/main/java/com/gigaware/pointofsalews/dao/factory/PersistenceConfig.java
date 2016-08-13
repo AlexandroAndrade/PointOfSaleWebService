@@ -61,6 +61,10 @@ public class PersistenceConfig {
 	@Bean
 	public DataSource restDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
+		
+		//TODO -> Map to OpenShift MySQL instance
+		final String openShiftAppId = "OPENSHIFT_APP_UUID";
+		
 		if( StringUtils.isEmpty( System.getProperty( "com.google.appengine.runtime.version" ) ) ) {
 			
 			//Locahost Instance
@@ -70,7 +74,7 @@ public class PersistenceConfig {
 			dataSource.setUsername( jdbcMysqlUsername );
 			dataSource.setPassword( jdbcMysqlPassword );
 		
-		} else{
+		} else {
 			
 			//Google Cloud Instance
 			System.out.println( "Google Cloud SQL instance" );
