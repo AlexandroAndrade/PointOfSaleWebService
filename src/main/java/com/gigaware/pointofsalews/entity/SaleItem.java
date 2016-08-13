@@ -26,7 +26,7 @@ import com.gigaware.pointofsalews.dto.create.SalesItemCreateAndModifyDTO;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Entity
-@Table( name = "Articulo" )
+@Table( name = "articulo" )
 public class SaleItem extends AbstractBaseEntity implements Serializable {
 
 	/**

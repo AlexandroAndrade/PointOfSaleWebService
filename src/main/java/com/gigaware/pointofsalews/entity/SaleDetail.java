@@ -20,7 +20,7 @@ import javax.persistence.UniqueConstraint;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Entity
-@Table( name = "VentaDetalle" )
+@Table( name = "ventadetalle" )
 public class SaleDetail extends AbstractBaseEntity implements Serializable {
 
 	/**

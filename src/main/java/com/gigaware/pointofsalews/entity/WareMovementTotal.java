@@ -25,7 +25,7 @@ import com.gigaware.pointofsalews.entity.MovementType;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Entity
-@Table( name = "MovimientoMercanciaTotal" )
+@Table( name = "movimientomercanciatotal" )
 public class WareMovementTotal extends AbstractBaseEntity implements Serializable {
 
 	/**

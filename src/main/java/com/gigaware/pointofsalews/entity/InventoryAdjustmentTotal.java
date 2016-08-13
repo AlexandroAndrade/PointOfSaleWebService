@@ -23,7 +23,7 @@ import javax.persistence.Table;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Entity
-@Table( name = "AjusteInventarioTotal" )
+@Table( name = "ajusteinventariototal" )
 public class InventoryAdjustmentTotal extends AbstractBaseEntity implements Serializable {
 
 	/**

@@ -21,7 +21,7 @@ import javax.persistence.UniqueConstraint;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Entity
-@Table( name = "Sucursal" )
+@Table( name = "sucursal" )
 public class Branch extends AbstractBaseEntity implements Serializable {
 
 	/**

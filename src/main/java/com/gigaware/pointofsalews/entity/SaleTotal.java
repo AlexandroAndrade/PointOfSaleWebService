@@ -23,7 +23,7 @@ import javax.persistence.Table;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Entity
-@Table( name = "VentaTotal" )
+@Table( name = "ventatotal" )
 public class SaleTotal extends AbstractBaseEntity implements Serializable {
 
 	/**

@@ -19,7 +19,7 @@ import javax.persistence.UniqueConstraint;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Entity
-@Table( name = "TipoMovimiento" )
+@Table( name = "tipomovimiento" )
 public class MovementType extends AbstractBaseEntity implements Serializable {
 
 	/**
