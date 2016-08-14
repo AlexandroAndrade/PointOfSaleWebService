@@ -4,6 +4,7 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:jaxws="http://cxf.apache.org/jaxws"
        xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
                            http://www.springframework.org/schema/aop
@@ -13,7 +14,9 @@
                            http://cxf.apache.org/jaxrs
                            http://cxf.apache.org/schemas/jaxrs.xsd
                            http://cxf.apache.org/jaxws
-                           http://cxf.apache.org/schemas/jaxws.xsd">
+                           http://cxf.apache.org/schemas/jaxws.xsd
+                           http://www.springframework.org/schema/util
+						   http://www.springframework.org/schema/util/spring-util-2.5.xsd">
 
     <import resource="classpath:META-INF/cxf/cxf.xml" />
     
@@ -21,8 +24,10 @@
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
             <value>/WEB-INF/pointofsalews.properties</value>
-        </property>
+		</property>            
     </bean>
+    
+    <util:properties id="posProperties" location="/WEB-INF/pointofsalews.properties" />
 	
 	<!-- Auto scan the components -->
 	<context:component-scan 
@@ -61,7 +66,5 @@
                     
                     
         </jaxrs:server>
-	
-
 
 </beans>

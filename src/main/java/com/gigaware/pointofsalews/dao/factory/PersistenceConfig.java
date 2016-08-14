@@ -22,32 +22,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan( { "com.gigaware" } )
 public class PersistenceConfig {
 	
-	@Value( "${jdbc.mysql.driverClassName}" )
-	private String jdbcMysqlDriverClassName;
-	
-	@Value( "${jdbc.mysql.url}")
-	private String jdbcMysqlUrl;
-	
-	@Value( "${jdbc.mysql.username}")
-	private String jdbcMysqlUsername;
-	
-	@Value( "${jdbc.mysql.password}")
-	private String jdbcMysqlPassword;
-	
-	@Value( "${jdbc.appengine.driverClassName}" )
-	private String jdbcAppengineDriverClassName;
-	
-	@Value( "${jdbc.appengine.url}")
-	private String jdbcAppengineUrl;
-	
-	@Value( "${hibernate.dialect}" )
-	private String hibernateDialect;
-	
-	@Value( "${hibernate.show_sql}" )
-	private String hibernateShowSql;
-	
-	@Value( "${hibernate.hbm2ddl.auto}" )
-	private String hibernateHbm2ddlAuto;
+	@Value("#{posProperties}")
+	private Properties posProperties;
 	
 	@Bean
 	public LocalSessionFactoryBean sessionFactory() {
@@ -60,34 +36,47 @@ public class PersistenceConfig {
 	
 	@Bean
 	public DataSource restDataSource() {
-		BasicDataSource dataSource = new BasicDataSource();
 		
-		//TODO -> Map to OpenShift MySQL instance
-		final String openShiftAppId = "OPENSHIFT_APP_UUID";
-		
-		if( StringUtils.isEmpty( System.getProperty( "com.google.appengine.runtime.version" ) ) ) {
+		if(! StringUtils.isEmpty( System.getProperty( "OPENSHIFT_APP_UUID" ) ) ) {
 			
-			//Locahost Instance
-			System.out.println( "Entering Localhost SQL instance" );
-			dataSource.setDriverClassName( jdbcMysqlDriverClassName );
-			dataSource.setUrl( jdbcMysqlUrl );
-			dataSource.setUsername( jdbcMysqlUsername );
-			dataSource.setPassword( jdbcMysqlPassword );
+			System.out.println( "Creating OpenShift Red Hat MySQL DB Connection" );
+			return createDataSource( 
+					posProperties.get( "jdbc.mysql.openshift.driverClassName" ).toString(), 
+					posProperties.get( "jdbc.mysql.openshift.url" ).toString(), 
+					posProperties.get( "jdbc.mysql.openshift.username" ).toString(), 
+					posProperties.get( "jdbc.mysql.openshift.password" ).toString() );
 		
+		} else if ( ! StringUtils.isEmpty( System.getProperty( "com.google.appengine.runtime.version" ) ) ) {
+			
+			System.out.println( "Creating Google App Engine MySQL DB Connection" );
+			return createDataSource( 
+					posProperties.get( "jdbc.mysql.appengine.driverClassName" ).toString(), 
+					posProperties.get( "jdbc.mysql.appengine.url" ).toString(), 
+					posProperties.get( "jdbc.mysql.appengine.username" ).toString(), 
+					posProperties.get( "jdbc.mysql.appengine.password" ).toString() );
+			
 		} else {
-			
-			//Google Cloud Instance
-			System.out.println( "Google Cloud SQL instance" );
-			dataSource.setDriverClassName( jdbcAppengineDriverClassName );
-			dataSource.setUrl( jdbcAppengineUrl );
-			dataSource.setUsername( jdbcMysqlUsername );
-			dataSource.setPassword( jdbcMysqlPassword );
 
-		}
+			System.out.println( "Creating Localhost MySQL DB Connection" );
+			return createDataSource( 
+					posProperties.get( "jdbc.mysql.localhost.driverClassName" ).toString(), 
+					posProperties.get( "jdbc.mysql.localhost.url" ).toString(), 
+					posProperties.get( "jdbc.mysql.localhost.username" ).toString(), 
+					posProperties.get( "jdbc.mysql.localhost.password" ).toString() );
+
+		} 
+		
+	}
+	
+	private BasicDataSource createDataSource( String driverClassName, String url, String username, String password ){
+		BasicDataSource dataSource = new BasicDataSource();
+		dataSource.setDriverClassName( driverClassName );
+		dataSource.setUrl( url );
+		dataSource.setUsername( username );
+		dataSource.setPassword( password );
 		return dataSource;
 	}
 	
-
 	@Bean
 	@Autowired
 	public HibernateTransactionManager transactionManager( SessionFactory sessionFactory ) {
@@ -104,9 +93,9 @@ public class PersistenceConfig {
 	Properties hibernateProperties() {
 		return new Properties() {
 			{
-				setProperty("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto );
-		        setProperty("hibernate.dialect", hibernateDialect );
-		        setProperty("hibernate.globally_quoted_identifiers", hibernateShowSql );
+				setProperty("hibernate.hbm2ddl.auto", posProperties.get( "hibernate.hbm2ddl.auto" ).toString() );
+		        setProperty("hibernate.dialect", posProperties.get( "hibernate.dialect" ).toString() );
+		        setProperty("hibernate.globally_quoted_identifiers", posProperties.get( "hibernate.show_sql" ).toString() );
 		    }
 		};
 	}
