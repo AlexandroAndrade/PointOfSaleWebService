@@ -46,16 +46,18 @@ public class PersistenceConfig {
 					posProperties.get( "jdbc.mysql.openshift.username" ).toString(), 
 					posProperties.get( "jdbc.mysql.openshift.password" ).toString() );
 		
-		} else if ( ! StringUtils.isEmpty( System.getProperty( "com.google.appengine.runtime.version" ) ) ) {
+		} 
+//		else if ( ! StringUtils.isEmpty( System.getProperty( "com.google.appengine.runtime.version" ) ) ) {
 			
-			System.out.println( "Creating Google App Engine MySQL DB Connection" );
-			return createDataSource( 
-					posProperties.get( "jdbc.mysql.appengine.driverClassName" ).toString(), 
-					posProperties.get( "jdbc.mysql.appengine.url" ).toString(), 
-					posProperties.get( "jdbc.mysql.appengine.username" ).toString(), 
-					posProperties.get( "jdbc.mysql.appengine.password" ).toString() );
+//			System.out.println( "Creating Google App Engine MySQL DB Connection" );
+//			return createDataSource( 
+//					posProperties.get( "jdbc.mysql.appengine.driverClassName" ).toString(), 
+//					posProperties.get( "jdbc.mysql.appengine.url" ).toString(), 
+//					posProperties.get( "jdbc.mysql.appengine.username" ).toString(), 
+//					posProperties.get( "jdbc.mysql.appengine.password" ).toString() );
 			
-		} else {
+//	} else {
+		else {
 
 			System.out.println( "Creating Localhost MySQL DB Connection" );
 			return createDataSource( 
