@@ -19,7 +19,7 @@ import com.sun.xml.txw2.annotation.XmlElement;
 @XmlElement( value = "salesItemCreate" )
 @XmlAccessorType( XmlAccessType.FIELD )
 @JsonIgnoreProperties( ignoreUnknown = true )
-public class SalesItemCreateAndModifyDTO implements Serializable {
+public class SalesItemCreateDTO implements Serializable {
 
 	/**
 	 * AspctJ

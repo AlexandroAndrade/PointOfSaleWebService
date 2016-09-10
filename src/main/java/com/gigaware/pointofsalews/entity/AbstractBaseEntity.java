@@ -6,14 +6,12 @@ package com.gigaware.pointofsalews.entity;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 
 import org.apache.commons.lang3.StringUtils;
 
 import com.gigaware.pointofsalews.constant.PosConstants;
-import com.gigaware.pointofsalews.enumeration.LogicalDeleted;
 
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )

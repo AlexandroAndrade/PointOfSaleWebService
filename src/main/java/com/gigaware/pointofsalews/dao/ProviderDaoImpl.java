@@ -67,7 +67,4 @@ public class ProviderDaoImpl extends AbstractHibernateDao implements ProviderDao
 		return null;
 	}
 	
-	
-	
-	
 }

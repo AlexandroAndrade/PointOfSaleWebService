@@ -3,31 +3,19 @@
  */
 package com.gigaware.pointofsalews.service;
 
-import static com.gigaware.pointofsalews.exception.ExceptionConstant.EMPTY_REQUIRED_FIELD;
+import static com.gigaware.pointofsalews.exception.ExceptionConstant.*;
 
-import static com.gigaware.pointofsalews.exception.ExceptionConstant.SALES_ITEM_ALREADY_EXISTS_BY_ITEM_KEY;
-import static com.gigaware.pointofsalews.exception.ExceptionConstant.SALES_ITEM_EMPTY_VALUE_ITEM_BRAND;
-import static com.gigaware.pointofsalews.exception.ExceptionConstant.SALES_ITEM_ALREADY_EXISTS_BY_ITEM_NAME;
-import static com.gigaware.pointofsalews.exception.ExceptionConstant.SALES_ITEM_ALREADY_EXISTS_BY_CODE_BARS;
-import static com.gigaware.pointofsalews.exception.ExceptionConstant.SALES_ITEM_ALREADY_EXISTS_TITLE;
-import static com.gigaware.pointofsalews.exception.ExceptionConstant.SALES_ITEM_EMPTY_VALUE_ITEM_KEY;
-import static com.gigaware.pointofsalews.exception.ExceptionConstant.SALES_ITEM_EMPTY_VALUE_ITEM_NAME;
-import static com.gigaware.pointofsalews.exception.ExceptionConstant.SALES_ITEM_EMPTY_VALUE_ITEM_CODE_BARS;
-import static com.gigaware.pointofsalews.exception.ExceptionConstant.SALES_ITEM_EMPTY_VALUE_ITEM_DEPARTMENT_ID;
-import static com.gigaware.pointofsalews.exception.ExceptionConstant.SALES_ITEM_EMPTY_VALUE_ITEM_PROVIDER_ID;
-import static com.gigaware.pointofsalews.exception.ExceptionConstant.SALES_ITEM_EMPTY_NUMERIC_VALUE_ITEM_SALE_PRICE;
-
-import static com.gigaware.pointofsalews.exception.ExceptionConstant.SALES_ITEM_NOT_FOUND_TITLE;
-import static com.gigaware.pointofsalews.exception.ExceptionConstant.SALES_ITEM_NOT_FOUND_BY_ID_DESCRIPTON;
-
+import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 import static javax.ws.rs.core.Response.Status.CONFLICT;
 import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 
+import com.gigaware.pointofsalews.constant.PosConstants;
 import com.gigaware.pointofsalews.dao.BranchDao;
 import com.gigaware.pointofsalews.dao.DepartmentDao;
 import com.gigaware.pointofsalews.dao.ProviderDao;
 import com.gigaware.pointofsalews.dao.SalesItemDao;
-import com.gigaware.pointofsalews.dto.create.SalesItemCreateAndModifyDTO;
+import com.gigaware.pointofsalews.dto.create.SalesItemCreateDTO;
+import com.gigaware.pointofsalews.dto.create.SalesItemUpdateDTO;
 import com.gigaware.pointofsalews.entity.Branch;
 import com.gigaware.pointofsalews.entity.Department;
 import com.gigaware.pointofsalews.entity.Inventory;
@@ -45,6 +33,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
@@ -60,7 +49,7 @@ public class SalesItemsServiceImpl
 	private static final long serialVersionUID = -6409384080987894544L;
 	
 	@Autowired
-    private SalesItemDao salesItemDao;
+	private SalesItemDao salesItemDao;
     
 	@Autowired
 	private BranchDao branchDao;
@@ -73,8 +62,8 @@ public class SalesItemsServiceImpl
 	
     @Override
     public List<SaleItem> getAll() {
-        return ( List<SaleItem> ) salesItemDao.getAll();
-    }
+    	return ( List<SaleItem> ) salesItemDao.getAll();
+	}
     
 	@Override
 	public SaleItem getById(Long id) {
@@ -92,52 +81,59 @@ public class SalesItemsServiceImpl
 	}
 	
 	@Override
+	public SaleItem getByItemKey( String itemKey ) {
+		validateEmptyValue( itemKey, EMPTY_REQUIRED_FIELD, SALES_ITEM_EMPTY_VALUE_ITEM_KEY, BAD_REQUEST );
+		SaleItem item = salesItemDao.getByItemKey( itemKey );
+		if( item == null ) {
+			throw new PointOfSaleException( 
+					NOT_FOUND, SALES_ITEM_NOT_FOUND_TITLE, 
+					String.format( SALES_ITEM_NOT_FOUND_BY_ITEM_KEY, itemKey ) );
+		}
+		return item;
+	}
+	
+	@Override
 	public List<SaleItem> getByInventoryLessThan( Integer inventoryLessThan) {
 		return salesItemDao.getByInventoryLessThan( new Float( inventoryLessThan.floatValue() ) );
 	}
 	
     @Override
-    public SaleItem save( SalesItemCreateAndModifyDTO saleItemDto ) {
+    public SaleItem save( SalesItemCreateDTO itemDTO ) {
     	
-    	SalesItemsServiceImpl.checkEmptyValues( saleItemDto );
+    	SalesItemsServiceImpl.checkEmptyValues( itemDTO );
 
-    	if( salesItemDao.getByItemKey( saleItemDto.getItemKey() ) != null ){
+    	if( salesItemDao.getByItemKey( itemDTO.getItemKey() ) != null ){
     		throw new PointOfSaleException( 
     				CONFLICT, 
     				SALES_ITEM_ALREADY_EXISTS_TITLE, 
-    				String.format( SALES_ITEM_ALREADY_EXISTS_BY_ITEM_KEY , saleItemDto.getItemKey() ) );
+    				String.format( SALES_ITEM_ALREADY_EXISTS_BY_ITEM_KEY , itemDTO.getItemKey() ) );
     	}
 
-    	if( salesItemDao.getByItemName( saleItemDto.getItemName() ) != null ){
+    	if( salesItemDao.getByItemName( itemDTO.getItemName() ) != null ){
     		throw new PointOfSaleException( 
     				CONFLICT, 
     				SALES_ITEM_ALREADY_EXISTS_TITLE, 
-    				String.format( SALES_ITEM_ALREADY_EXISTS_BY_ITEM_NAME , saleItemDto.getItemName() ) );
+    				String.format( SALES_ITEM_ALREADY_EXISTS_BY_ITEM_NAME , itemDTO.getItemName() ) );
     	}
 
-    	if( salesItemDao.getByCodeBars( saleItemDto.getCodeBars() ) != null ){
+    	if( salesItemDao.getByCodeBars( itemDTO.getCodeBars() ) != null ){
     		throw new PointOfSaleException( 
     				CONFLICT, 
     				SALES_ITEM_ALREADY_EXISTS_TITLE, 
-    				String.format( SALES_ITEM_ALREADY_EXISTS_BY_CODE_BARS , saleItemDto.getCodeBars() ) );
+    				String.format( SALES_ITEM_ALREADY_EXISTS_BY_CODE_BARS , itemDTO.getCodeBars() ) );
     	}
-    	
     	
     	//Generate Inventory equals to Zero in every branch
-    	SaleItem itemToPersist = new SaleItem( saleItemDto );
+    	SaleItem itemToPersist = new SaleItem( itemDTO );
     	
-    	Department dep = departmentDao.getById( saleItemDto.getIdDepartment() );
-    	itemToPersist.setDepartment( dep );
- 
-    	Provider prov = providerDao.getById( saleItemDto.getIdProvider() );
-    	itemToPersist.setProvider( prov );
+    	validateDepartment( itemDTO, itemToPersist );
+    	validateProvider( itemDTO, itemToPersist );
 
     	List<Branch> branchesList = branchDao.getAll();
     	for( Branch branch : branchesList ){
     		Inventory inv = new Inventory();
     		inv.setBranch( branch );
     		inv.setInventory( 0.0F );
-    		inv.setSaleItem( itemToPersist );
     		inv.setSaleItem( itemToPersist );
     		itemToPersist.getInventory().add( inv );
     	}
@@ -146,50 +142,95 @@ public class SalesItemsServiceImpl
     	return itemToPersist;
     	
     }
+    
+    @Override
+    public SaleItem update( SalesItemUpdateDTO itemDTO ) {
+    	
+    	SalesItemsServiceImpl.checkEmptyValues( itemDTO );
+    	validateEmptyValue( itemDTO.getIdItem(), EMPTY_REQUIRED_FIELD, SALES_ITEM_EMPTY_VALUE_ITEM_ID, BAD_REQUEST );
+    	
+    	//TODO Need to modify getDifferent Query
+    	//this is working for Happy Path as of now
+    	List<SaleItem> saleItems = 
+    			salesItemDao.getDifferent( 
+    					itemDTO.getItemName(), 
+    					itemDTO.getCodeBars() );
+    	
+    	if( ! CollectionUtils.isEmpty( saleItems ) ) {
+    		throw new PointOfSaleException( 
+    				CONFLICT, 
+    				SALES_ITEM_ALREADY_EXISTS_TITLE, 
+    				String.format( SALES_ITEM_ALREADY_EXISTS_DIFFERENT, 
+    									itemDTO.getItemName(), 
+    									itemDTO.getCodeBars() ) ) ;
+    	}
+    	
+    	SaleItem itemToUpdate = salesItemDao.getById( itemDTO.getIdItem() );
+    	
+    	if( itemToUpdate == null ) {
+    		throw new PointOfSaleException( 
+    				CONFLICT, 
+    				SALES_ITEM_NOT_FOUND_BY_ITEM_KEY, 
+    				String.format( SALES_ITEM_NOT_FOUND_BY_ITEM_KEY , itemDTO.getItemKey() ) );
+    	}
 
-    private static void checkEmptyValues( SalesItemCreateAndModifyDTO saleItemDto ){
+    	validateDepartment( itemDTO, itemToUpdate );
+    	validateProvider( itemDTO, itemToUpdate );
+
+    	itemToUpdate.setItemKey(     itemDTO.getItemKey()   );
+    	itemToUpdate.setItemName(    itemDTO.getItemName()  );
+    	itemToUpdate.setBrand(       itemDTO.getBrand()     );
+    	itemToUpdate.setCodeBars(    itemDTO.getCodeBars()  );
+    	itemToUpdate.setSalePrice(   itemDTO.getSalePrice() );
+    	
+    	salesItemDao.update( itemToUpdate );
+    	return itemToUpdate;
+    }
+
+
+    private static void checkEmptyValues( SalesItemCreateDTO saleItemDto ){
     	
     	validateEmptyValue( 
     			saleItemDto.getItemKey(), 
     			EMPTY_REQUIRED_FIELD, 
     			SALES_ITEM_EMPTY_VALUE_ITEM_KEY, 
-    			CONFLICT);
+    			BAD_REQUEST);
     	
     	validateEmptyValue( 
     			saleItemDto.getItemName(), 
     			EMPTY_REQUIRED_FIELD, 
     			SALES_ITEM_EMPTY_VALUE_ITEM_NAME,
-    			CONFLICT);
+    			BAD_REQUEST);
     	
     	validateEmptyValue( 
     			saleItemDto.getCodeBars(), 
     			EMPTY_REQUIRED_FIELD, 
     			SALES_ITEM_EMPTY_VALUE_ITEM_CODE_BARS,
-    			CONFLICT);
+    			BAD_REQUEST);
     	
     	validateEmptyValue( 
     			saleItemDto.getIdDepartment(), 
     			EMPTY_REQUIRED_FIELD, 
     			SALES_ITEM_EMPTY_VALUE_ITEM_DEPARTMENT_ID,
-    			CONFLICT);
+    			BAD_REQUEST);
     	
     	validateEmptyValue( 
     			saleItemDto.getIdProvider(), 
     			EMPTY_REQUIRED_FIELD, 
     			SALES_ITEM_EMPTY_VALUE_ITEM_PROVIDER_ID,
-    			CONFLICT);
+    			BAD_REQUEST);
     	
     	validateEmptyValue( 
     			saleItemDto.getBrand(), 
     			EMPTY_REQUIRED_FIELD, 
     			SALES_ITEM_EMPTY_VALUE_ITEM_BRAND,
-    			CONFLICT);
+    			BAD_REQUEST);
 
     	validateEmptyValue( 
     			saleItemDto.getSalePrice(), 
     			EMPTY_REQUIRED_FIELD, 
     			SALES_ITEM_EMPTY_NUMERIC_VALUE_ITEM_SALE_PRICE,
-    			CONFLICT);
+    			BAD_REQUEST);
 
 
     }
@@ -212,21 +253,49 @@ public class SalesItemsServiceImpl
     	}
     }
 
-
+    private void validateDepartment( SalesItemCreateDTO itemDTO, SaleItem saleItem ) {
+    	Department dep = departmentDao.getById( itemDTO.getIdDepartment() );
+    	if( dep == null ) {
+    		throw new PointOfSaleException( 
+    				NOT_FOUND, 
+    				DEPARTMENT_NOT_FOUND_TITLE, 
+    				String.format( DEPARTMENT_NOT_FOUND_BY_ID_DESCRIPTON, itemDTO.getIdDepartment() ) ) ;
+    	}
+    	saleItem.setDepartment( dep );
+    }
+    
+    private void validateProvider( SalesItemCreateDTO itemDTO, SaleItem saleItem ) {
+    	Provider prov = providerDao.getById( itemDTO.getIdProvider() );
+    	if( prov == null ) {
+    		throw new PointOfSaleException( 
+    				NOT_FOUND, 
+    				PROVIDER_NOT_FOUND_TITLE, 
+    				String.format( PROVIDER_NOT_FOUND_BY_ID_DESCRIPTON, itemDTO.getIdProvider() ) ) ;
+    		
+    	}
+    	saleItem.setProvider( prov );
+    }
     
     @Override
-    public void saveAll( List<SalesItemCreateAndModifyDTO> salesItems ) {
+    public void saveAll( List<SalesItemCreateDTO> salesItems ) {
         throw new UnsupportedOperationException( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update( SaleItem t ) {
-        throw new UnsupportedOperationException( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void delete( SaleItem t ) {
-        throw new UnsupportedOperationException( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
+    public SaleItem delete( Long idItem ) {
+    	
+    	validateEmptyValue( idItem, EMPTY_REQUIRED_FIELD, SALES_ITEM_EMPTY_VALUE_ITEM_ID, BAD_REQUEST );
+    	SaleItem itemToDelete = salesItemDao.getById( idItem );
+    	
+    	if( itemToDelete == null ) {
+    		throw new PointOfSaleException( 
+    				CONFLICT, 
+    				SALES_ITEM_NOT_FOUND_TITLE, 
+    				String.format( SALES_ITEM_NOT_FOUND_BY_ID_DESCRIPTON, idItem ) );
+    	}
+    	
+    	salesItemDao.delete( itemToDelete );
+    	return itemToDelete;
     }
 
     /**

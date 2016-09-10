@@ -1,15 +1,34 @@
 -rest
   -Items
-    -GET  - http://localhost:8080/PointOfSaleWS/rest/items/all
-    -GET  - http://localhost:8080/PointOfSaleWS/rest/items/1
-    -GET  - http://localhost:8080/PointOfSaleWS/rest/items/100/inventory
+    -GET    - http://localhost:8080/PointOfSaleWS/rest/items/all
+    -GET    - http://localhost:8080/PointOfSaleWS/rest/items/1
+    -GET    - http://localhost:8080/PointOfSaleWS/rest/items/100/inventory
+    -DELETE - http://localhost:8080/PointOfSaleWS/rest/items/1
+    
     -POST - localhost:8080/PointOfSaleWS/rest/items/save
-      {
- 	 "itemName"    : "Cloralex Blanqueador Líquido Aroma Limón 3.8 Lts.",
-	  "averageCost" : 18.90,
+     SalesItemUpdateDTO.class 
+    {
+ 	"itemName"    : "Cloralex Blanqueador Líquido Aroma Limón 3.8 Lts.",
+        "averageCost" : 18.90,
   	"salePrice"   : 15.90,
   	"inventory"   : 50.00,
   	"codeBar"     : "8746109112",
   	"idBranch"    : 1,
   	"idProvider"  : 1
       }
+
+
+
+    -PUT - localhost:8080/PointOfSaleWS/rest/items/update
+     SalesItemUpdateDTO.class
+      {
+        "idItem"      : 1,
+ 	"itemName"    : "Cloralex Blanqueador Líquido Aroma Limón 3.8 Lts.",
+	"averageCost" : 18.90,
+  	"salePrice"   : 15.90,
+  	"inventory"   : 50.00,
+  	"codeBar"     : "8746109112",
+  	"idBranch"    : 1,
+  	"idProvider"  : 1
+      }
+

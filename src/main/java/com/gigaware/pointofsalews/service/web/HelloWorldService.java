@@ -6,6 +6,7 @@ package com.gigaware.pointofsalews.service.web;
 import javax.jws.WebService;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -25,5 +26,10 @@ public interface HelloWorldService {
 	@Produces( MediaType.APPLICATION_JSON )
 	@Path( "/systemProperty" )
 	String getSystemProperty();
+	
+	@GET
+	@Produces( MediaType.APPLICATION_JSON )
+	@Path( "/createSaleItems/{n}" )
+	String createSaleItems( @PathParam( "n" ) int n );
 
 }

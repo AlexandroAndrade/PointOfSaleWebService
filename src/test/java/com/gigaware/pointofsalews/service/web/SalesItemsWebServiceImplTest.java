@@ -3,10 +3,24 @@
  */
 package com.gigaware.pointofsalews.service.web;
 
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.verify;
+import static org.easymock.EasyMock.expectLastCall;
+import static org.easymock.EasyMock.anyObject;
+import static org.easymock.EasyMock.anyLong;
+import static org.easymock.EasyMock.anyInt;
+import static org.easymock.EasyMock.createStrictMock;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.easymock.EasyMock;
+import org.ietf.jgss.Oid;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +28,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import com.gigaware.pointofsalews.dto.SalesItemDto;
-import com.gigaware.pointofsalews.dto.create.SalesItemCreateAndModifyDTO;
+import com.gigaware.pointofsalews.dto.create.SalesItemCreateDTO;
+import com.gigaware.pointofsalews.dto.create.SalesItemUpdateDTO;
 import com.gigaware.pointofsalews.entity.Department;
 import com.gigaware.pointofsalews.entity.Provider;
 import com.gigaware.pointofsalews.entity.SaleItem;
@@ -30,7 +45,7 @@ import com.gigaware.pointofsalews.wrapper.SalesItemWrapper;
 public class SalesItemsWebServiceImplTest {
 
 	private SalesItemsWebServiceImpl webService = new SalesItemsWebServiceImpl();
-	private SalesItemsService itemsService = EasyMock.createStrictMock( SalesItemsServiceImpl.class );
+	private SalesItemsService itemsService = createStrictMock( SalesItemsServiceImpl.class );
 
 	@Before
 	public void setUp(){
@@ -39,27 +54,43 @@ public class SalesItemsWebServiceImplTest {
 	
 	@Test
 	public void testGetAllSalesItems(){
-		EasyMock.expect( itemsService.getAll() ).andReturn( createSalesItemList() ).once();
-		EasyMock.replay( itemsService );
+		expect( itemsService.getAll() ).andReturn( createSalesItemList() ).once();
+		replay( itemsService );
 		
 		SalesItemWrapper response = webService.getAllSalesItems();
 		
-		Assert.assertNotNull( response );
-		Assert.assertTrue( response.getSalesItems().size() == 3 );
-		EasyMock.verify( itemsService );
+		assertNotNull( response );
+		assertTrue( response.getSalesItems().size() == 3 );
+		verify( itemsService );
 		
 	}
 	
 	@Test
 	public void testGetItemById(){
-		EasyMock.expect( itemsService.getById( EasyMock.anyLong() ) ).andReturn(createItem( 10L )).once();
-		EasyMock.replay( itemsService );
+		expect( itemsService.getById( anyLong() ) ).andReturn(createItem( 10L )).once();
+		replay( itemsService );
 		
 		SalesItemDto response = webService.getItemById( 10L );
-		Assert.assertNotNull( response );
-		Assert.assertEquals( response.getIdSalesItem().longValue() , 10L );
-		EasyMock.verify( itemsService );
+		assertNotNull( response );
+		assertEquals( response.getIdSalesItem().longValue() , 10L );
+		verify( itemsService );
 		
+	}
+	
+	@Test
+	public void testGetItemByItemKey() {
+		expect( itemsService.getByItemKey( anyObject( String.class ) ) ).andReturn( createItem( 1L ) ).once();
+		replay( itemsService );
+		assertNotNull( webService.getItemByItemKey( "key_01" ) );
+		verify( itemsService );
+	}
+	
+	@Test
+	public void testGetByInventoryLessThan() {
+		expect( itemsService.getByInventoryLessThan( anyInt() ) ).andReturn( createSalesItemList() ).once();
+		replay( itemsService );
+		assertNotNull( webService.getByInventoryLessThan( 100 ) );
+		verify( itemsService );
 	}
 	
 	@Test
@@ -68,14 +99,32 @@ public class SalesItemsWebServiceImplTest {
 		SaleItem saleItem = new SaleItem();
 		saleItem.setProvider( createProvider( "providerName_01" ) );
 		saleItem.setDepartment( createDepartment( "departmentName_01" ) );
-		EasyMock.expect( itemsService.save( EasyMock.anyObject( SalesItemCreateAndModifyDTO.class ) ) ).andReturn( saleItem ).once();
-		EasyMock.replay( itemsService );
-		Assert.assertNotNull( 
+		expect( itemsService.save( anyObject( SalesItemCreateDTO.class ) ) ).andReturn( saleItem ).once();
+		replay( itemsService );
+		assertNotNull( 
 				webService.saveItem( 
 						createSaleItemDto( "itemKey_01", "itemName_01", "brand_01", 
 								"codeBars_01", 10.0F, 1L, 1L) ) ) ;
-		EasyMock.verify( itemsService );
+		verify( itemsService );
 
+	}
+	
+	@Test
+	public void testUpdateItem() {
+		expect( itemsService.update( anyObject( SalesItemUpdateDTO.class ) ) ).andReturn( createItem( 1L ) ).once();
+		replay( itemsService );
+		assertNotNull( webService.updateItem( createSaleItemUpdateDto( 1L, "itemKey_01", "itemName_01", "brand_01", 
+				"codeBars_01", 10.0F, 1L, 1L ) ) );
+		verify( itemsService );
+	}
+	
+	@Test
+	public void testDeleteItem() {
+		expect( itemsService.delete( anyLong() ) ).andReturn( createItem( 1L ) ).once();
+		replay( itemsService );
+		
+		assertNotNull( webService.deleteItem( 1L ) );
+		verify( itemsService );
 	}
 	
 	private List<SaleItem> createSalesItemList(){
@@ -83,7 +132,6 @@ public class SalesItemsWebServiceImplTest {
 		l.add( createItem( 1L ) );
 		l.add( createItem( 2L ) );
 		l.add( createItem( 3L ) );
-		
 		return l;
 	}
 	
@@ -107,7 +155,7 @@ public class SalesItemsWebServiceImplTest {
 		return d;
 	}
 	
-	private SalesItemCreateAndModifyDTO createSaleItemDto( 
+	private SalesItemCreateDTO createSaleItemDto( 
 			String itemKey, 
 			String itemName, 
 			String brand, 
@@ -116,7 +164,29 @@ public class SalesItemsWebServiceImplTest {
 			Long idDepartment,
 			Long idProvider){
 		
-		SalesItemCreateAndModifyDTO dto = new SalesItemCreateAndModifyDTO();
+		SalesItemCreateDTO dto = new SalesItemCreateDTO();
+		dto.setItemKey( itemKey );
+		dto.setItemName( itemName );
+		dto.setBrand( brand );
+		dto.setCodeBars( codeBars );
+		dto.setSalePrice( salePrice );
+		dto.setIdDepartment( idDepartment );
+		dto.setIdProvider( idProvider );
+		return dto;
+	}
+	
+	private SalesItemUpdateDTO createSaleItemUpdateDto(
+			Long idItem,
+			String itemKey, 
+			String itemName, 
+			String brand, 
+			String codeBars, 
+			Float salePrice,
+			Long idDepartment,
+			Long idProvider){
+		
+		SalesItemUpdateDTO dto = new SalesItemUpdateDTO();
+		dto.setIdItem( idItem );
 		dto.setItemKey( itemKey );
 		dto.setItemName( itemName );
 		dto.setBrand( brand );

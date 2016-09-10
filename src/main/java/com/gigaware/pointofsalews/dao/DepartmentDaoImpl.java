@@ -67,5 +67,5 @@ public class DepartmentDaoImpl extends AbstractHibernateDao implements Departmen
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 }

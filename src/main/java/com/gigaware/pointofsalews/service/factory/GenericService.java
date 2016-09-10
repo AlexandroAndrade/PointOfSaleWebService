@@ -8,17 +8,17 @@ import java.util.List;
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  * @param <T> Business Entity
- * @param <D> Dto for Creating and Modifying
- * @param <R> Class for Responses
+ * @param <C> DTO Class for Creating a new SaleItem
+ * @param <U> DTO Class for Updating a new SaleItem
  */
-public interface GenericService< T, D > {
+public interface GenericService< T, C, U > {
 	
 	List<T> getAll();
 	T getById(Long id);
 	 
-	T save( D d );
-    void saveAll( List<D> ds );
-    void update( T t );
-    void delete( T t );
+	T save( C c );
+    void saveAll( List<C> cs );
+    T update( U u );
+    T delete( Long id );
 
 }

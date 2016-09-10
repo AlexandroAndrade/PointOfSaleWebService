@@ -95,9 +95,9 @@ public class PersistenceConfig {
 	Properties hibernateProperties() {
 		return new Properties() {
 			{
-				setProperty("hibernate.hbm2ddl.auto", posProperties.get( "hibernate.hbm2ddl.auto" ).toString() );
+//				setProperty("hibernate.hbm2ddl.auto", posProperties.get( "hibernate.hbm2ddl.auto" ).toString() );
 		        setProperty("hibernate.dialect", posProperties.get( "hibernate.dialect" ).toString() );
-		        setProperty("hibernate.globally_quoted_identifiers", posProperties.get( "hibernate.show_sql" ).toString() );
+		        setProperty("hibernate.hibernate.show_sql", posProperties.get( "hibernate.show_sql" ).toString() );
 		    }
 		};
 	}

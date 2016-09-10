@@ -62,14 +62,10 @@ public class BranchDaoImpl extends AbstractHibernateDao implements BranchDao, Se
 		
 	}
 
-
-
 	@Override
 	public Branch getByBranchName( String branchName ) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	
-
 }

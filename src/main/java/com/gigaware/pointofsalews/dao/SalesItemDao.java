@@ -18,4 +18,6 @@ public interface SalesItemDao extends GenericDao<SaleItem>{
 	SaleItem getByItemName( String itemName );
 	SaleItem getByCodeBars( String codeBars );
 	
+	List<SaleItem> getDifferent( String itemName, String codeBars );
+
 }

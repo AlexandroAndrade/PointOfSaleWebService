@@ -20,7 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import com.gigaware.pointofsalews.dto.create.SalesItemCreateAndModifyDTO;
+import com.gigaware.pointofsalews.dto.create.SalesItemCreateDTO;
 
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
@@ -39,7 +39,7 @@ public class SaleItem extends AbstractBaseEntity implements Serializable {
 	 */
 	public SaleItem() { }
 	
-	public SaleItem( SalesItemCreateAndModifyDTO saleItemDto ) {
+	public SaleItem( SalesItemCreateDTO saleItemDto ) {
 		this.itemKey = saleItemDto.getItemKey();
 		this.itemName = saleItemDto.getItemName();
 		this.averageCost = 0.0F ;
