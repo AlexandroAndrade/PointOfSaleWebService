@@ -110,7 +110,7 @@ CREATE TABLE `articulo` (
   KEY `fk_articulo_idDepartamento_idx` (`idDepartamento`),
   CONSTRAINT `fk_articulo_idDepartamento` FOREIGN KEY (`idDepartamento`) REFERENCES `departamento` (`idDepartamento`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_articulo_idProveedor` FOREIGN KEY (`idProveedor`) REFERENCES `proveedor` (`idProveedor`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +119,7 @@ CREATE TABLE `articulo` (
 
 LOCK TABLES `articulo` WRITE;
 /*!40000 ALTER TABLE `articulo` DISABLE KEYS */;
-INSERT  IGNORE INTO `articulo` (`idArticulo`, `claveArticulo`, `nombreArticulo`, `idProveedor`, `idDepartamento`, `marca`, `codigoBarras`, `costoPromedio`, `precioVenta`, `borradoLogico`) VALUES (1,'cve_01','nombre_01',1,1,'marca_01','0123456790',0,11.5,'N'),(2,'cve_02','nombre_02',1,1,'marca_02','0123456791',0,11.6,'N'),(3,'cve_03','nombre_03',1,1,'marca_03','0123456792',0,11.99,'N');
+INSERT  IGNORE INTO `articulo` (`idArticulo`, `claveArticulo`, `nombreArticulo`, `idProveedor`, `idDepartamento`, `marca`, `codigoBarras`, `costoPromedio`, `precioVenta`, `borradoLogico`) VALUES (1,'CLORB3.8','Cloralex Blanqueador Líquido Aroma Limón 3.8 Lts.',7,6,'Cloralex','5599881191',0,24.9,'N'),(2,'CLORMASC950','Cloralex Mascotas Reg 950ml',7,6,'Cloralex','5599881192',0,17.5,'N'),(3,'CLORDESVIN950','Cloralex Desmanchador Color Vinagre 950ml',7,6,'Cloralex','5599881193',0,17.5,'N'),(4,'CLORDESVIN1.8','Cloralex Desmanchador Color Vinagre 1.8lt',7,6,'Cloralex','5599881194',0,35.9,'N'),(5,'CLORBREG7LT','Cloralex Blanqueador Regular 7lt',7,6,'Cloralex','5599881196',0,62.5,'N');
 /*!40000 ALTER TABLE `articulo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,7 +196,7 @@ CREATE TABLE `inventario` (
   KEY `fk_idSucursal_idx` (`idSucursal`),
   CONSTRAINT `fk_inventario_idArticulo` FOREIGN KEY (`idArticulo`) REFERENCES `articulo` (`idArticulo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_inventario_idSucursal` FOREIGN KEY (`idSucursal`) REFERENCES `sucursal` (`idSucursal`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -205,7 +205,7 @@ CREATE TABLE `inventario` (
 
 LOCK TABLES `inventario` WRITE;
 /*!40000 ALTER TABLE `inventario` DISABLE KEYS */;
-INSERT  IGNORE INTO `inventario` (`idInventario`, `idArticulo`, `idSucursal`, `existencias`, `borradoLogico`) VALUES (1,1,1,0,'N'),(2,1,7,0,'N'),(3,1,2,0,'N'),(4,1,10,0,'N'),(5,1,9,0,'N'),(6,1,8,0,'N'),(7,1,5,0,'N'),(8,1,6,0,'N'),(9,1,4,0,'N'),(10,1,3,0,'N'),(11,2,7,0,'N'),(12,2,2,0,'N'),(13,2,3,0,'N'),(14,2,10,0,'N'),(15,2,5,0,'N'),(16,2,6,0,'N'),(17,2,8,0,'N'),(18,2,9,0,'N'),(19,2,4,0,'N'),(20,2,1,0,'N'),(21,3,2,0,'N'),(22,3,1,0,'N'),(23,3,5,0,'N'),(24,3,3,0,'N'),(25,3,10,0,'N'),(26,3,8,0,'N'),(27,3,6,0,'N'),(28,3,9,0,'N'),(29,3,4,0,'N'),(30,3,7,0,'N');
+INSERT  IGNORE INTO `inventario` (`idInventario`, `idArticulo`, `idSucursal`, `existencias`, `borradoLogico`) VALUES (1,1,3,0,'N'),(2,1,9,0,'N'),(3,1,7,0,'N'),(4,1,8,0,'N'),(5,1,10,0,'N'),(6,1,6,0,'N'),(7,1,2,0,'N'),(8,1,5,0,'N'),(9,1,4,0,'N'),(10,1,1,0,'N'),(11,2,5,0,'N'),(12,2,4,0,'N'),(13,2,7,0,'N'),(14,2,2,0,'N'),(15,2,1,0,'N'),(16,2,10,0,'N'),(17,2,8,0,'N'),(18,2,9,0,'N'),(19,2,6,0,'N'),(20,2,3,0,'N'),(21,3,10,0,'N'),(22,3,9,0,'N'),(23,3,7,0,'N'),(24,3,5,0,'N'),(25,3,2,0,'N'),(26,3,8,0,'N'),(27,3,4,0,'N'),(28,3,6,0,'N'),(29,3,3,0,'N'),(30,3,1,0,'N'),(31,4,9,0,'N'),(32,4,1,0,'N'),(33,4,5,0,'N'),(34,4,3,0,'N'),(35,4,4,0,'N'),(36,4,2,0,'N'),(37,4,6,0,'N'),(38,4,8,0,'N'),(39,4,10,0,'N'),(40,4,7,0,'N'),(41,5,4,0,'N'),(42,5,10,0,'N'),(43,5,5,0,'N'),(44,5,3,0,'N'),(45,5,9,0,'N'),(46,5,7,0,'N'),(47,5,1,0,'N'),(48,5,6,0,'N'),(49,5,2,0,'N'),(50,5,8,0,'N');
 /*!40000 ALTER TABLE `inventario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,7 +221,7 @@ CREATE TABLE `movimientomercanciadetalle` (
   `idMovimientoMercanciaTotal` bigint(20) NOT NULL,
   `idArticulo` bigint(20) NOT NULL,
   `cantidad` float NOT NULL,
-  `costoPromedio` float NOT NULL,
+  `precioCompra` float NOT NULL,
   `borradoLogico` varchar(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`idMovimientoMercanciaDetalle`),
   UNIQUE KEY `idMovimientoMercanciaDetalle_UNIQUE` (`idMovimientoMercanciaDetalle`),
@@ -477,4 +477,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-07 18:21:27
+-- Dump completed on 2016-09-29 18:56:27

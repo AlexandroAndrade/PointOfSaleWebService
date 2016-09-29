@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
@@ -44,8 +43,8 @@ public class WareMovementDetail extends AbstractBaseEntity implements Serializab
 	@Column( name = "cantidad", nullable = false )
 	private Float quantity;
 	
-	@Column( name = "costoPromedio", nullable = false )
-	private Float averageCost;
+	@Column( name = "precioCompra", nullable = false )
+	private Float purchasePrice;
 
 	public Long getIdWareMovementDetail() {
 		return idWareMovementDetail;
@@ -79,12 +78,12 @@ public class WareMovementDetail extends AbstractBaseEntity implements Serializab
 		this.quantity = quantity;
 	}
 
-	public Float getAverageCost() {
-		return averageCost;
+	public Float getPurchasePrice() {
+		return purchasePrice;
 	}
 
-	public void setAverageCost( Float averageCost ) {
-		this.averageCost = averageCost;
+	public void setPurchasePrice( Float purchasePrice ) {
+		this.purchasePrice = purchasePrice;
 	}
 
 }

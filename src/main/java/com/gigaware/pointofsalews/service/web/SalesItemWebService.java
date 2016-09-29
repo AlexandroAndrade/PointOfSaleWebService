@@ -8,7 +8,6 @@ import com.gigaware.pointofsalews.dto.create.SalesItemCreateDTO;
 import com.gigaware.pointofsalews.dto.create.SalesItemUpdateDTO;
 import com.gigaware.pointofsalews.wrapper.SalesItemWrapper;
 
-import javax.jws.WebService;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -23,7 +22,6 @@ import javax.ws.rs.core.MediaType;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Path( "/" )
-@WebService ( name = "salesItemWebService")
 public interface SalesItemWebService {
     
     @GET

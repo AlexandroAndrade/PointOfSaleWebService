@@ -47,8 +47,29 @@
                 <entry key="json" value="application/json"  />
             </jaxrs:extensionMappings>
                     
+        </jaxrs:server>
+        
+        
+        
+        <jaxrs:server id="sales" address="/sales">
+            
+            <jaxrs:providers>
+                <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+            </jaxrs:providers>
+            
+            <jaxrs:serviceBeans>
+                <ref bean = "salesWebService" />
+            </jaxrs:serviceBeans>
+
+            <jaxrs:extensionMappings>
+                <entry key="xml"  value="application/xml"   />
+                <entry key="json" value="application/json"  />
+            </jaxrs:extensionMappings>
                     
         </jaxrs:server>
+        
+        
+        
 
         <jaxrs:server id="helloWorld" address="/helloWorldWebService">
             <jaxrs:providers>
