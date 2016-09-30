@@ -19,7 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.gigaware.pointofsalews.dto.create.SalesItemCreateDTO;
+import com.gigaware.pointofsalews.dto.item.create.SalesItemCreateDTO;
 
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )

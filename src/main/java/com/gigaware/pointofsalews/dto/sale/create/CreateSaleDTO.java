@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2016, Gigaware Solutions.
  */
-package com.gigaware.pointofsalews.dto.create;
+package com.gigaware.pointofsalews.dto.sale.create;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -28,11 +28,12 @@ public class CreateSaleDTO implements Serializable {
 	private Long idCashier;
 	private Long idUser;
 	private String saleDate;
-	private float totalPrice;
-	private float change;
+	private Float totalPrice;
+	private Float totalTaxes;
+	private Float change;
 	
 	@XmlElement( name = "items" )
-	private Set<ItemForSaleDTO> items = new HashSet<>();
+	private List<ItemForSaleDTO> items = new ArrayList<>();
 
 	public Long getIdBranch() {
 		return idBranch;
@@ -66,31 +67,36 @@ public class CreateSaleDTO implements Serializable {
 		this.saleDate = saleDate;
 	}
 
-	public float getTotalPrice() {
+	public Float getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice( float totalPrice ) {
+	public void setTotalPrice( Float totalPrice ) {
 		this.totalPrice = totalPrice;
 	}
 
-	public float getChange() {
+	public Float getTotalTaxes() {
+		return totalTaxes;
+	}
+
+	public void setTotalTaxes( Float totalTaxes ) {
+		this.totalTaxes = totalTaxes;
+	}
+
+	public Float getChange() {
 		return change;
 	}
 
-	public void setChange( float change ) {
+	public void setChange( Float change ) {
 		this.change = change;
 	}
 
-	public Set<ItemForSaleDTO> getItems() {
+	public List<ItemForSaleDTO> getItems() {
 		return items;
 	}
 
-	public void setItems( Set<ItemForSaleDTO> items ) {
+	public void setItems( List<ItemForSaleDTO> items ) {
 		this.items = items;
 	}
-	
-	
-	
-	
+
 }

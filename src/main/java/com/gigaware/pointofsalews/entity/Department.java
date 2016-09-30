@@ -15,7 +15,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
@@ -37,6 +36,9 @@ public class Department extends AbstractBaseEntity implements Serializable {
 	@Column( name = "nombreDepartamento", nullable = false )
 	private String departmentName;
 	
+	@Column( name = "iva", nullable = false )
+	private Byte tax;
+	
 	@OneToMany( fetch = FetchType.LAZY, mappedBy = "department" )
 	private Set<SaleItem> salesItems = new HashSet<>();
 
@@ -54,6 +56,14 @@ public class Department extends AbstractBaseEntity implements Serializable {
 
 	public void setDepartmentName( String departmentName ) {
 		this.departmentName = departmentName;
+	}
+	
+	public Byte getTax() {
+		return tax;
+	}
+
+	public void setTax( Byte tax ) {
+		this.tax = tax;
 	}
 
 	public Set<SaleItem> getSalesItems() {

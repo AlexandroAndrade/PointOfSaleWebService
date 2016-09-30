@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2016, Gigaware Solutions.
  */
-package com.gigaware.pointofsalews.dto.create;
+package com.gigaware.pointofsalews.dto.item.create;
 
 import java.io.Serializable;
 

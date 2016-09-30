@@ -17,7 +17,7 @@ import com.gigaware.pointofsalews.dao.BranchDao;
 import com.gigaware.pointofsalews.dao.DepartmentDao;
 import com.gigaware.pointofsalews.dao.ProviderDao;
 import com.gigaware.pointofsalews.dao.SalesItemDao;
-import com.gigaware.pointofsalews.dto.create.SalesItemCreateDTO;
+import com.gigaware.pointofsalews.dto.item.create.SalesItemCreateDTO;
 import com.gigaware.pointofsalews.entity.Branch;
 import com.gigaware.pointofsalews.entity.Department;
 import com.gigaware.pointofsalews.entity.Inventory;

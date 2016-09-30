@@ -47,8 +47,11 @@ public class SaleDetail extends AbstractBaseEntity implements Serializable {
 	@Column( name = "costoPromedio", nullable = false )
 	private Float averageCost;
 	
-	@Column( name = "precioVenta", nullable = false )
-	private Float salePrice;
+	@Column( name = "precioNeto", nullable = false )
+	private Float netPrice;
+	
+	@Column( name = "iva", nullable = false )
+	private Float tax;
 
 	public Long getIdSaleDetail() {
 		return idSaleDetail;
@@ -90,12 +93,20 @@ public class SaleDetail extends AbstractBaseEntity implements Serializable {
 		this.averageCost = averageCost;
 	}
 
-	public Float getSalePrice() {
-		return salePrice;
+	public Float getNetPrice() {
+		return netPrice;
 	}
 
-	public void setSalePrice( Float salePrice ) {
-		this.salePrice = salePrice;
+	public void setNetPrice( Float netPrice ) {
+		this.netPrice = netPrice;
+	}
+
+	public Float getTax() {
+		return tax;
+	}
+
+	public void setTax( Float tax ) {
+		this.tax = tax;
 	}
 
 }

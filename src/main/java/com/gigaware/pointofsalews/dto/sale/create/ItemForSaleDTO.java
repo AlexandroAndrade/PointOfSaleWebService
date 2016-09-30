@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2016, Gigaware Solutions.
  */
-package com.gigaware.pointofsalews.dto.create;
+package com.gigaware.pointofsalews.dto.sale.create;
 
 import java.io.Serializable;
 
@@ -27,6 +27,7 @@ public class ItemForSaleDTO implements Serializable {
 	private Float quantity;
 	private Float averageCost;
 	private Float salePrice;
+	private Float tax;
 	
 	public Long getIdItem() {
 		return idItem;
@@ -60,6 +61,14 @@ public class ItemForSaleDTO implements Serializable {
 		this.salePrice = salePrice;
 	}
 	
+	public Float getTax() {
+		return tax;
+	}
+
+	public void setTax( Float tax ) {
+		this.tax = tax;
+	}
+
 	@Override
 	public boolean equals( Object o ) {
 		

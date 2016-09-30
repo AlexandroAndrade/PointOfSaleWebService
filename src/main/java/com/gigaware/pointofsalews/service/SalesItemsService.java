@@ -3,8 +3,8 @@
  */
 package com.gigaware.pointofsalews.service;
 
-import com.gigaware.pointofsalews.dto.create.SalesItemCreateDTO;
-import com.gigaware.pointofsalews.dto.create.SalesItemUpdateDTO;
+import com.gigaware.pointofsalews.dto.item.create.SalesItemCreateDTO;
+import com.gigaware.pointofsalews.dto.item.create.SalesItemUpdateDTO;
 import com.gigaware.pointofsalews.entity.SaleItem;
 import com.gigaware.pointofsalews.service.factory.GenericService;
 import java.util.List;

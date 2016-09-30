@@ -51,11 +51,14 @@ public class SaleTotal extends AbstractBaseEntity implements Serializable {
 	@Column( name = "fechaVenta", nullable = false )
 	private Date saleDate;
 
-	@Column( name = "totalVenta", nullable = false )
-	private Float totalSale;
+	@Column( name = "totalNeto", nullable = false )
+	private Float netTotal;
 
-	@Column( name = "cambio", nullable = false )
-	private Float moneyChange;
+	@Column( name = "totalImpuestos", nullable = false )
+	private Float totalTaxes;
+
+	@Column( name = "importe", nullable = false )
+	private Float paymentAmount;
 
 	@Column( name = "numeroTicket", nullable = false )
 	private String ticketNumber;
@@ -103,20 +106,28 @@ public class SaleTotal extends AbstractBaseEntity implements Serializable {
 		this.saleDate = saleDate;
 	}
 
-	public Float getTotalSale() {
-		return totalSale;
+	public Float getNetTotal() {
+		return netTotal;
 	}
 
-	public void setTotalSale( Float totalSale ) {
-		this.totalSale = totalSale;
+	public void setNetTotal( Float netTotal ) {
+		this.netTotal = netTotal;
 	}
 
-	public Float getMoneyChange() {
-		return moneyChange;
+	public Float getTotalTaxes() {
+		return totalTaxes;
 	}
 
-	public void setMoneyChange( Float moneyChange ) {
-		this.moneyChange = moneyChange;
+	public void setTotalTaxes( Float totalTaxes ) {
+		this.totalTaxes = totalTaxes;
+	}
+
+	public Float getPaymentAmount() {
+		return paymentAmount;
+	}
+
+	public void setPaymentAmount( Float paymentAmount ) {
+		this.paymentAmount = paymentAmount;
 	}
 
 	public String getTicketNumber() {

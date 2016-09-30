@@ -35,7 +35,8 @@ public class SalesItemDto implements Serializable {
 	private String itemName;
 	private Float averageCost;
 	private Float salePrice;
-	private List<InventoryBranchDto> inventory = new ArrayList<>();
+	private Byte tax;
+//	private List<InventoryBranchDto> inventory = new ArrayList<>();
 	private String codeBars;
 	private String providerName;
 	private String department;
@@ -55,16 +56,17 @@ public class SalesItemDto implements Serializable {
 		this.itemName = StringUtils.defaultString( item.getItemName(), EMPTY );
 		this.averageCost = item.getAverageCost();
 		this.salePrice = item.getSalePrice();
+		this.tax = item.getDepartment().getTax();
 		
-		for( Inventory inv : item.getInventory() ) {
-			InventoryBranchDto invDto = new InventoryBranchDto();
-			invDto.setBranchName( inv.getBranch().getBranchName() );
-			invDto.setInventory( inv.getInventory() );
-			this.inventory.add( invDto );
-		}
+//		for( Inventory inv : item.getInventory() ) {
+//			InventoryBranchDto invDto = new InventoryBranchDto();
+//			invDto.setBranchName( inv.getBranch().getBranchName() );
+//			invDto.setInventory( inv.getInventory() );
+//			this.inventory.add( invDto );
+//		}
 		
 		this.codeBars = StringUtils.defaultString( item.getCodeBars(), EMPTY );
-		this.providerName = StringUtils.defaultString( item.getProvider().getBusinessName(), EMPTY );
+		this.providerName = StringUtils.defaultString( item.getProvider().getProviderName(), EMPTY );
 		this.department = StringUtils.defaultString( item.getDepartment().getDepartmentName(), EMPTY );
 	}
 
@@ -105,16 +107,16 @@ public class SalesItemDto implements Serializable {
 		return salePrice;
 	}
 
-	public List<InventoryBranchDto> getInventory() {
-		return inventory;
-	}
-
-	public void setInventory( List<InventoryBranchDto> inventory ) {
-		this.inventory = inventory;
-	}
-
 	public void setSalePrice( Float salePrice ) {
 		this.salePrice = salePrice;
+	}
+
+	public Byte getTax() {
+		return tax;
+	}
+
+	public void setTax( Byte tax ) {
+		this.tax = tax;
 	}
 
 	public String getCodeBars() {

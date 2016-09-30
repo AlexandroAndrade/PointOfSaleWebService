@@ -20,8 +20,6 @@ public final class QueryConstants {
             "SELECT DISTINCT SI FROM SaleItem SI " +
             "JOIN FETCH SI.department D " +
             "JOIN FETCH SI.provider P   " +
-            "JOIN FETCH SI.inventory I "  +
-            "JOIN FETCH I.branch B "      + 
             "WHERE SI.logicalDeleted in ( 'N' ) " ;
     
     public static final String SALESITEM_GET_BY_ID =

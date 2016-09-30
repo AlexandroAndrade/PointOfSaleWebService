@@ -28,8 +28,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import com.gigaware.pointofsalews.dto.SalesItemDto;
-import com.gigaware.pointofsalews.dto.create.SalesItemCreateDTO;
-import com.gigaware.pointofsalews.dto.create.SalesItemUpdateDTO;
+import com.gigaware.pointofsalews.dto.item.create.SalesItemCreateDTO;
+import com.gigaware.pointofsalews.dto.item.create.SalesItemUpdateDTO;
 import com.gigaware.pointofsalews.entity.Department;
 import com.gigaware.pointofsalews.entity.Provider;
 import com.gigaware.pointofsalews.entity.SaleItem;

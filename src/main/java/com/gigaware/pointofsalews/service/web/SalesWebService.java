@@ -12,10 +12,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import com.gigaware.pointofsalews.dto.create.CreateSaleDTO;
-import com.gigaware.pointofsalews.dto.read.RegisteredSalesWrapper;
-import com.gigaware.pointofsalews.dto.response.RegisteredSaleDTO;
-import com.gigaware.pointofsalews.dto.response.RegisteredSaleDetailsDTO;
+import com.gigaware.pointofsalews.dto.sale.create.CreateSaleDTO;
+import com.gigaware.pointofsalews.dto.sale.create.RegisteredSaleDTO;
+import com.gigaware.pointofsalews.dto.sale.read.SaleDetailsDTO;
+import com.gigaware.pointofsalews.dto.sale.read.TotalSalesDTO;
 
 /**
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
@@ -33,7 +33,7 @@ public interface SalesWebService {
 	@Produces( MediaType.APPLICATION_JSON )
 	@Consumes( MediaType.APPLICATION_JSON )
 	@Path( "/get-sales")
-	RegisteredSalesWrapper getSales( 
+	TotalSalesDTO getSales( 
 			@QueryParam( value = "idBranch" ) Long idBranch,
 			@QueryParam( value = "startDate") String startDate,
 			@QueryParam( value = "endDate") String endDate,
@@ -43,8 +43,8 @@ public interface SalesWebService {
 	@GET
 	@Produces( MediaType.APPLICATION_JSON )
 	@Consumes( MediaType.APPLICATION_JSON )
-	@Path( "/get-sale-details")
-	RegisteredSaleDetailsDTO getSaleDetails( 
+	@Path( "/get-sale-details/{idSaleTotal}")
+	SaleDetailsDTO getSaleDetails( 
 			@PathParam( value = "idSaleTotal" ) Long idSaleTotal );
 	
 }
