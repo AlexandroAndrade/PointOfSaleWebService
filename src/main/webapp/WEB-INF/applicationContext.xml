@@ -69,6 +69,43 @@
         </jaxrs:server>
         
         
+        <jaxrs:server id="ware" address="/ware">
+            
+            <jaxrs:providers>
+                <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+            </jaxrs:providers>
+            
+            <jaxrs:serviceBeans>
+                <ref bean = "wareMovementsWebService" />
+            </jaxrs:serviceBeans>
+
+            <jaxrs:extensionMappings>
+                <entry key="xml"  value="application/xml"   />
+                <entry key="json" value="application/json"  />
+            </jaxrs:extensionMappings>
+                    
+        </jaxrs:server>
+        
+        
+        <jaxrs:server id="inventory" address="/inventory">
+            
+            <jaxrs:providers>
+                <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+            </jaxrs:providers>
+            
+            <jaxrs:serviceBeans>
+                <ref bean = "inventoryWebService" />
+            </jaxrs:serviceBeans>
+
+            <jaxrs:extensionMappings>
+                <entry key="xml"  value="application/xml"   />
+                <entry key="json" value="application/json"  />
+            </jaxrs:extensionMappings>
+                    
+        </jaxrs:server>
+        
+                
+        
         
 
         <jaxrs:server id="helloWorld" address="/helloWorldWebService">

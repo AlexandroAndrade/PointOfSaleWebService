@@ -21,17 +21,19 @@ import com.gigaware.pointofsalews.dto.sale.read.TotalSalesDTO;
  * @author Alex Andrade ( yngwie_alex@hotmail.com )
  */
 @Path( "/" )
+@Produces( MediaType.APPLICATION_JSON )
+@Consumes( MediaType.APPLICATION_JSON )
 public interface SalesWebService {
 
 	@POST
-	@Produces( MediaType.APPLICATION_JSON )
-	@Consumes( MediaType.APPLICATION_JSON )
+//	@Produces( MediaType.APPLICATION_JSON )
+//	@Consumes( MediaType.APPLICATION_JSON )
 	@Path( "/register" )
 	RegisteredSaleDTO registerSale( CreateSaleDTO saleDTO );
 	
 	@GET
-	@Produces( MediaType.APPLICATION_JSON )
-	@Consumes( MediaType.APPLICATION_JSON )
+//	@Produces( MediaType.APPLICATION_JSON )
+//	@Consumes( MediaType.APPLICATION_JSON )
 	@Path( "/get-sales")
 	TotalSalesDTO getSales( 
 			@QueryParam( value = "idBranch" ) Long idBranch,
@@ -41,8 +43,8 @@ public interface SalesWebService {
 			@QueryParam( value = "idUser") Long idUser );
 	
 	@GET
-	@Produces( MediaType.APPLICATION_JSON )
-	@Consumes( MediaType.APPLICATION_JSON )
+//	@Produces( MediaType.APPLICATION_JSON )
+//	@Consumes( MediaType.APPLICATION_JSON )
 	@Path( "/get-sale-details/{idSaleTotal}")
 	SaleDetailsDTO getSaleDetails( 
 			@PathParam( value = "idSaleTotal" ) Long idSaleTotal );
