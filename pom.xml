@@ -223,7 +223,7 @@
 			<id>developmentProfile</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
-				<jdk>1.7</jdk>
+				<jdk>1.8</jdk>
 			</activation>
 			<build>
 				<defaultGoal>package</defaultGoal>
